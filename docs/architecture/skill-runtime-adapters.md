@@ -4,7 +4,7 @@
 
 This document owns the repository-wide boundary between portable skill-adoption logic and target-specific skill behavior. It defines the adapter methodology used to support ChatGPT now and other skill runtimes later.
 
-Repository working rules remain in [`AGENTS.md`](../../AGENTS.md). Skill security and admission controls remain in the applicable documents under [`docs/security/`](../security/).
+Repository working rules remain in [`AGENTS.md`](../../AGENTS.md). Research conclusions are owned by [`docs/research/skill-adoption-research-synthesis.md`](../research/skill-adoption-research-synthesis.md), package contents by [`docs/standards/skill-package-standard.md`](../standards/skill-package-standard.md), evaluation evidence by [`docs/testing/skill-evaluation-standard.md`](../testing/skill-evaluation-standard.md), and skill security and admission by the applicable documents under [`docs/security/`](../security/).
 
 ## Decision
 
