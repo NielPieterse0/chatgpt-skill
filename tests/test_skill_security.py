@@ -38,6 +38,7 @@ def independent_skill_hash(skill_dir: Path) -> str:
 def default_policy() -> dict[str, object]:
     return {
         "schema_version": 1,
+        "authority": "docs/security/skill-adoption-security-standard.md",
         "discovery": {
             "root": "skills",
             "pattern": "skills/*/SKILL.md",
@@ -185,6 +186,14 @@ class SkillSecurityTests(unittest.TestCase):
 
         self.assertTrue(report.ok, report.to_dict())
         self.assertEqual(["safe-skill"], [entry["name"] for entry in catalog["skills"]])
+
+    def test_malformed_policy_fails_closed_without_exception(self) -> None:
+        write_json(self.root / "config" / "skill-security-policy.json", {"schema_version": 1})
+
+        report = validate_repository(self.root, require_git=False)
+
+        self.assertFalse(report.ok)
+        self.assertIn("POLICY_MISSING", error_codes(report))
 
     def test_reference_skill_is_never_discovered(self) -> None:
         create_skill(self.root)

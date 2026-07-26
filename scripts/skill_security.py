@@ -203,6 +203,7 @@ def _is_iso_date(value: Any) -> bool:
 
 
 def _validate_policy(policy: Any, report: ValidationReport, path: Path) -> dict[str, Any] | None:
+    initial_error_count = len(report.errors)
     required = {"schema_version", "authority", "discovery", "git", "admission", "prohibited_capabilities"}
     obj = _validate_exact_keys(policy, required, report, "POLICY", path)
     if obj is None:
@@ -290,7 +291,7 @@ def _validate_policy(policy: Any, report: ValidationReport, path: Path) -> dict[
             "P0 prohibited_capabilities must contain every high-risk capability exactly once.",
             path,
         )
-    return obj
+    return obj if len(report.errors) == initial_error_count else None
 
 
 def _validate_runtime_control(value: Any, report: ValidationReport, path: Path) -> dict[str, Any] | None:
@@ -358,7 +359,8 @@ def parse_skill_frontmatter(skill_path: Path) -> tuple[dict[str, Any], str]:
         key, raw = match.group(1), match.group(2) or ""
         if key in result:
             raise ValueError(f"Duplicate frontmatter field: {key}.")
-        if any(token in raw for token in ("&", "*", "!!")):
+        stripped_raw = raw.lstrip()
+        if stripped_raw.startswith(("&", "*", "!!")):
             raise ValueError(f"YAML anchors, aliases, and explicit tags are not allowed: {key}.")
 
         if raw in {"|", ">"}:
@@ -654,8 +656,10 @@ def _validate_skill_tree(skill_dir: Path, report: ValidationReport) -> None:
         except (OSError, UnicodeError) as exc:
             report.add_error("TEXT_SCAN_FAILED", str(exc), path)
             continue
+        normalized_content = re.sub(r"[^A-Za-z0-9_.:/+-]+", " ", content)
+        normalized_content = re.sub(r"\s+", " ", normalized_content)
         for pattern in RUNTIME_INSTALLATION_PATTERNS:
-            if pattern.search(content):
+            if pattern.search(content) or pattern.search(normalized_content):
                 report.add_error(
                     "RUNTIME_INSTALLATION_PATTERN",
                     f"Runtime dependency resolution pattern is prohibited: {pattern.pattern}.",

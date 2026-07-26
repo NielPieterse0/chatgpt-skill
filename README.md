@@ -25,7 +25,21 @@ The live repository is the sole source of truth for accepted project state. The 
 
 ## Current Status
 
-The repository is in its bootstrap stage. The initial root governance and entry-point documents are present; adopted skill artifacts and supporting authority documents should be added through the repository workflow defined in [`AGENTS.md`](AGENTS.md).
+The repository is in its bootstrap stage. Root governance, research inputs, architecture guidance, and the P0 security gate are present; no adopted runtime skill is enabled. Add adopted skills only through the repository workflow in [`AGENTS.md`](AGENTS.md) and the security standard below.
+
+## P0 Security Baseline
+
+The repository now enforces a fail-closed skill adoption boundary:
+
+- only `skills/*/SKILL.md` is runtime-discoverable;
+- `references/` and `.work/` are permanently excluded;
+- every adopted skill requires `adoption-manifest.json` with provenance, license, capability, integrity, approval, and rollback records;
+- Tier 3 and Tier 4 capabilities are prohibited;
+- `allowed-tools`, hooks, remote MCP, runtime installation, credentials, network access, and external mutation are rejected;
+- `config/runtime-control.json` is the emergency kill switch and starts disabled;
+- Git metadata and the configured private `origin` are required for completion validation.
+
+The authoritative rules are in [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md).
 
 ## Quick Start
 
@@ -58,33 +72,46 @@ Before editing:
 6. **Document** provenance, usage, limitations, and authoritative references without duplicating implementation guidance in this README.
 
 ## Repository Structure
-
-The repository uses the following high-level structure as content is added:
-
 ```text
 AGENTS.md          Repository-wide execution contract
 README.md          Project entry point and navigation
-.work/             Temporary and generated working artifacts
-skills/            Adopted repository-owned skill artifacts
+package.json       Fixed validation and catalog commands
+config/            Machine-enforced security policy and runtime kill switch
+schemas/           Adoption manifest contract
+scripts/           Repository-owned validation and catalog tooling
+skills/            Only runtime-discoverable adopted skills
+references/        Untrusted source evidence and provenance material
 docs/              Specifications, architecture, decisions, plans, and standards
-references/        Curated external knowledge, source snapshots, and provenance material
-tests/              Automated validation for adopted skills and supporting tooling
+tests/             Automated security-gate tests
+.work/             Temporary, generated, quarantine, and incident artifacts
 ```
 
-Directories beyond the root documents are created only when required by an adopted change.
+`references/` and `.work/` are never skill discovery roots. `skills/` is tracked with its own README and admits only direct child skill directories that pass the security gate.
 
 ## Validation
-
-Use the commands documented by the relevant authoritative repository files. For documentation-only changes, verify Markdown consistency, referenced paths, authority boundaries, and run the following when Git metadata is available:
+Run the fixed repository checks:
 
 ```powershell
-git diff --check
-git status --short
+npm test
+npm run verify-bootstrap  # controlled pre-Git bootstrap only
+npm run verify            # required after Git origin is configured
+npm run catalog           # returns an empty catalog while the kill switch is disabled
 ```
 
-Do not treat missing validation infrastructure as a successful check. Record unavailable checks and add appropriate validation as the repository evolves.
+Direct validator commands are also available:
+
+```powershell
+python scripts/skill_security.py validate --repo .
+python scripts/skill_security.py catalog --repo .
+python scripts/skill_security.py hash skills/<skill-name>
+```
+
+For final review, also run `git diff --check` and inspect `git status --short`. Do not claim a check passed unless its command completed successfully. The one permitted pre-Git exception is `verify-bootstrap`; it does not satisfy completion validation.
 
 ## Authoritative Documentation
+
+- [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md): P0 trust zones, capability tiers, provenance, admission, discovery, disablement, validation, and incident-containment rules.
+- [`schemas/skill-adoption-manifest.schema.json`](schemas/skill-adoption-manifest.schema.json): machine-readable adoption record contract.
 
 - [`references/skills-knowledge-source-register.md`](references/skills-knowledge-source-register.md): curated hierarchy of Agent Skills specifications, product documentation, implementations, catalogs, security standards, evaluation research, and adoption-source requirements.
 - [`docs/research/chatgpt-skill-adoption-deep-research-brief.md`](docs/research/chatgpt-skill-adoption-deep-research-brief.md): focused research scope for the portable skill package, ChatGPT coding-agent architecture, security controls, scripts, references, evals, and implementation decisions.

@@ -14,6 +14,7 @@
 - Discover only `skills/*/SKILL.md`; never scan `references/`.
 - Reject symlinks, duplicate names, nested skills, malformed metadata, unapproved capabilities, and integrity mismatches.
 - Reject `allowed-tools`; runtime permissions are host-enforced.
+- Keep the validator and canonical catalog free of ChatGPT-specific and future Codex-specific discovery, activation, packaging, and metadata assumptions.
 - Runtime starts disabled.
 - Tier 3 and Tier 4 skills are prohibited at P0.
 - No external dependencies or runtime installation.
@@ -49,7 +50,7 @@
 - [ ] Define the complete adoption manifest contract and disallow unknown fields.
 - [ ] Validate both JSON files structurally.
 
-### Task 3: Implement the validator and catalog gate
+### Task 3: Implement the validator and canonical catalog gate
 
 **Files:**
 - Create: `scripts/skill_security.py`
@@ -65,7 +66,8 @@
 - [ ] Implement deterministic tree hashing excluding `adoption-manifest.json`.
 - [ ] Implement exact non-recursive discovery and symlink rejection.
 - [ ] Implement Git metadata and expected-origin validation.
-- [ ] Implement the emergency kill switch and all-or-nothing catalog output.
+- [ ] Implement the emergency kill switch and all-or-nothing platform-neutral canonical catalog output.
+- [ ] Add tests proving the catalog contract contains no ChatGPT-specific or future Codex-specific integration assumptions.
 - [ ] Run the test suite and make every test pass.
 
 ### Task 4: Publish authoritative security documentation
@@ -81,8 +83,8 @@
 
 - [ ] Document trust zones, capability tiers, admission criteria, prohibited behaviors, Git provenance, emergency disablement, and validation commands.
 - [ ] Add a valid example manifest.
-- [ ] Reference the standard from `AGENTS.md` without duplicating implementation detail.
-- [ ] Add security setup and validation entry points to `README.md`.
+- [ ] Reference the security standard and adapter architecture from `AGENTS.md` without duplicating implementation detail.
+- [ ] Add security setup, validation entry points, and the ChatGPT-first adapter architecture link to `README.md`.
 
 ### Task 5: Verify and establish Git baseline
 

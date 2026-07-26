@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "test": "python -m unittest discover -s tests -v",
-    "verify": "python -m unittest discover -s tests -v && python scripts/skill_security.py validate --repo . --skip-git"
+    "verify-bootstrap": "python -m unittest discover -s tests -v && python scripts/skill_security.py validate --repo . --skip-git",
+    "verify": "python -m unittest discover -s tests -v && python scripts/skill_security.py validate --repo . && python scripts/skill_security.py catalog --repo .",
+    "catalog": "python scripts/skill_security.py catalog --repo ."
   }
 }

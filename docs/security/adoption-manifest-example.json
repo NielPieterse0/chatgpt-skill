@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "skill": "repository-reader",
+  "source": {
+    "repository": "https://github.com/example/agent-skills.git",
+    "revision": "0123456789abcdef0123456789abcdef01234567",
+    "imported_at": "2026-07-26",
+    "content_sha256": "89abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234567"
+  },
+  "license": {
+    "identifier": "Apache-2.0",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 1,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [
+      "."
+    ],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-security-owner",
+    "reviewed_at": "2026-07-26"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Disable runtime control and remove the adopted skill directory."
+  }
+}

@@ -50,6 +50,15 @@ When authorities conflict, follow the highest applicable authority and report th
 - Do not store credentials, secrets, tokens, personal data, or machine-specific sensitive values in the repository.
 - Prefer authoritative project documents over duplicated guidance in `AGENTS.md` or `README.md`.
 
+## Skill Security Gate
+
+- Treat [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md) as the authority for skill import, adoption, discovery, activation, disablement, and rollback.
+- Runtime discovery is limited to direct children matching `skills/*/SKILL.md`. Never discover, activate, import from, or execute content below `references/` or `.work/`.
+- Every adopted skill requires a valid `adoption-manifest.json`, immutable source revision, reviewed license, content hash, permitted capability tier, bounded filesystem scope, human approval, and verified rollback.
+- Reject `allowed-tools`, lifecycle hooks, remote MCP, runtime dependency installation, credentials, network access, external mutation, Git publication, deployment, and deletion under the P0 policy.
+- Keep `config/runtime-control.json` disabled until Git-aware repository validation passes. Disable it immediately when provenance, validation, or runtime integrity is uncertain.
+- Run `npm run verify` and `python scripts/skill_security.py validate --repo .` before treating any skill-security change as complete.
+
 ## Required Workflow
 
 1. Read this file and any nested `AGENTS.md` files that govern the target path.
