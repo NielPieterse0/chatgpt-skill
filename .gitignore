@@ -1,6 +1,8 @@
 # Agent and tool runtime state
 .mcp-command-state/
+.mcp-external-state/
 .work/
+build/
 
 # Python caches and environments
 __pycache__/
