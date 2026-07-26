@@ -11,7 +11,7 @@ This document defines the accepted GitHub repository operating state. `AGENTS.md
 | Visibility | Private |
 | Default branch | `main` |
 | Repository owner | `NielPieterse0` |
-| Local remote | `https://github.com/NielPieterse0/ChatGPT-skill-adoption.git` |
+| Local remote | `https://github.com/NielPieterse0/chatgpt-skill-adoption.git` |
 | Merge strategy | Squash merge only |
 | Source branches | Delete after merge |
 | Wiki | Disabled |

@@ -14,7 +14,7 @@
   },
   "git": {
     "required": true,
-    "expected_origin": "https://github.com/NielPieterse0/ChatGPT-skill-adoption.git",
+    "expected_origin": "https://github.com/NielPieterse0/chatgpt-skill-adoption.git",
     "allowed_origin_schemes": [
       "https",
       "ssh"
