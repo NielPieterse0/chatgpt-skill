@@ -25,7 +25,9 @@ The live repository is the sole source of truth for accepted project state. The 
 
 ## Current Status
 
-The repository is in its bootstrap stage. Root governance, research inputs, architecture guidance, and the P0 security gate are present; no adopted runtime skill is enabled. Add adopted skills only through the repository workflow in [`AGENTS.md`](AGENTS.md) and the security standard below.
+The repository has completed its research-integration and P0 security baseline. The accepted research synthesis, portable package contract, evaluation standard, adapter boundary, and dependency-ordered implementation backlog are present. No adopted runtime skill is enabled.
+
+The next milestone is one low-risk Tier 0 or Tier 1 prototype with baseline, trigger, output, efficiency, abuse, compatibility, human-review, packaging, disablement, and rollback evidence. Broad catalog adoption remains out of scope until that proof is accepted.
 
 ## P0 Security Baseline
 
@@ -59,8 +61,9 @@ Before editing:
 
 1. Read [`AGENTS.md`](AGENTS.md).
 2. Inspect the live repository state and applicable nested instructions.
-3. Identify the candidate skill and its source files.
-4. Locate or create the authoritative specification, decision, plan, or validation documentation required for the change.
+3. For skill work, read the [`research synthesis`](docs/research/skill-adoption-research-synthesis.md) and its linked package, security, evaluation, adapter, and backlog owners.
+4. Identify the candidate skill and its source files.
+5. Locate or create the authoritative specification, decision, plan, or validation documentation required for the change.
 
 ## Common Workflow
 
@@ -110,6 +113,11 @@ python scripts/skill_security.py hash skills/<skill-name>
 For final review, also run `git diff --check` and inspect `git status --short`. Do not claim a check passed unless its command completed successfully. The one permitted pre-Git exception is `verify-bootstrap`; it does not satisfy completion validation.
 
 ## Authoritative Documentation
+
+- [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md): accepted research conclusions, requirements matrix, unresolved product questions, and output status.
+- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
+- [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, and human-review gates.
+- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered work for the first prototype, ChatGPT adapter, package validation, and future targets.
 - [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout checklist.
 - [`SECURITY.md`](SECURITY.md): private vulnerability reporting and immediate containment.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.

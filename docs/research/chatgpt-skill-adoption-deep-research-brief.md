@@ -10,11 +10,15 @@ It is a research brief, not an implementation specification, security approval, 
 
 ## Status
 
-- **State:** Proposed research scope
+- **State:** Research completed and repository conclusions integrated
 - **Research date:** 2026-07-26
+- **Integration date:** 2026-07-26
 - **Initial target:** OpenAI ChatGPT used as a chat-based coding agent
 - **Future target path:** Codex through a separate runtime adapter, not a duplicate adoption core
 - **Primary outcome:** A minimal, secure, testable, maintainable, and adapter-driven skill-adoption architecture
+- **Integrated synthesis:** [`skill-adoption-research-synthesis.md`](skill-adoption-research-synthesis.md)
+
+The research brief remains the record of scope and required outputs. Accepted conclusions and implementation requirements are owned by the synthesis and the authoritative architecture, package, security, evaluation, and backlog documents it links.
 
 ## Research Objective
 

@@ -63,12 +63,13 @@ When authorities conflict, follow the highest applicable authority and report th
 
 1. Read this file and any nested `AGENTS.md` files that govern the target path.
 2. Inspect the live repository state before editing.
-3. Identify the authoritative documents, source skill material, dependencies, constraints, provenance, acceptance criteria, and selected runtime target relevant to the task.
-4. Separate source-derived requirements from repository-owned decisions and adaptations; keep host-specific behavior within the responsible adapter boundary.
-5. For non-trivial changes, establish or update the appropriate specification, decision record, or implementation plan before modifying implementation artifacts.
-6. Make the smallest coherent change that satisfies the requested scope.
-7. Validate the changed artifacts using repository-defined commands and targeted checks.
-8. Review the final diff for unintended changes, duplicated authority, sensitive content, stale references, unsupported source claims, and unrecorded portability assumptions.
+3. For work that creates, changes, evaluates, packages, enables, suspends, or removes a skill, read [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md) and the linked authoritative owner documents before the first edit.
+4. Identify the authoritative documents, source skill material, dependencies, constraints, provenance, acceptance criteria, and selected runtime target relevant to the task.
+5. Separate source-derived requirements from repository-owned decisions and adaptations; keep host-specific behavior within the responsible adapter boundary.
+6. For non-trivial changes, establish or update the appropriate specification, decision record, or implementation plan before modifying implementation artifacts.
+7. Make the smallest coherent change that satisfies the requested scope.
+8. Validate the changed artifacts using repository-defined commands and targeted checks.
+9. Review the final diff for unintended changes, duplicated authority, sensitive content, stale references, unsupported source claims, and unrecorded portability assumptions.
 
 ## Validation
 
@@ -99,6 +100,11 @@ Stop when all of the following are true:
 Stop and request direction before proceeding when the task requires destructive action, expands beyond the stated scope, conflicts with a higher authority, or depends on missing information that would materially change the implementation.
 
 ## Authoritative References
+
+- [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md): accepted cross-source conclusions, requirements matrix, unresolved assumptions, and research-output status.
+- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
+- [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, human-review, and release-evidence requirements.
+- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered P1 and P2 implementation work and stop criteria.
 - [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout requirements.
 - [`SECURITY.md`](SECURITY.md): vulnerability reporting and immediate containment.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.

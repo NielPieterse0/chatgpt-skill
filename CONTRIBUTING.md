@@ -29,7 +29,9 @@ Use squash merge for a focused, reviewable main-branch history. Delete the sourc
 
 ## Skill adoption changes
 
-Do not copy a candidate skill directly into runtime discovery. Every adopted skill must satisfy [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md) and include a valid `adoption-manifest.json`.
+Do not copy a candidate skill directly into runtime discovery. Start from the [`research synthesis`](docs/research/skill-adoption-research-synthesis.md), then follow the authoritative package, security, evaluation, adapter, and backlog documents it links.
+
+Every adopted skill must include a valid `adoption-manifest.json`, preserve the canonical/adapter boundary, and demonstrate value over an explicit baseline before runtime enablement.
 
 ## Security reports
 
