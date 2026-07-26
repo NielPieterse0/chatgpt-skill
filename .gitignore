@@ -1,0 +1,22 @@
+# Agent and tool runtime state
+.mcp-command-state/
+.work/
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# JavaScript dependencies and caches
+node_modules/
+.npm/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

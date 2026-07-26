@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NielPieterse0/ChatGPT-skill-adoption/schemas/skill-adoption-manifest.schema.json",
+  "title": "ChatGPT Skill Adoption Manifest",
+  "description": "Repository-owned provenance, capability, approval, and rollback record required for every adopted skill.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill",
+    "source",
+    "license",
+    "risk",
+    "filesystem",
+    "activation",
+    "dependencies",
+    "approval",
+    "rollback"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "skill": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "revision",
+        "imported_at",
+        "content_sha256"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "imported_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier",
+        "reviewed"
+      ],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewed": {
+          "const": true
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tier",
+        "capabilities"
+      ],
+      "properties": {
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "capabilities": {
+          "$ref": "#/$defs/capabilities"
+        }
+      }
+    },
+    "filesystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "read",
+        "write",
+        "absolute_paths"
+      ],
+      "properties": {
+        "read": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/repositoryPath"
+          },
+          "uniqueItems": true
+        },
+        "write": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/repositoryPath"
+          },
+          "uniqueItems": true
+        },
+        "absolute_paths": {
+          "const": false
+        }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "requires_trusted_project",
+        "requires_human_approval"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "model",
+            "explicit"
+          ]
+        },
+        "requires_trusted_project": {
+          "const": true
+        },
+        "requires_human_approval": {
+          "type": "boolean"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "locked",
+        "runtime_installation"
+      ],
+      "properties": {
+        "locked": {
+          "const": true
+        },
+        "runtime_installation": {
+          "const": false
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewer",
+        "reviewed_at"
+      ],
+      "properties": {
+        "status": {
+          "const": "approved"
+        },
+        "reviewer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified",
+        "method"
+      ],
+      "properties": {
+        "verified": {
+          "const": true
+        },
+        "method": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500
+        }
+      }
+    }
+  },
+  "$defs": {
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "not": {
+        "pattern": "^(?:[A-Za-z]:[\\\\/]|/|\\\\\\\\|.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$))"
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lifecycle_hooks",
+        "network",
+        "credentials",
+        "external_mutations",
+        "runtime_installation",
+        "remote_mcp",
+        "git_publication",
+        "deployment",
+        "deletion"
+      ],
+      "properties": {
+        "lifecycle_hooks": {
+          "type": "boolean"
+        },
+        "network": {
+          "type": "boolean"
+        },
+        "credentials": {
+          "type": "boolean"
+        },
+        "external_mutations": {
+          "type": "boolean"
+        },
+        "runtime_installation": {
+          "type": "boolean"
+        },
+        "remote_mcp": {
+          "type": "boolean"
+        },
+        "git_publication": {
+          "type": "boolean"
+        },
+        "deployment": {
+          "type": "boolean"
+        },
+        "deletion": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "risk": {
+            "properties": {
+              "tier": {
+                "const": 2
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "activation": {
+            "properties": {
+              "mode": {
+                "const": "explicit"
+              },
+              "requires_human_approval": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "skills_enabled": false,
+  "reason": "P0 fail-closed default. Enable only after Git-aware repository validation passes and an adopted skill is approved.",
+  "changed_at": "2026-07-26T00:00:00Z",
+  "changed_by": "repository-owner"
+}

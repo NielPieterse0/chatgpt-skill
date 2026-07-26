@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "authority": "docs/security/skill-adoption-security-standard.md",
+  "discovery": {
+    "root": "skills",
+    "pattern": "skills/*/SKILL.md",
+    "max_depth": 1,
+    "excluded_roots": [
+      "references",
+      ".work"
+    ],
+    "reject_symlinks": true,
+    "reject_nested_skills": true
+  },
+  "git": {
+    "required": true,
+    "expected_origin": "https://github.com/NielPieterse0/ChatGPT-skill-adoption.git",
+    "allowed_origin_schemes": [
+      "https",
+      "ssh"
+    ]
+  },
+  "admission": {
+    "allowed_tiers": [
+      0,
+      1,
+      2
+    ],
+    "reject_allowed_tools": true,
+    "require_content_hash": true,
+    "require_license_review": true,
+    "require_human_approval": true,
+    "require_rollback": true
+  },
+  "prohibited_capabilities": [
+    "lifecycle_hooks",
+    "network",
+    "credentials",
+    "external_mutations",
+    "runtime_installation",
+    "remote_mcp",
+    "git_publication",
+    "deployment",
+    "deletion"
+  ]
+}
