@@ -1,0 +1,52 @@
+name: Skill adoption candidate
+description: Propose a skill for assessment, adaptation, or rejection.
+title: "skill: "
+labels:
+  - skill-candidate
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source location
+      description: Provide the repository URL and exact revision or immutable source identifier.
+      placeholder: https://github.com/owner/repository at <commit>
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Customer outcome
+      description: Describe the concrete task or result this skill should improve.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence of value
+      description: Provide real tasks, failures, runbooks, evaluation results, or other project-specific evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Expected capabilities and boundaries
+      description: Identify filesystem, script, network, credential, external mutation, runtime, or adapter requirements.
+    validations:
+      required: true
+  - type: textarea
+    id: license
+    attributes:
+      label: License and provenance notes
+      description: State the source license and any unresolved provenance concern.
+    validations:
+      required: true
+  - type: dropdown
+    id: target
+    attributes:
+      label: Initial runtime target
+      options:
+        - ChatGPT
+        - Portable core only
+        - Future Codex adapter
+    validations:
+      required: true

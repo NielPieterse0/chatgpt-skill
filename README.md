@@ -76,12 +76,13 @@ Before editing:
 AGENTS.md          Repository-wide execution contract
 README.md          Project entry point and navigation
 package.json       Fixed validation and catalog commands
+.github/            CI, ownership, contribution, issue, and dependency automation
 config/            Machine-enforced security policy and runtime kill switch
 schemas/           Adoption manifest contract
 scripts/           Repository-owned validation and catalog tooling
 skills/            Only runtime-discoverable adopted skills
 references/        Untrusted source evidence and provenance material
-docs/              Specifications, architecture, decisions, plans, and standards
+docs/              Specifications, architecture, decisions, plans, standards, and operations
 tests/             Automated security-gate tests
 .work/             Temporary, generated, quarantine, and incident artifacts
 ```
@@ -109,6 +110,9 @@ python scripts/skill_security.py hash skills/<skill-name>
 For final review, also run `git diff --check` and inspect `git status --short`. Do not claim a check passed unless its command completed successfully. The one permitted pre-Git exception is `verify-bootstrap`; it does not satisfy completion validation.
 
 ## Authoritative Documentation
+- [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout checklist.
+- [`SECURITY.md`](SECURITY.md): private vulnerability reporting and immediate containment.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
 
 - [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md): P0 trust zones, capability tiers, provenance, admission, discovery, disablement, validation, and incident-containment rules.
 - [`schemas/skill-adoption-manifest.schema.json`](schemas/skill-adoption-manifest.schema.json): machine-readable adoption record contract.

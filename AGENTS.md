@@ -99,6 +99,9 @@ Stop when all of the following are true:
 Stop and request direction before proceeding when the task requires destructive action, expands beyond the stated scope, conflicts with a higher authority, or depends on missing information that would materially change the implementation.
 
 ## Authoritative References
+- [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout requirements.
+- [`SECURITY.md`](SECURITY.md): vulnerability reporting and immediate containment.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.

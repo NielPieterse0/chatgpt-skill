@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible defect in repository-owned code, validation, or documentation.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not include secrets, credentials, personal data, or undisclosed vulnerabilities.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected outcome
+      description: State the observable result that should have occurred.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual outcome
+      description: State what occurred, including exact error messages where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest repeatable sequence and relevant repository paths.
+      placeholder: |
+        1. Run ...
+        2. Open ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation evidence
+      description: Include commands already run and their output summary.
+      render: shell
+  - type: dropdown
+    id: security
+    attributes:
+      label: Security-sensitive
+      description: Select Yes only when this issue contains no exploit or confidential detail. Report vulnerabilities privately instead.
+      options:
+        - "No"
+        - "Yes - private report also submitted"
+    validations:
+      required: true
