@@ -74,6 +74,14 @@ Before editing:
 5. **Validate** the adopted artifacts with targeted and repository-wide checks.
 6. **Document** provenance, usage, limitations, and authoritative references without duplicating implementation guidance in this README.
 
+## Work Management
+
+Work for this repository is tracked by issue-backed records and projected into the shared GitHub user Project `NielPieterse0/1`. KIS Work Management in `C:\Projects\kis-mcp` is the operational control plane for reading, reconciling, and validating that lifecycle.
+
+The machine-readable binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json). It records the KIS schema source, required capabilities and operations, the Project identity, and an exact-source safety rule: only records sourced from `NielPieterse0/chatgpt-skill` are mutation-eligible.
+
+For each work item, read the source issue and current Project status before claiming it, use a clean issue worktree, keep lifecycle state current, complete required verification and review/merge, then close the source issue and reconcile its Project projection to `Done`. The issue remains the stable source identity throughout; stale Project state must be reconciled rather than silently treated as authoritative.
+
 ## Repository Structure
 ```text
 AGENTS.md          Repository-wide execution contract
@@ -81,6 +89,7 @@ README.md          Project entry point and navigation
 package.json       Fixed validation and catalog commands
 .github/            CI, ownership, contribution, issue, and dependency automation
 config/            Machine-enforced security policy and runtime kill switch
+settings/          Repository-owned project and Work Management contract
 schemas/           Adoption manifest contract
 scripts/           Repository-owned validation and catalog tooling
 skills/            Only runtime-discoverable adopted skills
