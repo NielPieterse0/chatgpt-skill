@@ -25,9 +25,9 @@ The live repository is the sole source of truth for accepted project state. The 
 
 ## Current Status
 
-The repository has completed its research-integration and P0 security baseline. The accepted research synthesis, portable package contract, evaluation standard, adapter boundary, and dependency-ordered implementation backlog are present. `develop-code` and `develop-docs` are admitted as canonical Tier 2 project-content workflows, but no skill is runtime-enabled.
+The repository has completed its research-integration and P0 security baseline, and KIS Work Management is now the required tracked-work control plane. `develop-code` and `develop-docs` are admitted canonical Tier 2 project-content workflows. The global runtime kill switch remains disabled, so no skill is runtime-enabled.
 
-The next milestone is target/runtime compatibility and explicit enablement evidence for admitted skills. Broader catalog adoption remains evidence-driven and out of scope until the applicable release gates pass.
+The active milestone is repository reconciliation: complete the import-isolate boundary and handoff contract, the `modularity-assessment` release evaluation, GitHub governance alignment, and workflow-draft disposition. Broader catalog adoption remains evidence-driven and out of scope until the applicable release gates pass.
 
 ## P0 Security Baseline
 

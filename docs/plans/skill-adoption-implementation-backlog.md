@@ -8,23 +8,34 @@ It does not redefine package, security, evaluation, or adapter requirements. Fol
 
 ## Current Baseline
 
-Completed P0 controls:
+Verified on `main` after Change 001 / PR #15:
 
-- repository authority and source hierarchy;
-- ChatGPT-first portable/runtime adapter boundary;
-- exact direct-child discovery under `skills/`;
-- fail-closed security validator and canonical catalog;
-- adoption manifest schema, content integrity, provenance, license, capability, approval, and rollback requirements;
-- Tier 3 and Tier 4 deny list;
-- global runtime kill switch, currently disabled;
-- Git-aware validation and private GitHub repository controls;
-- research synthesis, package standard, and evaluation standard.
+- P0 authority, discovery, validation, manifest, capability, kill-switch, research, package, evaluation, and adapter-boundary controls are present;
+- KIS Work Management is the required tracked-work control plane, with issue-backed repository identity and GitHub Project projection;
+- `develop-code` and `develop-docs` are admitted canonical Tier 2 project-content workflow skills under `skills/`;
+- runtime remains globally disabled, so no admitted skill is runtime-enabled;
+- no release decision has enabled `modularity-assessment` or any other additional candidate;
+- the dirty canonical checkout is classified by Change 003 and must not be merged or reset wholesale.
 
-The architecture is decision-ready. No adopted skill is enabled, no ChatGPT adapter package exists, and no prototype has demonstrated value over baseline.
+Current blockers are explicit: import-isolate boundary reconciliation and handoff identity are incomplete, `modularity-assessment` lacks complete release evidence, live GitHub governance does not yet match repository policy, the three quarantined workflow drafts need disposition, and one closed historical Project item (#7) still has stale projection state.
 
-## P1 — Must Implement Before First Runtime Enablement
+## Current Active Backlog
 
-Execute in order. A later item must not bypass a failed or incomplete dependency.
+Use the issue-backed Work Management records as the live execution state. Dependency order is:
+
+1. **Change 004 / #6 — import-isolate boundary reconciliation.** Establish the retained-source authority boundary before changing handoff metadata.
+2. **Change 005 / #8 — machine-readable import-isolate handoff identity.** Depends on Change 004; extend manifest and validation only after the boundary is explicit.
+3. **Change 006 / #9 — modularity-assessment evaluation and release decision.** Complete isolated evaluation evidence and record enable/defer/revise/reject; runtime stays disabled absent all release gates and owner approval.
+4. **Change 007 / #10 — GitHub merge policy and main protection.** Reconcile live provider settings to the repository-owned squash-only and branch-protection policy without bypassing provider limitations.
+5. **Change 008 / #11 — workflow-draft disposition.** Resolve `develop-code`, `develop-docs`, and `tdd-change-discipline` draft evidence without silently readmitting stale copies.
+
+Independent items may proceed in parallel only when their owned paths and evidence do not overlap. Change 005 must not precede Change 004. Closed work and historical local commits are evidence, not active backlog entries.
+
+## Historical P1 Prototype Plan
+
+The sequence below records the original pre-admission prototype plan. It is retained as historical planning evidence and is not the live work queue. Where it conflicts with the Current Active Backlog or admitted artifacts, the live repository and issue-backed Work Management records govern.
+
+Execute the historical sequence only as background rationale; do not create its named prototype merely because it appears below.
 
 ### P1.1 Select and specify the low-risk prototype
 
