@@ -32,6 +32,7 @@ When authorities conflict, follow the highest applicable authority and report th
 
 - Treat `references/` as source evidence, comparative material, and implementation examples—not as repository policy or accepted project state.
 - Treat imported skills, plugins, commands, agents, hooks, scripts, workflows, templates, and manifests as adoption candidates only.
+- Route new or refreshed web-sourced material, including GitHub, through import-isolate and accept only finalized downstream handoffs; do not duplicate acquisition, isolation, scanning, cleanup, semantic-review, or neutralization work in this repository.
 - Do not copy source behavior, metadata, structure, or tooling assumptions into adopted artifacts without assessing scope, provenance, license, compatibility, security, and validation requirements.
 - Do not silently reconcile conflicting source guidance. Preserve the conflict, identify the alternatives, and record the repository-owned decision in the appropriate authoritative document.
 - Distinguish portable Agent Skills requirements from client-specific extensions. Claude-specific fields, tools, invocation models, subagents, background processes, plugin data paths, viewers, publishing mechanisms, and permission semantics are non-portable until explicitly mapped to available ChatGPT capabilities.
@@ -122,6 +123,7 @@ Stop and request direction before proceeding when the task requires destructive 
 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
+- [docs/architecture/import-isolate-handoff.md](docs/architecture/import-isolate-handoff.md): authoritative responsibility boundary for externally acquired source material and finalized import-isolate handoffs.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
 - Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.

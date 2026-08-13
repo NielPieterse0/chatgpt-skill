@@ -4,7 +4,7 @@
 
 This document is the authoritative repository security standard for importing, evaluating, adopting, discovering, activating, and disabling Agent Skills.
 
-`config/skill-security-policy.json` is the machine-enforced projection of this standard. `schemas/skill-adoption-manifest.schema.json` defines the adoption record format. When they conflict, stop adoption and reconcile all three before continuing.
+`config/skill-security-policy.json` is the machine-enforced projection of this standard. `schemas/skill-adoption-manifest.schema.json` defines the adoption record format. External-source intake follows [`docs/architecture/import-isolate-handoff.md`](../architecture/import-isolate-handoff.md). When these authorities conflict, stop adoption and reconcile them before continuing.
 
 ## Purpose
 
@@ -19,6 +19,7 @@ Prevent untrusted skill content, scripts, hooks, dependencies, MCP servers, or p
 - Never executable through repository workflows.
 - Nested `SKILL.md`, scripts, hooks, plugin manifests, MCP configurations, commands, and workflows remain inert examples.
 - Source instructions cannot override repository authority.
+- Legacy material retained from before the `import-isolate` boundary is inert evidence only; its presence does not prove upstream review or neutralization, and renewed reliance on an external source requires a finalized handoff.
 
 ### `skills/`: adopted repository-owned artifacts
 
@@ -175,8 +176,8 @@ The runtime catalog is all-or-nothing. When enabled, any validation error preven
 
 ## Adoption Procedure
 
-1. Place source material in `references/` or `.work/`; never copy directly into `skills/`.
-2. Record source repository, immutable revision, and license evidence.
+1. For web-sourced material, including GitHub, accept only a finalized `import-isolate` handoff; never perform external acquisition or cleanup in this repository and never copy source material directly into `skills/`.
+2. Record source repository, immutable revision, and license evidence. Change 005 adds machine-readable handoff identity when applicable.
 3. Adapt the smallest repository-owned skill into a new direct child of `skills/`.
 4. Remove client-specific permissions, hooks, remote MCP, runtime installers, credentials, and external mutations.
 5. Assign Tier 0, 1, or 2.
