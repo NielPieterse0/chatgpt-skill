@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "skill": "develop-code",
+  "source": {
+    "repository": "https://github.com/NielPieterse0/kis-mcp.git",
+    "revision": "5ab2aa1e71852363b0a872e1d9a44f3c70298a42",
+    "imported_at": "2026-08-13",
+    "content_sha256": "07135ba9e509076f002cd550c8e50ee2251e598979425db93178aa44e471a871"
+  },
+  "license": {"identifier": "LicenseRef-Repository-Owned", "reviewed": true},
+  "risk": {"tier": 2, "capabilities": {"lifecycle_hooks": false, "network": false, "credentials": false, "external_mutations": false, "runtime_installation": false, "remote_mcp": false, "git_publication": false, "deployment": false, "deletion": false}},
+  "filesystem": {"read": ["."], "write": ["."], "absolute_paths": false},
+  "activation": {"mode": "explicit", "requires_trusted_project": true, "requires_human_approval": true},
+  "dependencies": {"locked": true, "runtime_installation": false},
+  "approval": {"status": "approved", "reviewer": "repository-owner", "reviewed_at": "2026-08-13"},
+  "rollback": {"verified": true, "method": "Disable runtime control and remove only the skills/develop-code directory, then regenerate the catalog."}
+}
