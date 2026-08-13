@@ -31,7 +31,7 @@ Prevent untrusted skill content, scripts, hooks, dependencies, MCP servers, or p
 
 - Temporary outputs, quarantine material, generated evidence, and exploratory work.
 - Never a discovery root.
-- Tier 2 skill writes must be limited to `.work/<skill-name>/`.
+- Use `.work/` by default for temporary or generated outputs; Tier 2 skills may also write to explicitly declared repository-relative project paths when their workflow requires changes to project content.
 
 ## Agent Skills Compatibility
 
@@ -63,9 +63,12 @@ The specification marks `allowed-tools` experimental. This repository rejects th
 
 ### Tier 2 — bounded repository writes
 
-- Writes only below `.work/<skill-name>/`.
+- Writes are limited to repository-relative paths declared in the adoption manifest.
+- `.` may be declared for general development and documentation workflows that update project content anywhere in the active repository.
+- Repository-root scope covers project content, not repository control metadata.
 - Explicit activation required.
 - Human approval required for each activation.
+- Project instructions and host/tool permissions remain authoritative over every edit.
 - No high-risk capabilities.
 
 ### Tier 3 — network or runtime dependencies
