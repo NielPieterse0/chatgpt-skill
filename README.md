@@ -8,37 +8,42 @@
 
 ## Overview
 
-This repository provides a controlled process for adopting selected high-value skills from the Codex global skills library. ChatGPT is the initial delivery target.
+This repository provides a controlled process for evaluating, adapting, validating, and maintaining selected high-value skills. ChatGPT is the initial delivery target.
 
-The project exists to make skill adoption explicit, reviewable, reproducible, and maintainable rather than relying on ad hoc copies or undocumented assumptions. Its adapter-driven architecture keeps the portable adoption model separate from host integration so a future Codex target can reuse the same canonical adopted skills and controls.
+The shared Projects workspace catalogue is `C:\Projects\.agents\skills`. It is the canonical operational catalogue used by KIS Skills, while this repository remains the source of truth for its own accepted adoption decisions, runtime packages, security controls, and evaluation evidence. Catalogue presence does not itself grant repository runtime admission or enablement.
 
-The live repository is the sole source of truth for accepted project state. The external Codex skills library and its index are read-only source inputs.
+The Codex library at `C:\Users\piete\.codex\skills` and other source corpora are candidate inputs. Skills created or maintained there must still be deliberately reviewed before workspace or repository adoption.
+
+The project exists to make skill adoption explicit, reviewable, reproducible, and maintainable rather than relying on ad hoc copies or undocumented assumptions. Its adapter-driven architecture keeps the portable adoption model separate from host integration so a future Codex target can reuse the same repository-owned canonical skills and controls.
 
 ## Goals
 
-- Identify useful candidate skills from the Codex global skills library.
-- Evaluate scope, dependencies, compatibility, risks, and expected value before adoption.
-- Adapt selected skills into repository-owned artifacts with clear provenance.
+- Identify useful candidate skills from the shared workspace, Codex, repository-local, and other approved source surfaces.
+- Evaluate scope, dependencies, compatibility, risks, overlap, and expected value before adoption.
+- Adapt selected skills into repository-owned artifacts with clear provenance when repository runtime admission is required.
+- Keep shared workspace catalogue state explicit and separate from repository runtime state.
 - Keep portable adoption logic independent from target-specific adapters, starting with ChatGPT and preserving a future Codex path.
 - Validate adopted skills and their supporting documentation.
 - Keep working rules, implementation knowledge, and project navigation in their proper authoritative locations.
 
 ## Current Status
 
-The repository has completed its research-integration and P0 security baseline, and KIS Work Management is now the required tracked-work control plane. `develop-code` and `develop-docs` are admitted canonical Tier 2 project-content workflows. The global runtime kill switch remains disabled, so no skill is runtime-enabled.
+The repository has completed its research-integration and P0 security baseline, and KIS Work Management is the required tracked-work control plane. `develop-code` and `develop-docs` are admitted repository Tier 2 project-content workflows. The global runtime kill switch remains disabled, so no repository skill is runtime-enabled.
 
-The reconciliation queue is closed. There is no active implementation slice in the authoritative backlog. `modularity-assessment` is deferred until target behavioral execution and activation observability are available; the current `tdd-change-discipline` draft is not admitted because its mandatory gate/governance assumptions conflict with this repository; and GitHub governance enforcement is recorded as an external provider limitation without weakening repository policy. New adoption work must enter through issue-backed Work Management intake.
+A new reconciliation sweep is active under Change 011 / issue #22. It covers local-main cleanup, correction of the shared-catalogue authority path, deliberate workspace adoption of `modularity-assessment`, operator-requested withdrawal of `code-as-docs-governance`, `use-doc-solution`, and `tdd-change-discipline`, and a full canonical-catalogue compliance audit.
+
+`modularity-assessment` has owner approval for **shared workspace catalogue adoption** under Change 013. Its separate repository runtime/canonical admission remains deferred until the behavioral execution and activation-observability gates in the evaluation standard are satisfied. The current `tdd-change-discipline` contract remains not admitted for this repository because it conflicts with the actual KIS/npm workflow.
 
 ## P0 Security Baseline
 
-The repository now enforces a fail-closed skill adoption boundary:
+The repository enforces a fail-closed repository-runtime adoption boundary:
 
-- only `skills/*/SKILL.md` is runtime-discoverable;
+- only `skills/*/SKILL.md` is repository runtime-discoverable;
 - `references/` and `.work/` are permanently excluded;
-- every adopted skill requires `adoption-manifest.json` with provenance, license, capability, integrity, approval, and rollback records;
+- every repository-adopted skill requires `adoption-manifest.json` with provenance, license, capability, integrity, approval, and rollback records;
 - Tier 3 and Tier 4 capabilities are prohibited;
 - `allowed-tools`, hooks, remote MCP, runtime installation, credentials, network access, and external mutation are rejected;
-- `config/runtime-control.json` is the emergency kill switch and starts disabled;
+- `config/runtime-control.json` is the emergency kill switch and remains disabled;
 - Git metadata and the configured private `origin` are required for completion validation.
 
 The authoritative rules are in [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md).
@@ -51,7 +56,13 @@ Get-Content .\AGENTS.md
 Get-ChildItem
 ```
 
-Review the external candidate index without modifying it:
+Inspect the shared canonical workspace catalogue without modifying it:
+
+```powershell
+Get-ChildItem C:\Projects\.agents\skills -Directory
+```
+
+Inspect the Codex candidate source when relevant:
 
 ```powershell
 Get-Content C:\Users\piete\.codex\skills\skills-index.json
@@ -62,17 +73,18 @@ Before editing:
 1. Read [`AGENTS.md`](AGENTS.md).
 2. Inspect the live repository state and applicable nested instructions.
 3. For skill work, read the [`research synthesis`](docs/research/skill-adoption-research-synthesis.md) and its linked package, security, evaluation, adapter, and backlog owners.
-4. Identify the candidate skill and its source files.
-5. Locate or create the authoritative specification, decision, plan, or validation documentation required for the change.
+4. Identify whether the task changes repository runtime state, shared workspace catalogue state, or both.
+5. Identify the candidate skill, its authoritative source/evidence, and immutable revision or trusted-local identity.
+6. Locate or create the authoritative specification, decision, plan, work item, and validation documentation required for the change.
 
 ## Common Workflow
 
-1. **Select** a candidate from the external skills index.
-2. **Assess** its purpose, dependencies, compatibility, security implications, and maintenance cost.
-3. **Decide** whether to adopt, adapt, defer, or reject it, recording the decision in the appropriate repository document.
-4. **Implement** the smallest coherent repository-owned version.
-5. **Validate** the adopted artifacts with targeted and repository-wide checks.
-6. **Document** provenance, usage, limitations, and authoritative references without duplicating implementation guidance in this README.
+1. **Select** a candidate or catalogue item from an approved source surface.
+2. **Assess** its purpose, dependencies, compatibility, security implications, overlap, and maintenance cost.
+3. **Decide** whether to adopt, adapt, defer, reject, withdraw, or suspend it, recording the decision in the appropriate repository record.
+4. **Implement** the smallest coherent repository-owned or explicitly authorized shared-catalogue change.
+5. **Validate** the affected skill/package/catalogue with targeted and repository-wide checks appropriate to the changed boundary.
+6. **Document** provenance, usage, limitations, rollback, and authoritative references without duplicating implementation guidance in this README.
 
 ## Work Management
 
@@ -83,32 +95,34 @@ The machine-readable binding is [`settings/projects/chatgpt-skill.json`](setting
 For each work item, read the source issue and current Project status before claiming it, use a clean issue worktree, keep lifecycle state current, complete required verification and review/merge, then close the source issue and reconcile its Project projection to `Done`. The issue remains the stable source identity throughout; stale Project state must be reconciled rather than silently treated as authoritative.
 
 ## Repository Structure
+
 ```text
 AGENTS.md          Repository-wide execution contract
 README.md          Project entry point and navigation
 package.json       Fixed validation and catalog commands
-.github/            CI, ownership, contribution, issue, and dependency automation
+.github/           CI, ownership, contribution, issue, and dependency automation
 config/            Machine-enforced security policy and runtime kill switch
 settings/          Repository-owned project and Work Management contract
 schemas/           Adoption manifest contract
 scripts/           Repository-owned validation and catalog tooling
-skills/            Only runtime-discoverable adopted skills
+skills/            Only repository runtime-discoverable adopted skills
 references/        Untrusted source evidence and provenance material
 docs/              Specifications, architecture, decisions, plans, standards, and operations
 tests/             Automated security-gate tests
 .work/             Temporary, generated, quarantine, and incident artifacts
 ```
 
-`references/` and `.work/` are never skill discovery roots. `skills/` is tracked with its own README and admits only direct child skill directories that pass the security gate.
+`references/` and `.work/` are never repository runtime discovery roots. `skills/` admits only direct child skill directories that pass the security gate. The external workspace catalogue at `C:\Projects\.agents\skills` is managed separately through explicit tracked catalogue operations.
 
 ## Validation
+
 Run the fixed repository checks:
 
 ```powershell
 npm test
 npm run verify-bootstrap  # controlled pre-Git bootstrap only
 npm run verify            # required after Git origin is configured
-npm run catalog           # returns an empty catalog while the kill switch is disabled
+npm run catalog           # returns an empty repo runtime catalog while the kill switch is disabled
 ```
 
 Direct validator commands are also available:
@@ -119,24 +133,21 @@ python scripts/skill_security.py catalog --repo .
 python scripts/skill_security.py hash skills/<skill-name>
 ```
 
-For final review, also run `git diff --check` and inspect `git status --short`. Do not claim a check passed unless its command completed successfully. The one permitted pre-Git exception is `verify-bootstrap`; it does not satisfy completion validation.
+For final review, also run `git diff --check` and inspect `git status --short`. Catalogue-changing work must additionally refresh and re-read KIS Skills against `C:\Projects\.agents\skills`. Do not claim a check passed unless its command completed successfully. The one permitted pre-Git exception is `verify-bootstrap`; it does not satisfy completion validation.
 
 ## Authoritative Documentation
 
 - [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md): accepted research conclusions, requirements matrix, unresolved product questions, and output status.
-- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
+- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical repository skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
 - [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, and human-review gates.
-- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered work for the first prototype, ChatGPT adapter, package validation, and future targets.
+- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): current and historical implementation work, dependencies, and stop criteria.
 - [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout checklist.
 - [`SECURITY.md`](SECURITY.md): private vulnerability reporting and immediate containment.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
-
 - [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md): P0 trust zones, capability tiers, provenance, admission, discovery, disablement, validation, and incident-containment rules.
-- [`schemas/skill-adoption-manifest.schema.json`](schemas/skill-adoption-manifest.schema.json): machine-readable adoption record contract.
-
+- [`schemas/skill-adoption-manifest.schema.json`](schemas/skill-adoption-manifest.schema.json): machine-readable repository adoption record contract.
 - [`references/skills-knowledge-source-register.md`](references/skills-knowledge-source-register.md): curated hierarchy of Agent Skills specifications, product documentation, implementations, catalogs, security standards, evaluation research, and adoption-source requirements.
 - [`docs/research/chatgpt-skill-adoption-deep-research-brief.md`](docs/research/chatgpt-skill-adoption-deep-research-brief.md): focused research scope for the portable skill package, ChatGPT coding-agent architecture, security controls, scripts, references, evals, and implementation decisions.
-
 - [`AGENTS.md`](AGENTS.md): repository-wide behavioral rules, required workflow, constraints, validation expectations, and completion criteria.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative ChatGPT-first adapter strategy and the boundary between portable adoption logic and target-specific integration.
 - [`docs/architecture/import-isolate-handoff.md`](docs/architecture/import-isolate-handoff.md): responsibility boundary for externally acquired source material and finalized `import-isolate` handoffs.
