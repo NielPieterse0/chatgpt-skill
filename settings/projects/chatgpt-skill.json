@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "project_id": "chatgpt-skill",
+  "repository": {
+    "full_name": "NielPieterse0/chatgpt-skill",
+    "local_root": "C:\\Projects\\ChatGPT-skill"
+  },
+  "work_management": {
+    "authority_root": "C:\\Projects\\kis-mcp",
+    "schema_source": "C:\\Projects\\kis-mcp\\settings\\work-management\\github-project-schema.json",
+    "github_project": {
+      "owner": "NielPieterse0",
+      "owner_type": "user",
+      "number": 1
+    },
+    "required_capability_families": [
+      "project_management.read",
+      "project_management.write",
+      "work.reconcile",
+      "work.traceability.verify"
+    ],
+    "required_operations": [
+      "runtime.project_management_inventory",
+      "runtime.project_management_reconcile",
+      "runtime.project_management_schema_status",
+      "runtime.project_management_verify_traceability"
+    ],
+    "source_scope": {
+      "repository": "NielPieterse0/chatgpt-skill",
+      "exact_match_required": true
+    },
+    "identity": {
+      "source_kind": "issue",
+      "preserve_issue_backed_identity": true,
+      "projection": "github_project"
+    }
+  }
+}
