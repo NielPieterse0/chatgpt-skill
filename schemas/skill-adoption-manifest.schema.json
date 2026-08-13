@@ -18,18 +18,35 @@
     "rollback"
   ],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 2},
     "skill": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 64},
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository", "revision", "imported_at", "content_sha256"],
+      "required": ["repository", "revision", "imported_at", "provenance_type", "handoff", "adopted_content_sha256"],
       "properties": {
         "repository": {"type": "string", "format": "uri", "pattern": "^https://"},
         "revision": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"},
         "imported_at": {"type": "string", "format": "date"},
-        "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
-      }
+        "provenance_type": {"enum": ["import-isolate", "trusted-local"]},
+        "handoff": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/importIsolateHandoff"}
+          ]
+        },
+        "adopted_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"provenance_type": {"const": "import-isolate"}}, "required": ["provenance_type"]},
+          "then": {"properties": {"handoff": {"$ref": "#/$defs/importIsolateHandoff"}}}
+        },
+        {
+          "if": {"properties": {"provenance_type": {"const": "trusted-local"}}, "required": ["provenance_type"]},
+          "then": {"properties": {"handoff": {"type": "null"}}}
+        }
+      ]
     },
     "license": {
       "type": "object", "additionalProperties": false,
@@ -80,6 +97,16 @@
     }
   },
   "$defs": {
+    "importIsolateHandoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "artifact", "artifact_sha256"],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,160}$"},
+        "artifact": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,200}$"},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
     "repositoryPath": {
       "type": "string", "minLength": 1, "maxLength": 300,
       "not": {"pattern": "^(?:[A-Za-z]:[\\\\/]|/|\\\\\\\\|.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$))"}

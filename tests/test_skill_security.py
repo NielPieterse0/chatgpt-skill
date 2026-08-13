@@ -21,6 +21,8 @@ def independent_skill_hash(skill_dir: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted((p for p in skill_dir.rglob("*") if p.is_file() and p.name != "adoption-manifest.json"), key=lambda p: p.relative_to(skill_dir).as_posix()):
         relative = path.relative_to(skill_dir).as_posix().encode("utf-8"); content = path.read_bytes()
+        if path.suffix.lower() in {".md", ".txt", ".py", ".ps1", ".sh", ".bash", ".js", ".mjs", ".cjs", ".ts", ".json", ".yaml", ".yml", ".toml"}:
+            content = content.replace(bytes([13, 10]), bytes([10])).replace(bytes([13]), bytes([10]))
         digest.update(len(relative).to_bytes(8, "big")); digest.update(relative); digest.update(len(content).to_bytes(8, "big")); digest.update(content)
     return digest.hexdigest()
 
@@ -39,11 +41,11 @@ def create_skill(root: Path, name: str = "safe-skill", *, tier: int = 1, activat
     if allowed_tools is not None: frontmatter.append(f"allowed-tools: {allowed_tools}")
     frontmatter.extend(["---","",f"# {name}","","Read repository files only.",""]); (skill_dir/"SKILL.md").write_text("\n".join(frontmatter),encoding="utf-8")
     flags={"lifecycle_hooks":False,"network":False,"credentials":False,"external_mutations":False,"runtime_installation":False,"remote_mcp":False,"git_publication":False,"deployment":False,"deletion":False}; flags.update(capabilities or {})
-    manifest={"schema_version":1,"skill":name,"source":{"repository":"https://github.com/example/source.git","revision":"a"*40,"imported_at":"2026-07-26","content_sha256":independent_skill_hash(skill_dir)},"license":{"identifier":"Apache-2.0","reviewed":True},"risk":{"tier":tier,"capabilities":flags},"filesystem":{"read":["."],"write":[] if tier<2 else (write_paths if write_paths is not None else ["."]),"absolute_paths":False},"activation":{"mode":activation_mode,"requires_trusted_project":True,"requires_human_approval":tier>=2},"dependencies":{"locked":True,"runtime_installation":False},"approval":{"status":"approved","reviewer":"security-owner","reviewed_at":"2026-07-26"},"rollback":{"verified":True,"method":"Remove the skill directory and disable runtime."}}
+    manifest={"schema_version":2,"skill":name,"source":{"repository":"https://github.com/example/source.git","revision":"a"*40,"imported_at":"2026-07-26","provenance_type":"trusted-local","handoff":None,"adopted_content_sha256":independent_skill_hash(skill_dir)},"license":{"identifier":"Apache-2.0","reviewed":True},"risk":{"tier":tier,"capabilities":flags},"filesystem":{"read":["."],"write":[] if tier<2 else (write_paths if write_paths is not None else ["."]),"absolute_paths":False},"activation":{"mode":activation_mode,"requires_trusted_project":True,"requires_human_approval":tier>=2},"dependencies":{"locked":True,"runtime_installation":False},"approval":{"status":"approved","reviewer":"security-owner","reviewed_at":"2026-07-26"},"rollback":{"verified":True,"method":"Remove the skill directory and disable runtime."}}
     write_json(skill_dir/"adoption-manifest.json",manifest); return skill_dir
 
 def refresh_manifest_hash(skill_dir: Path) -> None:
-    path=skill_dir/"adoption-manifest.json"; manifest=json.loads(path.read_text(encoding="utf-8")); manifest["source"]["content_sha256"]=independent_skill_hash(skill_dir); write_json(path,manifest)
+    path=skill_dir/"adoption-manifest.json"; manifest=json.loads(path.read_text(encoding="utf-8")); manifest["source"]["adopted_content_sha256"]=independent_skill_hash(skill_dir); write_json(path,manifest)
 
 def error_codes(report: object) -> set[str]: return {issue.code for issue in report.errors}
 

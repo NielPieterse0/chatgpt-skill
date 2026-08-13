@@ -107,6 +107,8 @@ def compute_skill_hash(skill_dir: Path) -> str:
         if path.is_file() and path.name != MANIFEST_NAME: files.append(path)
     for path in sorted(files, key=lambda item: item.relative_to(skill_dir).as_posix()):
         relative = path.relative_to(skill_dir).as_posix().encode("utf-8"); content = path.read_bytes()
+        if path.suffix.lower() in TEXT_SCAN_SUFFIXES:
+            content = content.replace(bytes([13, 10]), bytes([10])).replace(bytes([13]), bytes([10]))
         digest.update(len(relative).to_bytes(8, "big")); digest.update(relative)
         digest.update(len(content).to_bytes(8, "big")); digest.update(content)
     return digest.hexdigest()
@@ -234,21 +236,36 @@ def _validate_manifest(skill_dir: Path, policy: dict[str, Any], report: Validati
     except (OSError,UnicodeError,json.JSONDecodeError) as exc: report.add_error("MANIFEST_INVALID_JSON",str(exc),manifest_path); return None
     manifest=_validate_exact_keys(value,{"schema_version","skill","source","license","risk","filesystem","activation","dependencies","approval","rollback"},report,"MANIFEST",manifest_path)
     if manifest is None: return None
-    if manifest.get("schema_version")!=1: report.add_error("MANIFEST_SCHEMA_VERSION","schema_version must be 1.",manifest_path)
+    if manifest.get("schema_version")!=2: report.add_error("MANIFEST_SCHEMA_VERSION","schema_version must be 2.",manifest_path)
     if manifest.get("skill")!=skill_dir.name: report.add_error("MANIFEST_SKILL_MISMATCH","manifest skill must match the directory name.",manifest_path)
-    source=_validate_exact_keys(manifest.get("source"),{"repository","revision","imported_at","content_sha256"},report,"MANIFEST_SOURCE",manifest_path)
+    source=_validate_exact_keys(manifest.get("source"),{"repository","revision","imported_at","provenance_type","handoff","adopted_content_sha256"},report,"MANIFEST_SOURCE",manifest_path)
     if source is not None:
         repository=source.get("repository"); parsed=urlparse(repository) if isinstance(repository,str) else None
         if parsed is None or parsed.scheme!="https" or not parsed.netloc: report.add_error("SOURCE_REPOSITORY_INVALID","source.repository must be an absolute HTTPS URI.",manifest_path)
         if not isinstance(source.get("revision"),str) or not HEX_REVISION_PATTERN.fullmatch(source.get("revision", "")): report.add_error("SOURCE_REVISION_INVALID","source.revision must be an exact 40- or 64-character lowercase hex revision.",manifest_path)
         if not _is_iso_date(source.get("imported_at")): report.add_error("SOURCE_IMPORT_DATE_INVALID","source.imported_at must be an ISO date.",manifest_path)
-        recorded_hash=source.get("content_sha256")
-        if not isinstance(recorded_hash,str) or not SHA256_PATTERN.fullmatch(recorded_hash): report.add_error("CONTENT_HASH_INVALID","source.content_sha256 must be lowercase SHA-256 hex.",manifest_path)
+        provenance_type=source.get("provenance_type")
+        handoff=source.get("handoff")
+        if provenance_type not in {"import-isolate","trusted-local"}: report.add_error("PROVENANCE_TYPE_INVALID","source.provenance_type must be import-isolate or trusted-local.",manifest_path)
+        elif provenance_type=="import-isolate":
+            if handoff is None:
+                report.add_error("HANDOFF_REQUIRED","import-isolate provenance requires a finalized handoff record.",manifest_path)
+            else:
+                handoff_record=_validate_exact_keys(handoff,{"case_id","artifact","artifact_sha256"},report,"HANDOFF",manifest_path)
+                if handoff_record is not None:
+                    case_id=handoff_record.get("case_id"); artifact=handoff_record.get("artifact"); artifact_hash=handoff_record.get("artifact_sha256")
+                    if not isinstance(case_id,str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,160}",case_id): report.add_error("HANDOFF_CASE_ID_INVALID","handoff.case_id must be a non-empty import-isolate case identifier.",manifest_path)
+                    if not isinstance(artifact,str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,200}",artifact): report.add_error("HANDOFF_ARTIFACT_INVALID","handoff.artifact must be one safe artifact name.",manifest_path)
+                    if not isinstance(artifact_hash,str) or not SHA256_PATTERN.fullmatch(artifact_hash): report.add_error("HANDOFF_DIGEST_INVALID","handoff.artifact_sha256 must be lowercase SHA-256 hex.",manifest_path)
+        elif handoff is not None:
+            report.add_error("HANDOFF_UNEXPECTED","trusted-local provenance must not claim an import-isolate handoff.",manifest_path)
+        recorded_hash=source.get("adopted_content_sha256")
+        if not isinstance(recorded_hash,str) or not SHA256_PATTERN.fullmatch(recorded_hash): report.add_error("CONTENT_HASH_INVALID","source.adopted_content_sha256 must be lowercase SHA-256 hex.",manifest_path)
         else:
             try: actual_hash=compute_skill_hash(skill_dir)
             except (OSError,ValueError) as exc: report.add_error("CONTENT_HASH_FAILED",str(exc),skill_dir)
             else:
-                if recorded_hash!=actual_hash: report.add_error("CONTENT_HASH_MISMATCH","Recorded source hash does not match current skill content.",manifest_path)
+                if recorded_hash!=actual_hash: report.add_error("CONTENT_HASH_MISMATCH","Recorded adopted-content hash does not match current skill content.",manifest_path)
     license_record=_validate_exact_keys(manifest.get("license"),{"identifier","reviewed"},report,"MANIFEST_LICENSE",manifest_path)
     if license_record is not None:
         if not isinstance(license_record.get("identifier"),str) or not license_record.get("identifier","").strip(): report.add_error("LICENSE_IDENTIFIER_INVALID","license.identifier must be non-empty.",manifest_path)
@@ -376,7 +393,7 @@ def validate_repository(repo_root:Path,*,require_git:bool=True)->ValidationRepor
             seen_names.add(name)
         if frontmatter is not None and manifest is not None:
             risk=manifest.get("risk") if isinstance(manifest.get("risk"),dict) else {}; activation=manifest.get("activation") if isinstance(manifest.get("activation"),dict) else {}; source=manifest.get("source") if isinstance(manifest.get("source"),dict) else {}
-            report.skills.append({"name":name,"description":frontmatter.get("description"),"location":skill_path.relative_to(repo_root).as_posix(),"risk_tier":risk.get("tier"),"activation_mode":activation.get("mode"),"content_sha256":source.get("content_sha256")})
+            report.skills.append({"name":name,"description":frontmatter.get("description"),"location":skill_path.relative_to(repo_root).as_posix(),"risk_tier":risk.get("tier"),"activation_mode":activation.get("mode"),"adopted_content_sha256":source.get("adopted_content_sha256")})
     if require_git and policy["git"]["required"] is True: _validate_git(repo_root,policy,report)
     return report
 
@@ -402,7 +419,7 @@ def main(argv:list[str]|None=None)->int:
     if args.command=="hash":
         try: result=compute_skill_hash(Path(args.skill_dir))
         except (OSError,ValueError) as exc: _write_json_stdout({"ok":False,"error":str(exc)}); return 2
-        _write_json_stdout({"ok":True,"content_sha256":result}); return 0
+        _write_json_stdout({"ok":True,"adopted_content_sha256":result}); return 0
     repo_root=Path(args.repo)
     if args.command=="validate":
         try: report=validate_repository(repo_root,require_git=not args.skip_git)
