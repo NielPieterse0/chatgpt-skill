@@ -17,19 +17,17 @@ Verified on `main` after Change 001 / PR #15:
 - no release decision has enabled `modularity-assessment` or any other additional candidate;
 - the dirty canonical checkout is classified by Change 003 and must not be merged or reset wholesale.
 
-Current blockers are explicit: import-isolate boundary reconciliation and handoff identity are incomplete, `modularity-assessment` lacks complete release evidence, live GitHub governance does not yet match repository policy, the three quarantined workflow drafts need disposition, and one closed historical Project item (#7) still has stale projection state.
+Repository reconciliation is complete for Changes 001–008. No implementation slice remains active in this backlog.
+
+Stable non-active dispositions:
+
+- `modularity-assessment`: **DEFER** canonical/runtime admission until isolated target behavioral execution and activation observability are available. See [`docs/testing/modularity-assessment-release-decision.md`](../testing/modularity-assessment-release-decision.md).
+- GitHub governance Change 007: **BLOCKED-EXTERNAL / CLOSED AS PROVIDER LIMITATION**. Repository policy remains unchanged; live enforcement must be retried when a bounded compatible provider operation is available. See [`docs/operations/github-governance-status.md`](../operations/github-governance-status.md).
+- workflow drafts: `develop-code` and `develop-docs` are **SUPERSEDED / REDUNDANT** because their portable payloads match the admitted canonical skills; the current `tdd-change-discipline` draft is **NOT ADMITTED FOR THIS REPOSITORY** because its mandatory gate/governance contract conflicts with the repository's actual KIS/npm workflow. See [`docs/testing/workflow-draft-disposition.md`](../testing/workflow-draft-disposition.md).
 
 ## Current Active Backlog
 
-Use the issue-backed Work Management records as the live execution state. Dependency order is:
-
-1. **Change 004 / #6 — import-isolate boundary reconciliation.** Establish the retained-source authority boundary before changing handoff metadata.
-2. **Change 005 / #8 — machine-readable import-isolate handoff identity.** Depends on Change 004; extend manifest and validation only after the boundary is explicit.
-3. **Change 006 / #9 — modularity-assessment evaluation and release decision.** Complete isolated evaluation evidence and record enable/defer/revise/reject; runtime stays disabled absent all release gates and owner approval.
-4. **Change 007 / #10 — GitHub merge policy and main protection.** Reconcile live provider settings to the repository-owned squash-only and branch-protection policy without bypassing provider limitations.
-5. **Change 008 / #11 — workflow-draft disposition.** Resolve `develop-code`, `develop-docs`, and `tdd-change-discipline` draft evidence without silently readmitting stale copies.
-
-Independent items may proceed in parallel only when their owned paths and evidence do not overlap. Change 005 must not precede Change 004. Closed work and historical local commits are evidence, not active backlog entries.
+**None.** New work must enter through issue-backed KIS Work Management intake rather than by reactivating historical local commits or quarantined drafts. Closed work and historical local state remain evidence only.
 
 ## Historical P1 Prototype Plan
 
