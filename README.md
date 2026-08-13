@@ -27,7 +27,7 @@ The live repository is the sole source of truth for accepted project state. The 
 
 The repository has completed its research-integration and P0 security baseline, and KIS Work Management is now the required tracked-work control plane. `develop-code` and `develop-docs` are admitted canonical Tier 2 project-content workflows. The global runtime kill switch remains disabled, so no skill is runtime-enabled.
 
-The active milestone is repository reconciliation: complete the import-isolate boundary and handoff contract, the `modularity-assessment` release evaluation, GitHub governance alignment, and workflow-draft disposition. Broader catalog adoption remains evidence-driven and out of scope until the applicable release gates pass.
+The reconciliation queue is closed. There is no active implementation slice in the authoritative backlog. `modularity-assessment` is deferred until target behavioral execution and activation observability are available; the current `tdd-change-discipline` draft is not admitted because its mandatory gate/governance assumptions conflict with this repository; and GitHub governance enforcement is recorded as an external provider limitation without weakening repository policy. New adoption work must enter through issue-backed Work Management intake.
 
 ## P0 Security Baseline
 
