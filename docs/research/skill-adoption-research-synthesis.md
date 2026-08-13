@@ -38,7 +38,7 @@ The returned research agent report was not preserved as a standalone tracked rep
 2. **Keep one canonical portable skill.** ChatGPT metadata, activation representation, packaging, and capability mappings belong to the ChatGPT adapter. A future Codex adapter must consume the same canonical skill and adoption decision.
 3. **Use progressive disclosure as the context architecture.** `name` and `description` carry activation; `SKILL.md` carries only the core workflow and critical gotchas; focused references and resources load only under explicit conditions.
 4. **Do not use metadata as authorization.** `allowed-tools` is experimental and cannot enforce filesystem, network, credential, or mutation boundaries. Host and repository controls remain authoritative.
-5. **Start with Tier 0 or Tier 1.** The first proof must be instructions-only or repository read-only. Network, runtime installation, hooks, remote MCP, credentials, publication, deployment, deletion, and external mutation remain excluded.
+5. **Use the minimum capability tier that fits the workflow.** Tier 2 may declare bounded repository-relative project writes when a general development or documentation workflow requires them; explicit activation and human approval remain required. Higher-risk capabilities remain excluded.
 6. **Prove value against a baseline.** A skill is not justified by plausible usefulness. It must improve representative outcomes over no skill or the previous skill version, with objective assertions, human review, and available cost evidence.
 7. **Evaluate activation separately from output quality.** A useful skill with a poor description will not load reliably; a precise trigger with weak instructions adds no value. Both gates are required.
 8. **Keep evals and governance outside the runtime package.** They govern admission and maintenance but should not consume skill context or enlarge the uploaded attack surface.
@@ -94,7 +94,7 @@ For any task that creates, modifies, evaluates, packages, installs, enables, sus
 | Evaluation standard | [`docs/testing/skill-evaluation-standard.md`](../testing/skill-evaluation-standard.md) | Complete; harness pending |
 | Machine-readable schemas | Adoption manifest schema | P0 complete; eval schemas deferred until consumed by a harness |
 | Implementation backlog | [`docs/plans/skill-adoption-implementation-backlog.md`](../plans/skill-adoption-implementation-backlog.md) | Complete |
-| Low-risk prototype evidence | `.work/evals/<skill-name>/` plus accepted summary in `docs/` | Not started |
+| Skill prototype evidence | `.work/evals/<skill-name>/` plus accepted summary in `docs/` | `develop-code` and `develop-docs` candidate evidence recorded; target/runtime compatibility remains pending |
 
 ## Unresolved Product and Implementation Questions
 
@@ -113,9 +113,9 @@ Resolve these through the first ChatGPT adapter and prototype tests. Do not broa
 
 ## Immediate Decision
 
-The minimum architecture is accepted for implementation with one condition: the runtime remains disabled until one low-risk Tier 0 or Tier 1 prototype passes structural, provenance, trigger, output, efficiency, abuse, human-review, adapter, and rollback gates.
+The minimum architecture is accepted for implementation with one condition: runtime enablement still requires structural, provenance, trigger, output, efficiency, abuse, human-review, adapter, and rollback evidence. Tier 2 repository-content workflows are admissible when their project-relative write scope is necessary and explicit activation plus human approval are retained.
 
-The next work is the ordered P1 backlog, beginning with a read-only skill-candidate assessment prototype and its baseline evaluation. Broad catalog adoption, Tier 2 writes, networked skills, remote MCP, runtime installation, hooks, credentials, publication, deployment, deletion, and external mutation remain out of scope.
+The next work remains evidence-driven skill adoption and runtime validation. Broader catalog expansion and capabilities beyond the currently approved tiers require separate approval and enforceable controls.
 
 ## Source Basis
 

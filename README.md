@@ -25,9 +25,9 @@ The live repository is the sole source of truth for accepted project state. The 
 
 ## Current Status
 
-The repository has completed its research-integration and P0 security baseline. The accepted research synthesis, portable package contract, evaluation standard, adapter boundary, and dependency-ordered implementation backlog are present. No adopted runtime skill is enabled.
+The repository has completed its research-integration and P0 security baseline. The accepted research synthesis, portable package contract, evaluation standard, adapter boundary, and dependency-ordered implementation backlog are present. `develop-code` and `develop-docs` are admitted as canonical Tier 2 project-content workflows, but no skill is runtime-enabled.
 
-The next milestone is one low-risk Tier 0 or Tier 1 prototype with baseline, trigger, output, efficiency, abuse, compatibility, human-review, packaging, disablement, and rollback evidence. Broad catalog adoption remains out of scope until that proof is accepted.
+The next milestone is target/runtime compatibility and explicit enablement evidence for admitted skills. Broader catalog adoption remains evidence-driven and out of scope until the applicable release gates pass.
 
 ## P0 Security Baseline
 
@@ -46,7 +46,7 @@ The authoritative rules are in [`docs/security/skill-adoption-security-standard.
 ## Quick Start
 
 ```powershell
-Set-Location C:\Projects\ChatGPT-skill-adoption
+Set-Location C:\Projects\ChatGPT-skill
 Get-Content .\AGENTS.md
 Get-ChildItem
 ```

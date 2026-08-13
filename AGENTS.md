@@ -40,10 +40,10 @@ When authorities conflict, follow the highest applicable authority and report th
 
 ## Repository Constraints
 
-- Work only inside `C:\Projects\ChatGPT-skill-adoption`.
+- Work only inside `C:\Projects\ChatGPT-skill`.
 - Use `.work/` for temporary, generated, exploratory, or otherwise unplaceable artifacts.
 - Do not write to or modify the external Codex skills library.
-- Repo at `https://github.com/NielPieterse0/chatgpt-skill-adoption.git`
+- Repo at `https://github.com/NielPieterse0/chatgpt-skill.git`
 - Preserve unrelated working-tree changes.
 - Change only files required by the assigned scope.
 - Do not commit, push, create branches, mutate remotes, or publish artifacts unless explicitly requested.
@@ -112,7 +112,7 @@ Stop and request direction before proceeding when the task requires destructive 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
-- Documents under `docs/`: product, other architecture, decisions, plans, standards, testing, and operational knowledge, when present.
+- Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.
 
 Non-authoritative source inputs:
