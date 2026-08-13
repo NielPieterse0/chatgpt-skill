@@ -40,7 +40,7 @@ When authorities conflict, follow the highest applicable authority and report th
 
 ## Repository Constraints
 
-- Work only inside `C:\Projects\ChatGPT-skill`.
+- Work only inside `C:\Projects\ChatGPT-skill` or its registered isolated worktrees under `C:\Projects\.kis\worktrees\chatgpt-skill`.
 - Use `.work/` for temporary, generated, exploratory, or otherwise unplaceable artifacts.
 - Do not write to or modify the external Codex skills library.
 - Repo at `https://github.com/NielPieterse0/chatgpt-skill.git`
@@ -49,6 +49,17 @@ When authorities conflict, follow the highest applicable authority and report th
 - Do not commit, push, create branches, mutate remotes, or publish artifacts unless explicitly requested.
 - Do not store credentials, secrets, tokens, personal data, or machine-specific sensitive values in the repository.
 - Prefer authoritative project documents over duplicated guidance in `AGENTS.md` or `README.md`.
+
+## Work Management Control Plane
+
+- Use `C:\Projects\kis-mcp` as the operational authority for Work Management workflows and capability routing. Repository files remain authoritative for accepted repository content; Work Management owns tracked-work lifecycle state.
+- The repository-owned binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json), which records the KIS Work Management schema source, required capability families and operations, and GitHub user Project `NielPieterse0/1`.
+- Preserve GitHub issue-backed source identity. The shared GitHub Project is a projection of that source identity and lifecycle state, not a replacement source of truth.
+- Before changing a Project record, require an exact source repository match to `NielPieterse0/chatgpt-skill`. Shared-Project items sourced from other repositories are out of scope.
+- Before claiming Todo work, re-read the current Project state and source issue. Claim it as `In Progress`; if another agent has already claimed the issue or established an active issue branch/worktree marker, select different work.
+- Keep the Project projection current at meaningful lifecycle transitions. Do not mark work `Done` until applicable implementation, verification, review/merge, and post-merge documentation requirements are complete. Report and reconcile projection drift rather than silently treating stale Project state as authoritative.
+- Implement changes in clean issue worktrees under `C:\Projects\.kis\worktrees\chatgpt-skill`; never modify an unrelated dirty canonical checkout to make progress.
+- Validate the repository-owned Work Management contract with `python scripts/project_contract.py validate --repo .` and use KIS capability discovery for the operations recorded there.
 
 ## Skill Security Gate
 
@@ -110,7 +121,7 @@ Stop and request direction before proceeding when the task requires destructive 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
-- [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
+- [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative ChatGPT-first adapter strategy and the boundary between portable adoption logic and target-specific integration.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
 - Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.
