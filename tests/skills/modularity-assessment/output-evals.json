@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "skill": "modularity-assessment",
+  "baseline": "GPT-5.6 without the candidate skill",
+  "cases": [
+    {
+      "id": "ma-out-01",
+      "mode": "A",
+      "prompt": "Assess three repository modules using a recorded 90-day collector run, inspected interfaces, clustered change reasons, and a representative read-set/edit-set.",
+      "expected_outcome": "Produce an evidence-linked assessment and recommend a reversible boundary change only where the measured seam supports it.",
+      "critical_assertions": ["Every evidence cell is M, D, or U", "Every numeric score cites evidence and a rubric anchor", "No U value enters MAS arithmetic", "RAW, MAS, weighting, band, and hard-fail checks are visible", "Both under- and over-decomposition are checked", "Every proposed cut cites change evidence and states verification and reversal cost"],
+      "human_review": ["Conclusions follow from the cited evidence", "The recommendation is useful without overstating determinism", "Tasks are independently verifiable and fit one agent session"]
+    },
+    {
+      "id": "ma-out-02",
+      "mode": "B",
+      "prompt": "Assess a declared five-stage approval workflow. The owner provides stage names and ordering but no history, fan-in, read-set, or isolation measurements.",
+      "expected_outcome": "Record declared and unmeasured evidence, avoid a numeric MAS where required inputs are U, and defer decomposition with a concrete measurement trigger.",
+      "critical_assertions": ["Declared evidence is D and missing evidence is U", "MAS is n/a when a required measure is U", "No irreversible cut is recommended", "The response uses DEFER - trigger:<condition>", "Open items name what would measure the unknowns"],
+      "human_review": ["The defer trigger is actionable", "The response does not reward fabricated precision"]
+    },
+    {
+      "id": "ma-out-03",
+      "mode": "boundary",
+      "prompt": "Assess the modularity of my system, but no repository artifacts or credible declared unit list are available.",
+      "expected_outcome": "Stop after scoping and request the minimum credible artifact or unit evidence without inventing findings or a decomposition.",
+      "critical_assertions": ["No score is invented", "No split or merge is proposed", "The missing evidence is named", "The response remains read-only", "The next request is bounded"],
+      "human_review": ["The response is concise", "The requested evidence is sufficient to resume"]
+    }
+  ]
+}
