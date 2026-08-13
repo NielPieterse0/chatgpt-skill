@@ -57,3 +57,5 @@ For a single-owner repository, required approving review count may remain zero u
 ## Exceptions
 
 Document any unavailable GitHub setting, plan limitation, skipped check, or temporary bypass in the closeout report. Do not describe an unavailable control as implemented.
+
+Current live governance verification and provider limitations are recorded in [`github-governance-status.md`](github-governance-status.md). That status record must never be used to weaken the required state above.
