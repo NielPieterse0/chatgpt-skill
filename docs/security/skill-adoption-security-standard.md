@@ -101,8 +101,9 @@ The static validator also rejects representative hazardous artifacts and executa
 Every adopted skill must include `adoption-manifest.json` with:
 
 - exact source repository and immutable revision;
-- import date;
-- deterministic SHA-256 of the adopted skill tree, excluding the manifest itself;
+- import date and provenance type (`import-isolate` or `trusted-local`);
+- finalized import-isolate handoff identity and handed-over artifact SHA-256 when that provenance path applies;
+- deterministic adopted-content SHA-256 of the adopted skill tree, excluding the manifest itself;
 - reviewed license identifier;
 - capability tier and explicit capability flags;
 - repository-relative read and write scopes;
@@ -121,7 +122,7 @@ Calculate a manifest hash after the repository-owned skill is finalized:
 python scripts/skill_security.py hash skills/<skill-name>
 ```
 
-Copy the returned `content_sha256` into `adoption-manifest.json`. Any later skill-file change invalidates the manifest until the change is reviewed and the hash is deliberately updated.
+Copy the returned `adopted_content_sha256` into `source.adopted_content_sha256` in `adoption-manifest.json`. Text line endings are canonicalized before hashing so Git checkout normalization does not change the digest; binary content remains byte-exact. Any later skill-file change invalidates the manifest until the change is reviewed and the hash is deliberately updated.
 
 ## Git Provenance
 
@@ -177,7 +178,7 @@ The runtime catalog is all-or-nothing. When enabled, any validation error preven
 ## Adoption Procedure
 
 1. For web-sourced material, including GitHub, accept only a finalized `import-isolate` handoff; never perform external acquisition or cleanup in this repository and never copy source material directly into `skills/`.
-2. Record source repository, immutable revision, and license evidence. Change 005 adds machine-readable handoff identity when applicable.
+2. Record source repository, immutable revision, provenance type, and license evidence. For `import-isolate` provenance, also record the finalized handoff case ID, exported artifact name, and exact handed-over artifact SHA-256; keep that digest distinct from the adopted-content SHA-256. For `trusted-local` provenance, the handoff field must be null.
 3. Adapt the smallest repository-owned skill into a new direct child of `skills/`.
 4. Remove client-specific permissions, hooks, remote MCP, runtime installers, credentials, and external mutations.
 5. Assign Tier 0, 1, or 2.

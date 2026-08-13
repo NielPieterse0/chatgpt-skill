@@ -20,7 +20,7 @@ Local repository-owned sources and explicitly trusted local workspace material r
 
 Accept only a finalized handoff intended for downstream use. An intermediate `import-isolate` state that still requires semantic or security review is not a valid input to this repository.
 
-The handoff must provide enough machine-readable provenance and integrity identity to bind the received artifact to its source and to the exact handed-over content. The internal evidence and process used to establish that result remain authoritative in `import-isolate` and are not duplicated here.
+The handoff must provide enough machine-readable provenance and integrity identity to bind the received artifact to its source and to the exact handed-over content. This repository records `source.provenance_type`, and for `import-isolate` handoffs it records `source.handoff.case_id`, `source.handoff.artifact`, and `source.handoff.artifact_sha256`. The handed-over artifact digest is independent of `source.adopted_content_sha256`, which fingerprints the repository-owned adopted skill after adaptation. The internal evidence and process used to establish the upstream result remain authoritative in `import-isolate` and are not duplicated here.
 
 If the handoff is incomplete, inconsistent, or not finalized, stop and request a corrected handoff from `import-isolate`.
 

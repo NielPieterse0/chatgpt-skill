@@ -1,11 +1,17 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "skill": "repository-reader",
   "source": {
     "repository": "https://github.com/example/agent-skills.git",
     "revision": "0123456789abcdef0123456789abcdef01234567",
     "imported_at": "2026-07-26",
-    "content_sha256": "89abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234567"
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260726-agent-skills_ab12cd34",
+      "artifact": "repository-reader",
+      "artifact_sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "adopted_content_sha256": "89abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234567"
   },
   "license": {
     "identifier": "Apache-2.0",
