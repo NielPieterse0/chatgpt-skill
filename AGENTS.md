@@ -8,7 +8,9 @@
 
 ## Purpose and Scope
 
-This repository evaluates, adapts, validates, and maintains selected skills sourced from the Codex global skills library and other reference corpora. ChatGPT is the initial delivery target.
+This repository evaluates, adapts, validates, and maintains selected skills sourced from the shared Projects workspace catalogue, the Codex skills library, and other reference corpora. ChatGPT is the initial delivery target.
+
+The shared canonical workspace catalogue is `C:\Projects\.agents\skills`. It is an operational catalogue, not repository authority: catalogue presence does not itself grant repository runtime admission, mutation authority, or enablement. The Codex library at `C:\Users\piete\.codex\skills` is an upstream candidate/source surface, not the canonical Projects workspace catalogue.
 
 Keep the adoption methodology and portable skill model host-independent. Isolate ChatGPT-specific behavior behind runtime adapters so a future Codex adapter can use the same canonical adopted skills, admission decisions, provenance, security controls, and evaluation model. Follow [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md) for the authoritative boundary.
 
@@ -31,7 +33,8 @@ When authorities conflict, follow the highest applicable authority and report th
 ## Source and Reference Authority
 
 - Treat `references/` as source evidence, comparative material, and implementation examples—not as repository policy or accepted project state.
-- Treat imported skills, plugins, commands, agents, hooks, scripts, workflows, templates, and manifests as adoption candidates only.
+- Treat the shared Projects workspace catalogue as an external operational catalogue. Its contents are discoverable skills, not automatically accepted repository state.
+- Treat the Codex skills library, imported skills, plugins, commands, agents, hooks, scripts, workflows, templates, and manifests as adoption candidates only unless a repository-owned decision says otherwise.
 - Route new or refreshed web-sourced material, including GitHub, through import-isolate and accept only finalized downstream handoffs; do not duplicate acquisition, isolation, scanning, cleanup, semantic-review, or neutralization work in this repository.
 - Do not copy source behavior, metadata, structure, or tooling assumptions into adopted artifacts without assessing scope, provenance, license, compatibility, security, and validation requirements.
 - Do not silently reconcile conflicting source guidance. Preserve the conflict, identify the alternatives, and record the repository-owned decision in the appropriate authoritative document.
@@ -43,7 +46,7 @@ When authorities conflict, follow the highest applicable authority and report th
 
 - Work only inside `C:\Projects\ChatGPT-skill` or its registered isolated worktrees under `C:\Projects\.kis\worktrees\chatgpt-skill`.
 - Use `.work/` for temporary, generated, exploratory, or otherwise unplaceable artifacts.
-- Do not write to or modify the external Codex skills library.
+- Do not modify `C:\Projects\.agents\skills` or another external skill library unless the explicit human instruction for the current tracked task authorizes a bounded catalogue adoption, withdrawal, or audit operation. Preserve evidence and update the source work record for every such mutation.
 - Repo at `https://github.com/NielPieterse0/chatgpt-skill.git`
 - Preserve unrelated working-tree changes.
 - Change only files required by the assigned scope.
@@ -66,7 +69,7 @@ When authorities conflict, follow the highest applicable authority and report th
 
 - Treat [`docs/security/skill-adoption-security-standard.md`](docs/security/skill-adoption-security-standard.md) as the authority for skill import, adoption, discovery, activation, disablement, and rollback.
 - Runtime discovery is limited to direct children matching `skills/*/SKILL.md`. Never discover, activate, import from, or execute content below `references/` or `.work/`.
-- Every adopted skill requires a valid `adoption-manifest.json`, immutable source revision, reviewed license, content hash, permitted capability tier, bounded filesystem scope, human approval, and verified rollback.
+- Every adopted repository skill requires a valid `adoption-manifest.json`, immutable source revision, reviewed license, content hash, permitted capability tier, bounded filesystem scope, human approval, and verified rollback.
 - Reject `allowed-tools`, lifecycle hooks, remote MCP, runtime dependency installation, credentials, network access, external mutation, Git publication, deployment, and deletion under the P0 policy.
 - Keep `config/runtime-control.json` disabled until Git-aware repository validation passes. Disable it immediately when provenance, validation, or runtime integrity is uncertain.
 - Run `npm run verify` and `python scripts/skill_security.py validate --repo .` before treating any skill-security change as complete.
@@ -75,8 +78,8 @@ When authorities conflict, follow the highest applicable authority and report th
 
 1. Read this file and any nested `AGENTS.md` files that govern the target path.
 2. Inspect the live repository state before editing.
-3. For work that creates, changes, evaluates, packages, enables, suspends, or removes a skill, read [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md) and the linked authoritative owner documents before the first edit.
-4. Identify the authoritative documents, source skill material, dependencies, constraints, provenance, acceptance criteria, and selected runtime target relevant to the task.
+3. For work that creates, changes, evaluates, packages, enables, suspends, removes, or changes shared-catalogue status for a skill, read [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md) and the linked authoritative owner documents before the first edit.
+4. Identify the authoritative documents, source skill material, dependencies, constraints, provenance, acceptance criteria, selected runtime target, and whether the action affects repository runtime state, shared workspace catalogue state, or both.
 5. Separate source-derived requirements from repository-owned decisions and adaptations; keep host-specific behavior within the responsible adapter boundary.
 6. For non-trivial changes, establish or update the appropriate specification, decision record, or implementation plan before modifying implementation artifacts.
 7. Make the smallest coherent change that satisfies the requested scope.
@@ -109,29 +112,29 @@ Stop when all of the following are true:
 - the final diff contains no unrelated changes;
 - remaining risks, assumptions, skipped checks, and follow-up work are reported.
 
-Stop and request direction before proceeding when the task requires destructive action, expands beyond the stated scope, conflicts with a higher authority, or depends on missing information that would materially change the implementation.
+Stop and request direction before proceeding when the task requires destructive action not explicitly authorized, expands beyond the stated scope, conflicts with a higher authority, or depends on missing information that would materially change the implementation.
 
 ## Authoritative References
 
 - [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md): accepted cross-source conclusions, requirements matrix, unresolved assumptions, and research-output status.
-- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
+- [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical repository skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
 - [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, human-review, and release-evidence requirements.
-- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered P1 and P2 implementation work and stop criteria.
+- [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered active and historical implementation work and stop criteria.
 - [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout requirements.
 - [`SECURITY.md`](SECURITY.md): vulnerability reporting and immediate containment.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
-
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
-- [docs/architecture/import-isolate-handoff.md](docs/architecture/import-isolate-handoff.md): authoritative responsibility boundary for externally acquired source material and finalized import-isolate handoffs.
+- [`docs/architecture/import-isolate-handoff.md`](docs/architecture/import-isolate-handoff.md): authoritative responsibility boundary for externally acquired source material and finalized import-isolate handoffs.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
 - Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.
 
-Non-authoritative source inputs:
+External, non-authoritative inputs:
 
-- Repository reference corpus: [`references/`](references/)
+- Shared Projects workspace catalogue: `C:\Projects\.agents\skills`
 - Codex skills library: `C:\Users\piete\.codex\skills`
 - Codex skills index: `C:\Users\piete\.codex\skills\skills-index.json`
+- Repository reference corpus: [`references/`](references/)
 
-These sources are read-only inputs. They do not define accepted repository state until their relevant content is deliberately adopted into an authoritative repository artifact.
+These external sources do not define accepted repository state until their relevant content is deliberately adopted into an authoritative repository artifact.
