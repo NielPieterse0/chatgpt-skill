@@ -121,7 +121,7 @@ Stop and request direction before proceeding when the task requires destructive 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
-- [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative ChatGPT-first adapter strategy and the boundary between portable adoption logic and target-specific integration.
+- [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
 - Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.
