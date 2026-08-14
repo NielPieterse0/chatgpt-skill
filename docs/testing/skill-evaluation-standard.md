@@ -164,11 +164,29 @@ Generated evidence belongs under `.work/`:
 
 Do not add machine-readable schemas until a repository tool consumes them. When introduced, schemas must reject unknown fields and distinguish test definitions from generated results.
 
+### Executable evaluation harness
+
+Use `scripts/skill_effectiveness.py` to validate one generated iteration against the tracked definitions and emit a versioned, per-skill scorecard. The harness is deliberately offline: model or target adapters create isolated-run evidence; repository code validates identities, coverage, assertions, costs, gates, and disposition without embedding a model runner.
+
+```text
+python scripts/skill_effectiveness.py --repo . --skill <skill-name> --record <record.json> --output <scorecard.json>
+```
+
+Pass `--telemetry <kis-report.json>` only when a KIS `SkillTelemetryReport` is available. The report must match the bounded KIS aggregate schema; unknown fields, malformed identifiers, and invalid metrics are rejected, and only normalized aggregate fields are emitted. Nullable aggregates remain `null` when unobserved and are marked `partial` when matching groups mix observed and unavailable values. Telemetry is filtered to the exact skill and runtime content hash and is reported as operational context only. Discovery, load, application, completion, failure, resource-read, and cost counts do not prove behavioral effectiveness and must never change the scorecard disposition.
+
+The generated record must state observability explicitly. `not_observable` requires a reason and must not be accompanied by fabricated trigger, output, or abuse results. Numeric zero is a valid observed value; missing cost metrics use `null` plus a per-metric `not_observable` reason. Pending human review uses `status: pending` with `reviewer: null` and `date: null`; pass/fail review records require non-empty reviewer and date strings.
+
+`eval_definition_revision` must be the full canonical Git commit object ID containing the exact tracked trigger, output, and abuse definitions used by the evaluator. Abbreviated revisions and non-commit objects are rejected. The scorecard records SHA-256 hashes of those resolved definition blobs so the evidence can be reproduced independently of the current working tree.
+
+For each observable output eval, candidate and baseline evidence must use identical run-number sets. One or more paired runs are allowed; repeated runs are preferred when model or target variance matters. The scorecard records the paired run count for each eval. Do not compare pass rates derived from asymmetric samples.
+
+The harness recommends only `admit`, `revise`, or `defer`. Final admission authority, plus `reject` and `suspend` decisions, remains with the repository lifecycle and human review process.
+
 ## Required Evaluation Record
 
 Each accepted iteration must record:
 
-- canonical skill content hash;
+- canonical adopted-content hash plus the tested runtime `SKILL.md` content hash;
 - adapter and target verification date;
 - eval definition revision;
 - baseline identity;
