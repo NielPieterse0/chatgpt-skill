@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "skills": {
+    "create-skill": {
+      "required_terms": [
+        "baseline",
+        "trigger",
+        "prompt-injection",
+        "progressive disclosure",
+        "rollback"
+      ]
+    },
+    "evaluate-skill": {
+      "required_terms": [
+        "baseline",
+        "held-out",
+        "abuse",
+        "compatibility",
+        "not_observable",
+        "rollback"
+      ]
+    },
+    "improve-skill": {
+      "required_terms": [
+        "baseline",
+        "held-out",
+        "before/after",
+        "abuse",
+        "compatibility",
+        "rollback"
+      ]
+    }
+  },
+  "common": {
+    "max_skill_lines": 500,
+    "max_description_chars": 1024,
+    "prohibited_frontmatter": ["allowed-tools"],
+    "required_authority_terms": [
+      "governing",
+      "authority"
+    ],
+    "prohibited_mandatory_terms": [
+      "plugin-eval analyze <skill-path>"
+    ]
+  }
+}
