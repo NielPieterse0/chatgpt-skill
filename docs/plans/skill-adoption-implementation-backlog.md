@@ -18,7 +18,7 @@ Verified repository baseline before Change 011:
 - runtime remains globally disabled, so no repository-admitted skill is runtime-enabled;
 - the historical dirty checkout on `NielPieterse0/adopt-modularity-assessment` is preserved evidence and must not be reset, cleaned, or merged wholesale.
 
-Repository reconciliation for Changes 001–010 is complete. Change 011 reopens bounded reconciliation because the operator requested a local-main cleanup, workspace catalogue changes, a full catalogue compliance audit, and general repository hygiene review.
+Repository reconciliation for Changes 001–013 and 017 is complete. Change 011 / #22 and its local-main/catalogue-audit prerequisites landed on `main` and are closed. The live queue now consists of the remaining bounded cleanup items plus the GitHub skill-pack consolidation and portability remediation created from the completed catalogue audit.
 
 Stable prior dispositions remain evidence:
 
@@ -29,23 +29,22 @@ Stable prior dispositions remain evidence:
 
 ## Current Active Backlog
 
-Use the issue-backed Work Management records as the live execution state. Parent Change 011 / #22 coordinates the sweep; child work is independently verifiable and must preserve unrelated state.
+Use the issue-backed Work Management records as the live execution state. Completed Change 011 / #22 remains the parent evidence for the cleanup sweep; new audit follow-ups use their own source records and must preserve unrelated state.
 
-1. **Change 012 / #23 — reconcile local `main`.** Preserve the dirty historical branch, use a clean registered issue worktree, refresh governed remote state, and reconcile local `main` to accepted remote `main` after cleanup changes land.
-2. **Change 013 / #24 — adopt `modularity-assessment` into the shared workspace catalogue.** Resolve the Codex-created candidate from preserved evidence, verify its portable package and safety boundaries, and confirm KIS discovery. Repository runtime admission remains separately gated.
-3. **Change 014 / #25 — withdraw `code-as-docs-governance` from shared canonical discovery.** Preserve reviewable evidence and retain future re-admission requirements as backlog work.
-4. **Change 015 / #26 — withdraw `use-doc-solution` from shared canonical discovery.** Preserve/reconcile the historical candidate evidence and require a fresh adoption decision before future re-admission.
-5. **Change 016 / #27 — change the shared-catalogue status of `tdd-change-discipline`.** Align active discovery with the existing incompatibility decision and retain redesign/re-evaluation as backlog work.
-6. **Change 017 / #28 — audit every active shared canonical skill.** Run after the requested catalogue changes. Classify every package against the applicable portable package, security, trigger/overlap, progressive-disclosure, script, and portability requirements; create bounded follow-up records for every material unresolved failure.
-7. **Change 018 / #30 — reconcile stale merged branches.** Re-verify and remove only fully merged historical source branches, and enable delete-after-merge when a supported bounded provider operation exists. Do not affect active branches or rewrite history.
+1. **Change 014 / #25 — withdraw `code-as-docs-governance` from shared canonical discovery.** Preserve reviewable evidence and retain future re-admission requirements as backlog work.
+2. **Change 015 / #26 — withdraw `use-doc-solution` from shared canonical discovery.** Preserve/reconcile the historical candidate evidence and require a fresh adoption decision before future re-admission.
+3. **Change 016 / #27 — change the shared-catalogue status of `tdd-change-discipline`.** Align active discovery with the existing incompatibility decision and retain redesign/re-evaluation as backlog work.
+4. **Change 018 / #30 — reconcile stale merged branches.** Re-verify and remove only fully merged historical source branches and apply bounded branch-hygiene policy without affecting active work or rewriting history.
+5. **Change 019 / #31 — consolidate GitHub skills around KIS-governed repository workflows.** Implement the approved three-skill pack (`github`, `github-pr-maintenance`, `github-delivery`), keep KIS as the mutable workflow/execution plane, retain repository/Git/GitHub evidence authority, and verify retirement of superseded workflow skills. Changes 021–024 / #33–#36 are the implementation slices.
+6. **Change 020 / #32 — repair canonical workspace portability/package-contract defects.** Correct the material portable-frontmatter, dangling-resource/path, help-contract, and resource-class findings created by the completed Change 017 audit without weakening KIS behavior or repository P0 controls.
 
 Dependency rules:
 
-- Change 012 must preserve the historical branch before any local cleanup action.
-- Changes 013–016 may be evaluated independently when they do not overlap owned paths, but each catalogue mutation requires source evidence and a KIS refresh/re-read.
-- Change 017 must use the post-mutation catalogue as its final audit baseline; an initial pre-mutation inventory may be captured for comparison.
-- Change 018 may proceed independently after each candidate branch is re-verified as fully merged; the active Change 011 branch must remain until its PR lifecycle is complete.
-- No child may silently enable repository runtime skills or weaken the P0 security standard.
+- Changes 014–016 and 018 may proceed independently when their owned surfaces do not overlap active claims; each catalogue mutation requires source evidence and a KIS refresh/re-read.
+- Change 019 must use live KIS authority/workflow discovery because kis-mcp Work Management, merge-queue, provider, and cleanup capabilities are evolving independently. Its operational GitHub skills are shared-catalogue artifacts, not repository P0 runtime admissions.
+- Change 020 owns portable metadata/adapter representation and unrelated package-contract repair. Change 019 must not duplicate those fixes merely because an affected skill appears in historical baseline evidence.
+- Any KIS runtime defect discovered while reconciling the shared catalogue belongs in `kis-mcp` and must be linked as a dependency/follow-up rather than worked around by restoring stale skills or bypassing provider boundaries.
+- No backlog item may silently enable repository runtime skills or weaken the P0 security standard.
 
 ## Historical P1 Prototype Plan
 
@@ -230,6 +229,6 @@ Reject or re-scope tasks that cannot provide these fields without inventing unsu
 
 ## Backlog Completion
 
-Change 011 is complete only when Changes 012–018 have accepted dispositions, the requested shared-catalogue changes are verified through KIS, the final compliance audit has no untracked material findings, repository authority is internally consistent, stale merged-branch hygiene is reconciled, and local `main` is clean and synchronized without loss of the preserved historical branch state.
+Change 011 is closed with its accepted completed/remaining child dispositions recorded in GitHub. The current active backlog is complete only when Changes 014–016, 018–020 and their bounded implementation/follow-up slices have accepted dispositions, every material catalogue/runtime finding is tracked in its owning repository, and no source issue is marked complete ahead of its required verification or documentation evidence.
 
 The historical P1 definition remains historical evidence and does not override the current issue-backed queue.
