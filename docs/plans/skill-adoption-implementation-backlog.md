@@ -18,7 +18,7 @@ Verified repository baseline before Change 011:
 - runtime remains globally disabled, so no repository-admitted skill is runtime-enabled;
 - the historical dirty checkout on `NielPieterse0/adopt-modularity-assessment` is preserved evidence and must not be reset, cleaned, or merged wholesale.
 
-Repository reconciliation for Changes 001–010 is complete. Change 011 reopens bounded reconciliation because the operator requested a local-main cleanup, workspace catalogue changes, and a full catalogue compliance audit.
+Repository reconciliation for Changes 001–010 is complete. Change 011 reopens bounded reconciliation because the operator requested a local-main cleanup, workspace catalogue changes, a full catalogue compliance audit, and general repository hygiene review.
 
 Stable prior dispositions remain evidence:
 
@@ -37,12 +37,14 @@ Use the issue-backed Work Management records as the live execution state. Parent
 4. **Change 015 / #26 — withdraw `use-doc-solution` from shared canonical discovery.** Preserve/reconcile the historical candidate evidence and require a fresh adoption decision before future re-admission.
 5. **Change 016 / #27 — change the shared-catalogue status of `tdd-change-discipline`.** Align active discovery with the existing incompatibility decision and retain redesign/re-evaluation as backlog work.
 6. **Change 017 / #28 — audit every active shared canonical skill.** Run after the requested catalogue changes. Classify every package against the applicable portable package, security, trigger/overlap, progressive-disclosure, script, and portability requirements; create bounded follow-up records for every material unresolved failure.
+7. **Change 018 / #30 — reconcile stale merged branches.** Re-verify and remove only fully merged historical source branches, and enable delete-after-merge when a supported bounded provider operation exists. Do not affect active branches or rewrite history.
 
 Dependency rules:
 
 - Change 012 must preserve the historical branch before any local cleanup action.
 - Changes 013–016 may be evaluated independently when they do not overlap owned paths, but each catalogue mutation requires source evidence and a KIS refresh/re-read.
 - Change 017 must use the post-mutation catalogue as its final audit baseline; an initial pre-mutation inventory may be captured for comparison.
+- Change 018 may proceed independently after each candidate branch is re-verified as fully merged; the active Change 011 branch must remain until its PR lifecycle is complete.
 - No child may silently enable repository runtime skills or weaken the P0 security standard.
 
 ## Historical P1 Prototype Plan
@@ -228,6 +230,6 @@ Reject or re-scope tasks that cannot provide these fields without inventing unsu
 
 ## Backlog Completion
 
-Change 011 is complete only when Changes 012–017 have accepted dispositions, the requested shared-catalogue changes are verified through KIS, the final compliance audit has no untracked material findings, repository authority is internally consistent, and local `main` is clean and synchronized without loss of the preserved historical branch state.
+Change 011 is complete only when Changes 012–018 have accepted dispositions, the requested shared-catalogue changes are verified through KIS, the final compliance audit has no untracked material findings, repository authority is internally consistent, stale merged-branch hygiene is reconciled, and local `main` is clean and synchronized without loss of the preserved historical branch state.
 
 The historical P1 definition remains historical evidence and does not override the current issue-backed queue.
