@@ -117,6 +117,7 @@ Stop and request direction before proceeding when the task requires destructive 
 ## Authoritative References
 
 - [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md): accepted cross-source conclusions, requirements matrix, unresolved assumptions, and research-output status.
+- [`docs/standards/skill-authority-lifecycle.md`](docs/standards/skill-authority-lifecycle.md): lifecycle composition and handoffs across create, evaluate, improve, admission, maintenance, suspension, and rollback.
 - [`docs/standards/skill-package-standard.md`](docs/standards/skill-package-standard.md): canonical repository skill contents, progressive disclosure, resources, target overlays, and packaging exclusions.
 - [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, human-review, and release-evidence requirements.
 - [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered active and historical implementation work and stop criteria.
