@@ -34,7 +34,10 @@ Stable prior dispositions remain evidence:
 Use issue-backed Work Management records as the live execution state. The prior cleanup, audit, portability, GitHub consolidation, and restoration queue through Change 026 is complete.
 
 1. **Change 027 / #41 — reconcile authoritative repository status and establish the next milestone.** This documentation closeout records the exact current baseline and removes completed Changes 001–026 from active planning without disturbing historical evidence.
-2. **Change 028 / #42 — harden and optimize the shared skill-authority lifecycle.** This is the next implementation milestone and parent hardening program. Discover and classify findings first, then create bounded implementation slices only for materially independent changes.
+2. **Change 028 / #42 — harden and optimize the shared skill-authority lifecycle.** This parent hardening program is independently tracked and may be progressed by another claimed worktree; do not duplicate its implementation.
+3. **#47 — OpenAI-optimize and disambiguate the MCP skill pack.** Maintain `mcp-development` as the protocol/interoperability umbrella, use distinct OpenAI server/UI specialists plus isolated MCPB packaging, and retain repository-owned boundary/evaluation evidence.
+4. **Change 029 / #49 — implement skill usage telemetry and effectiveness evaluation.** Keep this queued until independently claimed; include the approved best-practice research before implementation.
+5. **Change 030 / #50 — evaluate and adopt the Skills over MCP compatibility path.** Keep this queued until independently claimed and preserve the portable Agent Skills/runtime-adapter boundary.
 
 Change 028 dependency order:
 
