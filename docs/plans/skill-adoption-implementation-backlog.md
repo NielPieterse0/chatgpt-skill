@@ -8,26 +8,44 @@ It does not redefine package, security, evaluation, or adapter requirements. Fol
 
 ## Current Baseline
 
-Verified on `main` after Change 001 / PR #15:
+Verified repository baseline before Change 011:
 
 - P0 authority, discovery, validation, manifest, capability, kill-switch, research, package, evaluation, and adapter-boundary controls are present;
 - KIS Work Management is the required tracked-work control plane, with issue-backed repository identity and GitHub Project projection;
-- `develop-code` and `develop-docs` are admitted canonical Tier 2 project-content workflow skills under `skills/`;
-- runtime remains globally disabled, so no admitted skill is runtime-enabled;
-- no release decision has enabled `modularity-assessment` or any other additional candidate;
-- the dirty canonical checkout is classified by Change 003 and must not be merged or reset wholesale.
+- the shared Projects workspace catalogue used by KIS Skills is `C:\Projects\.agents\skills`;
+- `C:\Users\piete\.codex\skills` is an upstream candidate/source surface, not the canonical Projects workspace catalogue;
+- `develop-code` and `develop-docs` are admitted canonical repository Tier 2 project-content workflow skills under `skills/`;
+- runtime remains globally disabled, so no repository-admitted skill is runtime-enabled;
+- the historical dirty checkout on `NielPieterse0/adopt-modularity-assessment` is preserved evidence and must not be reset, cleaned, or merged wholesale.
 
-Repository reconciliation is complete for Changes 001–008. No implementation slice remains active in this backlog.
+Repository reconciliation for Changes 001–010 is complete. Change 011 reopens bounded reconciliation because the operator requested a local-main cleanup, workspace catalogue changes, a full catalogue compliance audit, and general repository hygiene review.
 
-Stable non-active dispositions:
+Stable prior dispositions remain evidence:
 
-- `modularity-assessment`: **DEFER** canonical/runtime admission until isolated target behavioral execution and activation observability are available. See [`docs/testing/modularity-assessment-release-decision.md`](../testing/modularity-assessment-release-decision.md).
+- `modularity-assessment`: the prior repository runtime/canonical release decision is **DEFER** until isolated target behavioral execution and activation observability are available. Change 013 / #24 separately authorizes deliberate **shared workspace catalogue adoption**; it does not waive the repository runtime release gates. See [`docs/testing/modularity-assessment-release-decision.md`](../testing/modularity-assessment-release-decision.md).
 - GitHub governance Change 007: **BLOCKED-EXTERNAL / CLOSED AS PROVIDER LIMITATION**. Repository policy remains unchanged; live enforcement must be retried when a bounded compatible provider operation is available. See [`docs/operations/github-governance-status.md`](../operations/github-governance-status.md).
-- workflow drafts: `develop-code` and `develop-docs` are **SUPERSEDED / REDUNDANT** because their portable payloads match the admitted canonical skills; the current `tdd-change-discipline` draft is **NOT ADMITTED FOR THIS REPOSITORY** because its mandatory gate/governance contract conflicts with the repository's actual KIS/npm workflow. See [`docs/testing/workflow-draft-disposition.md`](../testing/workflow-draft-disposition.md).
+- `develop-code` and `develop-docs` historical drafts are **SUPERSEDED / REDUNDANT** because their portable payloads match the admitted repository skills.
+- `tdd-change-discipline` remains **NOT ADMITTED FOR THIS REPOSITORY** because its mandatory gate/governance contract conflicts with the actual KIS/npm workflow. Change 016 / #27 now tracks the operator-requested shared-catalogue status change and future redesign. See [`docs/testing/workflow-draft-disposition.md`](../testing/workflow-draft-disposition.md).
 
 ## Current Active Backlog
 
-**None.** New work must enter through issue-backed KIS Work Management intake rather than by reactivating historical local commits or quarantined drafts. Closed work and historical local state remain evidence only.
+Use the issue-backed Work Management records as the live execution state. Parent Change 011 / #22 coordinates the sweep; child work is independently verifiable and must preserve unrelated state.
+
+1. **Change 012 / #23 — reconcile local `main`.** Preserve the dirty historical branch, use a clean registered issue worktree, refresh governed remote state, and reconcile local `main` to accepted remote `main` after cleanup changes land.
+2. **Change 013 / #24 — adopt `modularity-assessment` into the shared workspace catalogue.** Resolve the Codex-created candidate from preserved evidence, verify its portable package and safety boundaries, and confirm KIS discovery. Repository runtime admission remains separately gated.
+3. **Change 014 / #25 — withdraw `code-as-docs-governance` from shared canonical discovery.** Preserve reviewable evidence and retain future re-admission requirements as backlog work.
+4. **Change 015 / #26 — withdraw `use-doc-solution` from shared canonical discovery.** Preserve/reconcile the historical candidate evidence and require a fresh adoption decision before future re-admission.
+5. **Change 016 / #27 — change the shared-catalogue status of `tdd-change-discipline`.** Align active discovery with the existing incompatibility decision and retain redesign/re-evaluation as backlog work.
+6. **Change 017 / #28 — audit every active shared canonical skill.** Run after the requested catalogue changes. Classify every package against the applicable portable package, security, trigger/overlap, progressive-disclosure, script, and portability requirements; create bounded follow-up records for every material unresolved failure.
+7. **Change 018 / #30 — reconcile stale merged branches.** Re-verify and remove only fully merged historical source branches, and enable delete-after-merge when a supported bounded provider operation exists. Do not affect active branches or rewrite history.
+
+Dependency rules:
+
+- Change 012 must preserve the historical branch before any local cleanup action.
+- Changes 013–016 may be evaluated independently when they do not overlap owned paths, but each catalogue mutation requires source evidence and a KIS refresh/re-read.
+- Change 017 must use the post-mutation catalogue as its final audit baseline; an initial pre-mutation inventory may be captured for comparison.
+- Change 018 may proceed independently after each candidate branch is re-verified as fully merged; the active Change 011 branch must remain until its PR lifecycle is complete.
+- No child may silently enable repository runtime skills or weaken the P0 security standard.
 
 ## Historical P1 Prototype Plan
 
@@ -182,28 +200,29 @@ Prioritize only work justified by prototype evidence:
 
 The following remain excluded until separate architecture, controls, tests, and owner approval exist:
 
-- recursive or registry-wide automatic discovery;
-- broad catalog import;
+- recursive or registry-wide automatic repository runtime discovery;
+- broad automatic catalogue import without bounded review;
 - network access or runtime package resolution;
 - remote MCP;
 - inherited credentials or secrets;
 - lifecycle hooks or background loops;
-- Git commit, push, pull-request creation, or external diff transmission;
-- deployment, deletion, or external mutation;
-- direct writes outside the repository or outside approved `.work/` scopes;
+- Git commit, push, pull-request creation, or external diff transmission by admitted runtime skills;
+- deployment, deletion, or external mutation by admitted runtime skills;
+- direct writes outside the repository or explicitly authorized shared-catalogue operations;
 - automatic update from mutable upstream branches;
-- target-specific forks of canonical skills.
+- target-specific forks of canonical repository skills.
 
 ## Task Intake Rule
 
 Every future skill task must identify:
 
 - the customer outcome;
+- whether the task affects repository runtime state, shared workspace catalogue state, or both;
 - the authoritative owner documents affected;
-- source evidence and immutable revision;
+- source evidence and immutable revision or trusted-local identity;
 - canonical versus adapter scope;
-- capability tier and enforcement point;
-- baseline and evaluation evidence;
+- capability tier and enforcement point where repository runtime is involved;
+- baseline and evaluation evidence appropriate to the requested boundary;
 - package and runtime impact;
 - rollback and stop criteria.
 
@@ -211,4 +230,6 @@ Reject or re-scope tasks that cannot provide these fields without inventing unsu
 
 ## Backlog Completion
 
-P1 is complete only when one prototype has an accepted decision and the repository can reproduce its canonical validation, ChatGPT package, evaluation evidence, disablement, and rollback. A runtime enablement is not required for P1 completion if the evidence supports defer or reject.
+Change 011 is complete only when Changes 012–018 have accepted dispositions, the requested shared-catalogue changes are verified through KIS, the final compliance audit has no untracked material findings, repository authority is internally consistent, stale merged-branch hygiene is reconciled, and local `main` is clean and synchronized without loss of the preserved historical branch state.
+
+The historical P1 definition remains historical evidence and does not override the current issue-backed queue.
