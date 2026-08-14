@@ -28,11 +28,11 @@ The project exists to make skill adoption explicit, reviewable, reproducible, an
 
 ## Current Status
 
-The repository has completed its research-integration and P0 security baseline, and KIS Work Management is the required tracked-work control plane. `develop-code` and `develop-docs` are admitted repository Tier 2 project-content workflows. The global runtime kill switch remains disabled, so no repository skill is runtime-enabled.
+The repository has completed Changes 001–026, including KIS Work Management integration, repository/catalogue reconciliation, canonical workspace compliance and portability remediation, the KIS-governed three-skill GitHub pack, retirement of superseded GitHub workflow skills, retained-worktree reconciliation, and restoration of KIS-aligned `develop-code`, `develop-docs`, and `mcp-development` catalogue packages. The verified reconciliation baseline is `main` at `66912c994f94a7da67e6b92e01279f5ed03778ed`; GitHub Actions `Verify` run `31776682295` passed for that exact revision on 14 August 2026.
 
-A new reconciliation sweep is active under Change 011 / issue #22. It covers local-main cleanup, correction of the shared-catalogue authority path, deliberate workspace adoption of `modularity-assessment`, operator-requested withdrawal of `code-as-docs-governance`, `use-doc-solution`, and `tdd-change-discipline`, and a full canonical-catalogue compliance audit.
+Repository runtime authority remains separate from shared workspace catalogue authority. `develop-code` and `develop-docs` are admitted repository Tier 2 project-content workflows, but `config/runtime-control.json` remains fail-closed with `skills_enabled: false`, so no repository skill is runtime-enabled merely because it is present in either catalogue. `modularity-assessment` remains approved for shared workspace catalogue adoption while its separate repository runtime release decision stays deferred pending the evaluation gates already recorded by this repository.
 
-`modularity-assessment` has owner approval for **shared workspace catalogue adoption** under Change 013. Its separate repository runtime/canonical admission remains deferred until the behavioral execution and activation-observability gates in the evaluation standard are satisfied. The current `tdd-change-discipline` contract remains not admitted for this repository because it conflicts with the actual KIS/npm workflow.
+The previous cleanup and consolidation queue is closed. The next active milestone is Change 028 / issue #42, which hardens the shared skill-authority lifecycle from create → evaluate → improve → verify/admit/maintain. Its work is finding-first and must be split into bounded implementation slices when materially independent changes are discovered. The historical dirty `NielPieterse0/adopt-modularity-assessment` checkout remains preserved evidence and is not accepted current repository state.
 
 ## P0 Security Baseline
 

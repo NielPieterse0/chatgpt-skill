@@ -8,47 +8,47 @@ It does not redefine package, security, evaluation, or adapter requirements. Fol
 
 ## Current Baseline
 
-Verified repository baseline before Change 011:
+Verified reconciliation baseline for Change 027 / issue #41:
 
+- GitHub `main` is `66912c994f94a7da67e6b92e01279f5ed03778ed` and KIS registered default-branch tracking matches that exact revision;
+- GitHub Actions `Verify` run `31776682295` completed successfully for that exact `main` revision on 14 August 2026;
+- GitHub has no open pull requests and the only remote branch is `main` at the reconciliation baseline;
+- Changes 001–026 are closed; none of their source records belongs in the live execution queue;
 - P0 authority, discovery, validation, manifest, capability, kill-switch, research, package, evaluation, and adapter-boundary controls are present;
-- KIS Work Management is the required tracked-work control plane, with issue-backed repository identity and GitHub Project projection;
-- the shared Projects workspace catalogue used by KIS Skills is `C:\Projects\.agents\skills`;
-- `C:\Users\piete\.codex\skills` is an upstream candidate/source surface, not the canonical Projects workspace catalogue;
-- `develop-code` and `develop-docs` are admitted canonical repository Tier 2 project-content workflow skills under `skills/`;
-- runtime remains globally disabled, so no repository-admitted skill is runtime-enabled;
-- the historical dirty checkout on `NielPieterse0/adopt-modularity-assessment` is preserved evidence and must not be reset, cleaned, or merged wholesale.
+- KIS Work Management remains the required tracked-work control plane, with issue-backed repository identity and GitHub Project projection;
+- the shared Projects workspace catalogue used by KIS Skills is `C:\Projects\.agents\skills`, while `C:\Users\piete\.codex\skills` remains an upstream candidate/source surface;
+- `develop-code` and `develop-docs` are admitted repository Tier 2 project-content workflow skills, while the shared catalogue also contains the separately governed KIS-aligned workflow packages restored by Change 026;
+- `config/runtime-control.json` remains fail-closed with `skills_enabled: false`, so catalogue presence does not imply repository runtime enablement;
+- the historical dirty checkout on `NielPieterse0/adopt-modularity-assessment` remains preserved evidence and must not be reset, cleaned, or normalized into accepted current state.
 
-Repository reconciliation for Changes 001–013 and 017 is complete. Change 011 / #22 and its local-main/catalogue-audit prerequisites landed on `main` and are closed. The live queue now consists of the remaining bounded cleanup items plus the GitHub skill-pack consolidation and portability remediation created from the completed catalogue audit.
+The completed Changes 011–026 cover the canonical workspace/local-main cleanup, compliance audit, catalogue withdrawals and adoption decisions, branch/worktree reconciliation, portability/package remediation, the KIS-governed `github` / `github-pr-maintenance` / `github-delivery` pack, retirement of superseded GitHub workflow skills, and restoration of KIS-aligned `develop-code`, `develop-docs`, and `mcp-development` shared-catalogue packages.
 
 Stable prior dispositions remain evidence:
 
-- `modularity-assessment`: the prior repository runtime/canonical release decision is **DEFER** until isolated target behavioral execution and activation observability are available. Change 013 / #24 separately authorizes deliberate **shared workspace catalogue adoption**; it does not waive the repository runtime release gates. See [`docs/testing/modularity-assessment-release-decision.md`](../testing/modularity-assessment-release-decision.md).
-- GitHub governance Change 007: **BLOCKED-EXTERNAL / CLOSED AS PROVIDER LIMITATION**. Repository policy remains unchanged; live enforcement must be retried when a bounded compatible provider operation is available. See [`docs/operations/github-governance-status.md`](../operations/github-governance-status.md).
-- `develop-code` and `develop-docs` historical drafts are **SUPERSEDED / REDUNDANT** because their portable payloads match the admitted repository skills.
-- `tdd-change-discipline` remains **NOT ADMITTED FOR THIS REPOSITORY** because its mandatory gate/governance contract conflicts with the actual KIS/npm workflow. Change 016 / #27 now tracks the operator-requested shared-catalogue status change and future redesign. See [`docs/testing/workflow-draft-disposition.md`](../testing/workflow-draft-disposition.md).
+- `modularity-assessment`: the repository runtime/canonical release decision remains **DEFER** until isolated target behavioral execution and activation observability are available. Change 013 / #24 separately authorizes shared workspace catalogue adoption and does not waive repository runtime release gates. See [`docs/testing/modularity-assessment-release-decision.md`](../testing/modularity-assessment-release-decision.md).
+- GitHub governance Change 007 remains **BLOCKED-EXTERNAL / CLOSED AS PROVIDER LIMITATION** for live main-branch enforcement. Repository policy remains unchanged. See [`docs/operations/github-governance-status.md`](../operations/github-governance-status.md).
+- `tdd-change-discipline` remains **NOT ADMITTED FOR THIS REPOSITORY** because its mandatory gate/governance contract conflicts with the actual KIS/npm workflow. Its shared-catalogue withdrawal/redesign disposition was completed under Change 016 / #27. See [`docs/testing/workflow-draft-disposition.md`](../testing/workflow-draft-disposition.md).
 
-## Current Active Backlog
+## Current Active Milestone
 
-Use the issue-backed Work Management records as the live execution state. Completed Change 011 / #22 remains the parent evidence for the cleanup sweep; new audit follow-ups use their own source records and must preserve unrelated state.
+Use issue-backed Work Management records as the live execution state. The prior cleanup, audit, portability, GitHub consolidation, and restoration queue through Change 026 is complete.
 
-1. **Change 014 / #25 — withdraw `code-as-docs-governance` from shared canonical discovery.** Preserve reviewable evidence and retain future re-admission requirements as backlog work.
-2. **Change 015 / #26 — withdraw `use-doc-solution` from shared canonical discovery.** Preserve/reconcile the historical candidate evidence and require a fresh adoption decision before future re-admission.
-3. **Change 016 / #27 — change the shared-catalogue status of `tdd-change-discipline`.** Align active discovery with the existing incompatibility decision and retain redesign/re-evaluation as backlog work.
-4. **Change 018 / #30 — reconcile stale merged branches.** Re-verify and remove only fully merged historical source branches and apply bounded branch-hygiene policy without affecting active work or rewriting history.
-5. **Change 019 / #31 — consolidate GitHub skills around KIS-governed repository workflows.** Implement the approved three-skill pack (`github`, `github-pr-maintenance`, `github-delivery`), keep KIS as the mutable workflow/execution plane, retain repository/Git/GitHub evidence authority, and verify retirement of superseded workflow skills. Changes 021–024 / #33–#36 are the implementation slices.
-6. **Change 020 / #32 — repair canonical workspace portability/package-contract defects.** Correct the material portable-frontmatter, dangling-resource/path, help-contract, and resource-class findings created by the completed Change 017 audit without weakening KIS behavior or repository P0 controls.
+1. **Change 027 / #41 — reconcile authoritative repository status and establish the next milestone.** This documentation closeout records the exact current baseline and removes completed Changes 001–026 from active planning without disturbing historical evidence.
+2. **Change 028 / #42 — harden and optimize the shared skill-authority lifecycle.** This is the next implementation milestone and parent hardening program. Discover and classify findings first, then create bounded implementation slices only for materially independent changes.
 
-Dependency rules:
+Change 028 dependency order:
 
-- Changes 014–016 and 018 may proceed independently when their owned surfaces do not overlap active claims; each catalogue mutation requires source evidence and a KIS refresh/re-read.
-- Change 019 must use live KIS authority/workflow discovery because kis-mcp Work Management, merge-queue, provider, and cleanup capabilities are evolving independently. Its operational GitHub skills are shared-catalogue artifacts, not repository P0 runtime admissions.
-- Change 020 owns portable metadata/adapter representation and unrelated package-contract repair. Change 019 must not duplicate those fixes merely because an affected skill appears in historical baseline evidence.
-- Any KIS runtime defect discovered while reconciling the shared catalogue belongs in `kis-mcp` and must be linked as a dependency/follow-up rather than worked around by restoring stale skills or bypassing provider boundaries.
-- No backlog item may silently enable repository runtime skills or weaken the P0 security standard.
+- establish one coherent lifecycle from create → evaluate → improve → verify/admit/maintain before optimizing individual surfaces in isolation;
+- assess trigger/description quality, output quality, efficiency, security, compatibility, abuse resistance, provenance, rollback, package structure, progressive disclosure, scripts, references, and KIS/runtime handoffs against that lifecycle;
+- resolve contradictory or duplicated authority in the owning artifact rather than adding another competing workflow layer;
+- create separate source work items for independent implementation changes and owner-specific external defects;
+- route any KIS runtime/provider defect to `kis-mcp` rather than implementing a local bypass;
+- complete repository-wide validation, KIS catalogue refresh/re-read, and a realistic end-to-end lifecycle proof only after bounded findings are resolved or explicitly tracked;
+- no milestone item may silently enable repository runtime skills or weaken the P0 security standard.
 
 ## Historical P1 Prototype Plan
 
-The sequence below records the original pre-admission prototype plan. It is retained as historical planning evidence and is not the live work queue. Where it conflicts with the Current Active Backlog or admitted artifacts, the live repository and issue-backed Work Management records govern.
+The sequence below records the original pre-admission prototype plan. It is retained as historical planning evidence and is not the live work queue. Where it conflicts with the Current Active Milestone or admitted artifacts, the live repository and issue-backed Work Management records govern.
 
 Execute the historical sequence only as background rationale; do not create its named prototype merely because it appears below.
 
@@ -229,6 +229,6 @@ Reject or re-scope tasks that cannot provide these fields without inventing unsu
 
 ## Backlog Completion
 
-Change 011 is closed with its accepted completed/remaining child dispositions recorded in GitHub. The current active backlog is complete only when Changes 014–016, 018–020 and their bounded implementation/follow-up slices have accepted dispositions, every material catalogue/runtime finding is tracked in its owning repository, and no source issue is marked complete ahead of its required verification or documentation evidence.
+The cleanup, audit, portability, GitHub consolidation, and restoration backlog through Change 026 is closed with accepted dispositions and verification recorded in its issue-backed history. Change 027 closes when this reconciliation is merged, the exact merged `main` revision is verified, and its source/Project lifecycle is reconciled through KIS Work Management.
 
-The historical P1 definition remains historical evidence and does not override the current issue-backed queue.
+After Change 027, Change 028 / #42 is the sole active milestone. It is complete only when all material lifecycle findings are resolved or tracked in bounded owner-specific source records, the create → evaluate → improve → verify/admit/maintain flow is internally consistent, final repository validation and KIS catalogue refresh/re-read succeed, and the realistic end-to-end lifecycle proof required by #42 passes. The historical P1 definition remains historical evidence and does not override this issue-backed queue.
