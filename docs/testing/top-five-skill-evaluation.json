@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-15T23:43:58+02:00",
+  "issue": 54,
+  "repo_revision": "eaba5d994d8c0cc7432333d19a2c8f08e9587bad",
+  "authority": {
+    "execution_scope": "GitHub issue #54",
+    "research_synthesis": "docs/research/skill-adoption-research-synthesis.md",
+    "evaluation_standard": "docs/testing/skill-evaluation-standard.md",
+    "evaluator": "scripts/skill_effectiveness.py"
+  },
+  "telemetry": {
+    "operation": "skill_telemetry_report",
+    "schema_version": 1,
+    "event_count": 20000,
+    "truncated": false,
+    "warnings": [],
+    "catalog_snapshot_id": "c4ada48dff958cd9"
+  },
+  "ranking": {
+    "eligible_population": "active canonical workspace skills",
+    "primary": "aggregate loaded_count descending",
+    "secondary": [
+      "resource_read_count descending",
+      "completed_count descending",
+      "evaluated_count descending"
+    ],
+    "final_tie_break": "skill_id ascending",
+    "discovered_count_used_for_ranking": false
+  },
+  "boundary_tie": {
+    "loaded_count": 8,
+    "selected": "reproducibility-auditor",
+    "also_tied": "statistical-analyst",
+    "resolution": "All actual-usage secondary fields were equal, so canonical skill_id ascending was applied.",
+    "statistical_analyst_discovered_count": 521
+  },
+  "results": [
+    {
+      "rank": 1,
+      "skill_id": "develop-code",
+      "content_sha256": "10ab0e8457b53d1940d27cb70ac3a96d0088636e7c5437a17fc769c68d4a5288",
+      "loaded_count": 24,
+      "resource_read_count": 20,
+      "static_package": "pass",
+      "behavioral_evaluation": "blocked",
+      "harness_reason": "current_canonical_candidate_differs_from_repo_runtime_identity",
+      "recommendation": "defer",
+      "local_evidence": ".work/evals/develop-code/iteration-1/evaluation-record.json",
+      "harness_attempt": {
+        "exit_code": 2,
+        "error": "evaluation record runtime content hash mismatch"
+      }
+    },
+    {
+      "rank": 2,
+      "skill_id": "kis-mcp",
+      "content_sha256": "9286a17c7176a8c1e50e316185d020c88250741d70eb13256d211c5577208951",
+      "loaded_count": 21,
+      "resource_read_count": 25,
+      "static_package": "pass",
+      "behavioral_evaluation": "blocked",
+      "harness_reason": "skill_not_adopted_in_repo_and_no_tracked_eval_definitions",
+      "recommendation": "defer",
+      "local_evidence": ".work/evals/kis-mcp/iteration-1/evaluation-record.json",
+      "harness_attempt": {
+        "exit_code": 2,
+        "error": "cannot resolve evaluation definition tests\\skills\\kis-mcp\\trigger-cases.json at eaba5d994d8c0cc7432333d19a2c8f08e9587bad: fatal: path 'tests/skills/kis-mcp/trigger-cases.json' does not exist in 'eaba5d994d8c0cc7432333d19a2c8f08e9587bad'"
+      }
+    },
+    {
+      "rank": 3,
+      "skill_id": "develop-docs",
+      "content_sha256": "17791b4232a3bb002ebfb5fc993636691a85a9c6574d7c210f9fc1912cc23a0c",
+      "loaded_count": 10,
+      "resource_read_count": 7,
+      "static_package": "pass",
+      "behavioral_evaluation": "blocked",
+      "harness_reason": "current_canonical_candidate_differs_from_repo_runtime_identity",
+      "recommendation": "defer",
+      "local_evidence": ".work/evals/develop-docs/iteration-1/evaluation-record.json",
+      "harness_attempt": {
+        "exit_code": 2,
+        "error": "evaluation record runtime content hash mismatch"
+      }
+    },
+    {
+      "rank": 4,
+      "skill_id": "time-series-research",
+      "content_sha256": "bac4b5288589e208a2a20938cecaf6b016ba09da1222059c34ed7df17b033c82",
+      "loaded_count": 9,
+      "resource_read_count": 0,
+      "static_package": "pass",
+      "behavioral_evaluation": "blocked",
+      "harness_reason": "skill_not_adopted_in_repo_and_no_tracked_eval_definitions",
+      "recommendation": "defer",
+      "local_evidence": ".work/evals/time-series-research/iteration-1/evaluation-record.json",
+      "harness_attempt": {
+        "exit_code": 2,
+        "error": "cannot resolve evaluation definition tests\\skills\\time-series-research\\trigger-cases.json at eaba5d994d8c0cc7432333d19a2c8f08e9587bad: fatal: path 'tests/skills/time-series-research/trigger-cases.json' does not exist in 'eaba5d994d8c0cc7432333d19a2c8f08e9587bad'"
+      }
+    },
+    {
+      "rank": 5,
+      "skill_id": "reproducibility-auditor",
+      "content_sha256": "587f4c9eb1da43d788fbc3c56eeef19b318cbde4b490ea6c15caa63362a3e14b",
+      "loaded_count": 8,
+      "resource_read_count": 0,
+      "static_package": "pass",
+      "behavioral_evaluation": "blocked",
+      "harness_reason": "skill_not_adopted_in_repo_and_no_tracked_eval_definitions",
+      "recommendation": "defer",
+      "local_evidence": ".work/evals/reproducibility-auditor/iteration-1/evaluation-record.json",
+      "harness_attempt": {
+        "exit_code": 2,
+        "error": "cannot resolve evaluation definition tests\\skills\\reproducibility-auditor\\trigger-cases.json at eaba5d994d8c0cc7432333d19a2c8f08e9587bad: fatal: path 'tests/skills/reproducibility-auditor/trigger-cases.json' does not exist in 'eaba5d994d8c0cc7432333d19a2c8f08e9587bad'"
+      }
+    }
+  ],
+  "scope_note": "Evaluation evidence only. No canonical skill, adoption manifest, lifecycle standard, dashboard schema, AGENTS.md, or backlog/board artifact was changed.",
+  "next_evaluation_order": [
+    "Synchronize/bind current develop-code candidate to repo evaluation identity in a separate governed lifecycle change.",
+    "Synchronize/bind current develop-docs candidate to repo evaluation identity in a separate governed lifecycle change.",
+    "Establish repo evaluation identities and tracked definitions for kis-mcp, time-series-research, and reproducibility-auditor before behavioral reruns.",
+    "Once an isolated runner and human review are available, rerun the top-five cohort before any admit/revise decision."
+  ]
+}
