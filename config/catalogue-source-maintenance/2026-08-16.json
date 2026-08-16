@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-08-16",
+  "authority": {
+    "repository": "NielPieterse0/chatgpt-skill",
+    "issue_number": 83
+  },
+  "skill_baselines": {
+    "develop-code": {
+      "reviewed_source_revision": "9adf1ca26a6a96a173605a7e5dd5c11216d6ec0e",
+      "workspace_content_sha256": "31733135a08b2fe618e8f51a3ac3f22a7522f85df253e6bda748938de480d0e6"
+    },
+    "develop-docs": {
+      "reviewed_source_revision": "9adf1ca26a6a96a173605a7e5dd5c11216d6ec0e",
+      "workspace_content_sha256": "22756ad73efc474dcf4be4822d9c74faff22695ffd3063425b79152c3386cbce"
+    }
+  },
+  "refresh_baselines": {
+    "kis-mcp": {
+      "source_skills": {
+        "mcp-development": "a37c9947f23f30e91ef250c265bd663f4f98ccf2d9f73cc078a35487fc990b93",
+        "mcpb-local-packaging": "436502a9647ec563b294ec737c48ffdfdd97caa74efde6c58815cdafa35250e4",
+        "openai-mcp-app-ui": "61c4bcc000deb6c53d2c1d0456479630daa6839caac9da7f5eb252e7a5eb07c9",
+        "openai-mcp-server": "5bbe11fb53adcadb4d50cfbacdba791227ea03e4c81f045f03289391d7aa9703"
+      }
+    }
+  },
+  "classifications": [
+    {
+      "skill_id": "develop-code",
+      "source_repository": "https://github.com/NielPieterse0/kis-mcp.git",
+      "previous_reviewed_source_revision": "5ab2aa1e71852363b0a872e1d9a44f3c70298a42",
+      "reviewed_source_revision": "9adf1ca26a6a96a173605a7e5dd5c11216d6ec0e",
+      "source_status": "source_removed",
+      "source_removal_commit": "a5bf3bdd779fb5f998ae6cf1f8741db58dabe3b8",
+      "previous_adoption_record_sha256": "07135ba9e509076f002cd550c8e50ee2251e598979425db93178aa44e471a871",
+      "workspace_sha256": "31733135a08b2fe618e8f51a3ac3f22a7522f85df253e6bda748938de480d0e6",
+      "workspace_state": "accepted-successor",
+      "workspace_evidence_issue": 40,
+      "disposition": "preserve-local",
+      "rationale": "KIS intentionally removed its repository-local skill catalogue. The canonical workspace copy is an explicitly remediated and verified successor recorded by issue #40; upstream source removal therefore does not authorize deleting or replacing the adopted skill.",
+      "rechecks": {
+        "portability": "no target content change in this maintenance review; issue #40 restored the portable package",
+        "trigger_overlap": "no target description change caused by source removal",
+        "progressive_disclosure": "no target package change caused by source removal",
+        "security": "no target package change caused by source removal",
+        "references_scripts": "workspace successor remains the reviewed package; source removal adds no executable content",
+        "behavioral_evidence": "not required for a preserve-local decision with no target-content mutation; runnable cross-target behavioral infrastructure remains tracked by issue #85"
+      }
+    },
+    {
+      "skill_id": "develop-docs",
+      "source_repository": "https://github.com/NielPieterse0/kis-mcp.git",
+      "previous_reviewed_source_revision": "5ab2aa1e71852363b0a872e1d9a44f3c70298a42",
+      "reviewed_source_revision": "9adf1ca26a6a96a173605a7e5dd5c11216d6ec0e",
+      "source_status": "source_removed",
+      "source_removal_commit": "52afc899175cd5cafe1928b0cd67e28bee5f30e4",
+      "previous_adoption_record_sha256": "6bdd16158102e3339ade10e36be4ca065dfd866da4888b8f67e9f8242cabc1ca",
+      "workspace_sha256": "22756ad73efc474dcf4be4822d9c74faff22695ffd3063425b79152c3386cbce",
+      "workspace_state": "accepted-successor",
+      "workspace_evidence_issue": 40,
+      "disposition": "preserve-local",
+      "rationale": "KIS intentionally removed its repository-local skill catalogue. The canonical workspace copy is an explicitly remediated and verified successor recorded by issue #40; upstream source removal therefore does not authorize deleting or replacing the adopted skill.",
+      "rechecks": {
+        "portability": "no target content change in this maintenance review; issue #40 restored the portable package",
+        "trigger_overlap": "no target description change caused by source removal",
+        "progressive_disclosure": "no target package change caused by source removal",
+        "security": "no target package change caused by source removal",
+        "references_scripts": "workspace successor remains the reviewed package; source removal adds no executable content",
+        "behavioral_evidence": "not required for a preserve-local decision with no target-content mutation; runnable cross-target behavioral infrastructure remains tracked by issue #85"
+      }
+    },
+    {
+      "skill_id": "kis-mcp",
+      "source_baseline_record": "config/catalogue-skill-updates/kis-mcp.json",
+      "changed_source_skill": "mcpb-local-packaging",
+      "previous_source_tree_sha256": "6ac01d96b9f0224d4246bf3d3d075dc86de052145c15a1c83f02025d9d296db8",
+      "reviewed_source_tree_sha256": "436502a9647ec563b294ec737c48ffdfdd97caa74efde6c58815cdafa35250e4",
+      "source_delta": [
+        "references/local-security.md added",
+        "references/manifest-schema.md added"
+      ],
+      "disposition": "not-applicable",
+      "rationale": "The new files strengthen MCPB-specific packaging and local-server guidance. MCPB packaging remains outside the kis-mcp operational skill boundary, matching the prior delta-008 not-applicable decision; no kis-mcp target content change is warranted.",
+      "rechecks": {
+        "portability": "source additions are reference-only and packaging-specific",
+        "trigger_overlap": "mcpb-local-packaging SKILL.md trigger/routing boundary is unchanged",
+        "progressive_disclosure": "new detailed content remains behind conditional references",
+        "security": "local-security.md strengthens source-package security guidance without changing kis-mcp authority",
+        "references_scripts": "the source package now supplies the references already named by its SKILL.md; no scripts were added to kis-mcp",
+        "behavioral_evidence": "not applicable because the reviewed disposition makes no kis-mcp target-content change"
+      }
+    }
+  ],
+  "checks": {
+    "automatic_sync_applied": false,
+    "source_repositories_mutated": false,
+    "workspace_catalogue_mutated": false,
+    "kis_refresh_applied": false
+  }
+}
