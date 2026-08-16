@@ -164,6 +164,23 @@ Generated evidence belongs under `.work/`:
 
 Do not add machine-readable schemas until a repository tool consumes them. When introduced, schemas must reject unknown fields and distinguish test definitions from generated results.
 
+### Programme coverage summaries
+
+An issue-backed catalogue-wide evaluation programme may track one durable machine-readable summary under `docs/testing/` when its purpose is coverage accounting and governed `defer` or `suspend` decisions across current canonical workspace skills.
+
+A programme summary must:
+
+- bind every covered skill to its exact current canonical `SKILL.md` SHA-256;
+- record bounded structural evidence and the active catalogue state;
+- distinguish repository-adoption identity and tracked evaluation-definition availability;
+- state unavailable trigger, output, abuse, efficiency, compatibility, or human evidence explicitly rather than synthesizing passes;
+- carry non-empty blocking reasons for every `defer` or `suspend` decision;
+- define ownership, maximum evidence age, and re-evaluation triggers;
+- fail current coverage when the canonical hash, catalogue membership/status, record contract, or evidence age changes;
+- preserve richer generated run evidence under `.work/evals/` and prefer a valid current generated scorecard when both exist.
+
+Programme coverage summaries cannot recommend `admit` or `revise`. Those dispositions require the normal per-skill generated scorecard and all applicable behavioral, human-review, security, compatibility, and rollback gates. A programme `defer` records that the skill was assessed and why a credible effectiveness decision is blocked; it is not an effectiveness pass.
+
 ### Executable evaluation harness
 
 Use `scripts/skill_effectiveness.py` to validate one generated iteration against the tracked definitions and emit a versioned, per-skill scorecard. The harness is deliberately offline: model or target adapters create isolated-run evidence; repository code validates identities, coverage, assertions, costs, gates, and disposition without embedding a model runner.

@@ -1,0 +1,1016 @@
+{
+  "catalogue_root": "C:\\Projects\\.agents\\skills",
+  "catalogue_snapshot_sha256": "61f1c33e815eb349b80f65482be9fc536b3da97bc8a39c79b0ef44b79704f82c",
+  "coverage": {
+    "active_count": 38,
+    "current_coverage": 1.0,
+    "current_covered_count": 38,
+    "defer_count": 38,
+    "suspend_count": 0,
+    "total_catalogue_count": 38
+  },
+  "evaluated_at": "2026-08-16",
+  "evaluation_standard": "docs/testing/skill-evaluation-standard.md",
+  "global_limitations": [
+    "isolated_candidate_vs_baseline_runner_unavailable",
+    "activation_observability_unavailable",
+    "human_review_pending"
+  ],
+  "issue": 55,
+  "owner": "chatgpt-skill evaluation programme",
+  "re_evaluation": {
+    "max_age_days": 90,
+    "owner": "chatgpt-skill evaluation programme",
+    "triggers": [
+      "canonical skill content hash changes",
+      "canonical catalogue membership or active status changes",
+      "isolated candidate-vs-baseline execution becomes available",
+      "reliable activation observability becomes available",
+      "human review is completed",
+      "runtime adapter or target behavior materially changes",
+      "security, quality, or operational regression evidence appears"
+    ]
+  },
+  "schema_version": 1,
+  "skills": [
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "8a2f4c189c54b0833889406776c5e1b26a5ffc127dd8752e2bcfd66cb811484a",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "bayesian-modeler",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 23,
+        "symlink_count": 0,
+        "total_bytes": 1578
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "682cece1daf2df9c10d41071380e96e24da5a1c158d6c2333fa219acd42d2161",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "code-review",
+      "structural_evidence": {
+        "file_count": 3,
+        "skill_md_lines": 66,
+        "symlink_count": 0,
+        "total_bytes": 17251
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "4aab85003f547ac6e1ee12e3ceb3f89d5744af56f3b22a3643e545007474fc87",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "code-verification",
+      "structural_evidence": {
+        "file_count": 4,
+        "skill_md_lines": 126,
+        "symlink_count": 0,
+        "total_bytes": 15826
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "a3727efa825ff26a2ce67ff60379ad0e3a4bfcfc498c3632514fd662e7a0f3a6",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "code-work",
+      "structural_evidence": {
+        "file_count": 4,
+        "skill_md_lines": 96,
+        "symlink_count": 0,
+        "total_bytes": 13214
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "fa59f2952f2083a8a8a8b07fc7ac196cb59c92217893d73463b0cfc1633921b9",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "commodity-market-data",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 24,
+        "symlink_count": 0,
+        "total_bytes": 1964
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "b2354c4203eefb275a81e389eb594aca21d124c990682c18fafb5acc73d6ea59",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "create-skill",
+      "structural_evidence": {
+        "file_count": 7,
+        "skill_md_lines": 138,
+        "symlink_count": 0,
+        "total_bytes": 68759
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "017faccdeb2068355cfb520bfb09ecf0200b3e9056975d8e41c7226f3a0ded68",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "data-engineer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 26,
+        "symlink_count": 0,
+        "total_bytes": 1733
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "eef31ed2fb71978dc9cf0ac5152f0c67cc8aa4b01157560ee879401d64e589de",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "dataset-auditor",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 25,
+        "symlink_count": 0,
+        "total_bytes": 1663
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_differs_from_current_catalogue_hash"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "10ab0e8457b53d1940d27cb70ac3a96d0088636e7c5437a17fc769c68d4a5288",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "current",
+      "recommendation": "defer",
+      "repo_adoption_status": "approved_stale",
+      "skill_id": "develop-code",
+      "structural_evidence": {
+        "file_count": 8,
+        "skill_md_lines": 93,
+        "symlink_count": 0,
+        "total_bytes": 17883
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_differs_from_current_catalogue_hash"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "17791b4232a3bb002ebfb5fc993636691a85a9c6574d7c210f9fc1912cc23a0c",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "current",
+      "recommendation": "defer",
+      "repo_adoption_status": "approved_stale",
+      "skill_id": "develop-docs",
+      "structural_evidence": {
+        "file_count": 9,
+        "skill_md_lines": 110,
+        "symlink_count": 0,
+        "total_bytes": 22959
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "6a58d1fa3bc2d6844a9f3d916efb2f033ab6487bc1b52376bde2c7af74cde32e",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "evaluate-plugin",
+      "structural_evidence": {
+        "file_count": 2,
+        "skill_md_lines": 40,
+        "symlink_count": 0,
+        "total_bytes": 1960
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "059a9f587b60e0749c37f99e356863696f94c255f656c3c62b69cdf50fd4be15",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "evaluate-skill",
+      "structural_evidence": {
+        "file_count": 2,
+        "skill_md_lines": 85,
+        "symlink_count": 0,
+        "total_bytes": 6310
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "e8557565394c8fe93626625a1798addd842c9fffbab8bfe0b993220c6ba33ef3",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "experiment-designer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 24,
+        "symlink_count": 0,
+        "total_bytes": 2088
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "5e05b46006042a8e4c35ab5e500291f3cd2644774f4f85d48aaa1be1a6b5dd56",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "experiment-tracker",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 24,
+        "symlink_count": 0,
+        "total_bytes": 1827
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "11a3aa10930b5f6bb18ee46faf995cbda3750212e80ac9bd5ea6dda7341af328",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "feature-engineer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 25,
+        "symlink_count": 0,
+        "total_bytes": 1613
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "4b987d79ce407cd34c99706284de66c841788eca66067ac4e1e3ec3f29b114ad",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "forecast-backtesting",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 28,
+        "symlink_count": 0,
+        "total_bytes": 1731
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "cb558cd7dbe6723f4d709441ed62c7f8452cbf95b21114c398dda5930ce97b8e",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "github",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 102,
+        "symlink_count": 0,
+        "total_bytes": 5823
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "2a0f0de89bee8bd7fcafdac3c8b547f38a6c3ffb202e5eeecc1f5bff9cb2e1ab",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "github-delivery",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 94,
+        "symlink_count": 0,
+        "total_bytes": 6580
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "da26f56c96dbee64b1a5c3ba0a59df11474c66e955d6d3f8b658299589fdbcd1",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "github-pr-maintenance",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 84,
+        "symlink_count": 0,
+        "total_bytes": 5767
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "61f690f9055f3ec6d0a7976c8464d68ba8d3382be6c5e63c9b680c6f9bef8c9e",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "hyperparameter-optimizer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 25,
+        "symlink_count": 0,
+        "total_bytes": 1598
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "6e974f7408cb1ffb0eafc1beba0902e81d5c37363b0269b09cf1cecd9b3e399e",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "improve-skill",
+      "structural_evidence": {
+        "file_count": 2,
+        "skill_md_lines": 84,
+        "symlink_count": 0,
+        "total_bytes": 6206
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded",
+        "prior_issue_54_evidence_hash_is_stale"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "stale",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "kis-mcp",
+      "structural_evidence": {
+        "file_count": 8,
+        "skill_md_lines": 329,
+        "symlink_count": 0,
+        "total_bytes": 70582
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "a067695f21f3bcbf8580b9b4589211a788c9cf116f25e2e30c50febe3132574a",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "manage-code-ontology",
+      "structural_evidence": {
+        "file_count": 19,
+        "skill_md_lines": 208,
+        "symlink_count": 0,
+        "total_bytes": 2392195
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "715ff50a8fc19bf21f5d5ff32a17c603dd85b79af78727171ef9ee8df9d3d174",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "mcp-development",
+      "structural_evidence": {
+        "file_count": 4,
+        "skill_md_lines": 257,
+        "symlink_count": 0,
+        "total_bytes": 23517
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "b373a685dc233d16ffa7d80261e6bd75a2a619feb03d1bfce739400016aeefc8",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "mcpb-local-packaging",
+      "structural_evidence": {
+        "file_count": 3,
+        "skill_md_lines": 130,
+        "symlink_count": 0,
+        "total_bytes": 16879
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "21b92a341aef499ce67f968f1bd336b82b9f8291255338264910ecd38f529d84",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "merge-conflict-resolution",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 18,
+        "symlink_count": 0,
+        "total_bytes": 1422
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "d2839c648aea76f0874d11fce51237b8f075100e8a591b8e5a0f168552f51302",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "model-evaluator",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 23,
+        "symlink_count": 0,
+        "total_bytes": 1605
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "4ac5218ebc6a2682cb1af9a9d8fa2e40413a963e59bb63d55423d9a0dc67f360",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "model-trainer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 26,
+        "symlink_count": 0,
+        "total_bytes": 1629
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "f5f251f3a4aeb310d752b5e5624c080461db761cd1b31222bd9c985c4d2f54fb",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "modularity-assessment",
+      "structural_evidence": {
+        "file_count": 7,
+        "skill_md_lines": 74,
+        "symlink_count": 0,
+        "total_bytes": 34785
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "afe5e7cfc96945c59ce798f9111e32ff6cc3d2ba3186ef91b48de8c0e3a5043a",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "neural-network-engineer",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 23,
+        "symlink_count": 0,
+        "total_bytes": 1688
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "0cb19011cd042706510c8a72cca0028db6dedfa85492e8b69b4a36fd44e35854",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "openai-mcp-app-ui",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 143,
+        "symlink_count": 0,
+        "total_bytes": 7034
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "d79239e82c8b7e5f8b2978e67153527fa0e4bf24362d6063b44a5d1b6f465c54",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "openai-mcp-server",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 153,
+        "symlink_count": 0,
+        "total_bytes": 7249
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "complete"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "587f4c9eb1da43d788fbc3c56eeef19b318cbde4b490ea6c15caa63362a3e14b",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "current",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "reproducibility-auditor",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 23,
+        "symlink_count": 0,
+        "total_bytes": 1783
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "dd3e8e8f07468ea2c3bca2b91723f66d9be20673a8293f212b21ec89c80e38c5",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "security-guide",
+      "structural_evidence": {
+        "file_count": 4,
+        "skill_md_lines": 72,
+        "symlink_count": 0,
+        "total_bytes": 21562
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "d4d74d079e22ca2b2b676ad33d50875c91ba6d6ddf64ca665c39d02df72922a2",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "simpler-code",
+      "structural_evidence": {
+        "file_count": 3,
+        "skill_md_lines": 57,
+        "symlink_count": 0,
+        "total_bytes": 17102
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "3dea3f8067ec3f316cc40acacfcaeb8568be263e2118cb9e216c9daeb544f01f",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "smarter-code",
+      "structural_evidence": {
+        "file_count": 4,
+        "skill_md_lines": 58,
+        "symlink_count": 0,
+        "total_bytes": 21498
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "82c3c94d58b2c2a58ca64ae47cb68ace2efb48e526a89f5404c09912f816f84b",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "not_in_cohort",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "statistical-analyst",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 25,
+        "symlink_count": 0,
+        "total_bytes": 1631
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    },
+    {
+      "behavioral_status": "not_observable",
+      "blocking_reasons": [
+        "isolated_candidate_vs_baseline_runner_unavailable",
+        "activation_observability_unavailable",
+        "human_review_pending",
+        "tracked_evaluation_definitions_missing",
+        "repository_adoption_identity_not_recorded"
+      ],
+      "catalogue_status": "active",
+      "compatibility_status": "partial",
+      "content_sha256": "bac4b5288589e208a2a20938cecaf6b016ba09da1222059c34ed7df17b033c82",
+      "human_review_status": "pending",
+      "prior_issue_54_status": "current",
+      "recommendation": "defer",
+      "repo_adoption_status": "not_recorded",
+      "skill_id": "time-series-research",
+      "structural_evidence": {
+        "file_count": 1,
+        "skill_md_lines": 24,
+        "symlink_count": 0,
+        "total_bytes": 1982
+      },
+      "structural_status": "pass",
+      "tracked_definition_status": "missing"
+    }
+  ],
+  "source_revision": "9417e9e66da6b13fc1c60ebe06d7e567b412498e"
+}
