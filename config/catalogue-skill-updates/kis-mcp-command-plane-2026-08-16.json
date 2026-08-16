@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "skill_id": "kis-mcp",
+  "comparison_date": "2026-08-16",
+  "authority": {
+    "repository": "NielPieterse0/chatgpt-skill",
+    "issue_number": 80,
+    "repository_base_revision": "79a36d2e98424c534763b6c166eab00ade083035"
+  },
+  "source_evidence": {
+    "repository": "NielPieterse0/kis-mcp",
+    "repository_revision": "06095474723757657a0bb2a980b8ced31e8b50cf",
+    "files": {
+      "settings/work-management/command-plane.settings.json": "1cfb2a3a3b2c2bd77f1755ebf43885f2bacf440f7ebaf3cf8caf5d200a25f002",
+      "docs/PROJECT-TASKS-IMPROVEMENT.md": "6391d88e625e71f256f42f5e48ed6b0ea5be7160ac8dbb79262a5d685558405d"
+    },
+    "working_tree_note": "The two source files were verified clean at this revision; an unrelated local .gitignore modification was not used or touched."
+  },
+  "adopted_before": {
+    "snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/adopted-after",
+    "tree_sha256": "16ecf05d49c30a94e5dc5074993c1cd62318ce9bc7e3a9e2433a936b17308bd5",
+    "files": {
+      "references/concepts-and-errors.md": "9661cbb46ba10ada55b8bcec7111c166489bf4117a958ff29603c32622b4abbd",
+      "references/operator-support.md": "c0b1f4b44bb3fa56d0a552baab74f94f461ae96d3a50d7eda70bf92b17615905",
+      "references/projects-and-context.md": "933e4d46d555e318274f1b3d294732c820caf3cf99be55d3cf340e9e954f0a5e",
+      "references/providers-and-workflows.md": "3b2f7fc4cf3162e0bdf9015b71c788989152df594b0ea622604b0cdc3f6e5502",
+      "references/skills-module.md": "1cd9c84ba101553c6ffbb67c633270785590305eb22c14f11a5636ba5b020a03",
+      "references/tool-selection-and-schemas.md": "eb122602dc390a633782312d4c12e9a3d8939c633e295d506756f7088bfdaa6e",
+      "references/work-management.md": "2e44699b8da1e87cf54b19c5ca620b1196e3f445a77967fa583b7c4612d678e9",
+      "SKILL.md": "389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c"
+    },
+    "file_count": 8,
+    "entrypoint_sha256": "389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c",
+    "prior_update_issue": 57
+  },
+  "decisions": [
+    {
+      "id": "command-plane-001",
+      "topic": "Work Management command fields and execution ownership are authoritative in the configured backend, not duplicated in issue-body metadata.",
+      "disposition": "adapt",
+      "target_files": [
+        "SKILL.md",
+        "references/work-management.md"
+      ]
+    },
+    {
+      "id": "command-plane-002",
+      "topic": "Repository change, Git, GitHub, Actions, handoff, and derived fields retain their declared field-level authorities.",
+      "disposition": "adapt",
+      "target_files": [
+        "SKILL.md",
+        "references/work-management.md"
+      ]
+    },
+    {
+      "id": "command-plane-003",
+      "topic": "Prefer live high-level Work Management workflows for capture, take/resume, lifecycle transitions, classification, traceability/readiness, and managed merge closeout.",
+      "disposition": "adopt",
+      "target_files": [
+        "SKILL.md",
+        "references/work-management.md"
+      ]
+    },
+    {
+      "id": "command-plane-004",
+      "topic": "Preserve exact HR-001/HR-002/HR-003 semantics and the existing MCP-development boundary.",
+      "disposition": "preserve-local",
+      "target_files": [
+        "SKILL.md"
+      ]
+    }
+  ],
+  "adopted_after": {
+    "snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16-command-plane/adopted-after",
+    "tree_sha256": "2d86b0b57c25a4f792ae6162cc4fa9c7d11b7a1bb3890e0a129b7044bdfaf6a7",
+    "files": {
+      "references/concepts-and-errors.md": "9661cbb46ba10ada55b8bcec7111c166489bf4117a958ff29603c32622b4abbd",
+      "references/operator-support.md": "c0b1f4b44bb3fa56d0a552baab74f94f461ae96d3a50d7eda70bf92b17615905",
+      "references/projects-and-context.md": "933e4d46d555e318274f1b3d294732c820caf3cf99be55d3cf340e9e954f0a5e",
+      "references/providers-and-workflows.md": "3b2f7fc4cf3162e0bdf9015b71c788989152df594b0ea622604b0cdc3f6e5502",
+      "references/skills-module.md": "1cd9c84ba101553c6ffbb67c633270785590305eb22c14f11a5636ba5b020a03",
+      "references/tool-selection-and-schemas.md": "eb122602dc390a633782312d4c12e9a3d8939c633e295d506756f7088bfdaa6e",
+      "references/work-management.md": "8f2468cd9cada88d9e83ca59efd79346e78521da0487fb3ad98b9ff106ac2b36",
+      "SKILL.md": "349f903e38854330f8eb63d64a7faf60177270b4a1c8458b54fcbf4ad3d3107c"
+    },
+    "file_count": 8,
+    "entrypoint_sha256": "349f903e38854330f8eb63d64a7faf60177270b4a1c8458b54fcbf4ad3d3107c",
+    "kis_snapshot_id": "a37081f574386b25"
+  },
+  "verification": {
+    "status": "passed-with-limitations",
+    "checks": [
+      {
+        "check": "command-plane regression",
+        "result": "passed",
+        "evidence": "Pre-edit assertion reported all five required concepts missing; post-edit assertion reported missing=[]"
+      },
+      {
+        "check": "bounded delta record tests",
+        "result": "passed",
+        "evidence": "python -m unittest tests.test_kis_mcp_refresh_record tests.test_kis_mcp_command_plane_refresh_record -v -> 10 passed"
+      },
+      {
+        "check": "repository verification",
+        "result": "passed",
+        "evidence": "npm run verify -> 137 tests passed, 3 Windows symlink tests skipped; project contract, compliance, catalogue evaluation, skill-security validation, and catalog generation passed"
+      },
+      {
+        "check": "canonical catalogue byte identity",
+        "result": "passed",
+        "evidence": "All 8 files in C:/Projects/.agents/skills/kis-mcp match the tracked issue-80 adopted-after snapshot SHA-256 values"
+      },
+      {
+        "check": "KIS catalogue refresh",
+        "result": "passed",
+        "evidence": "refresh_skills -> snapshot a37081f574386b25, skill_count=38"
+      },
+      {
+        "check": "KIS structural evaluation",
+        "result": "passed",
+        "evidence": "evaluate_skill(kis-mcp) -> 8 files, 72597 bytes, entrypoint sha256 349f903e38854330f8eb63d64a7faf60177270b4a1c8458b54fcbf4ad3d3107c"
+      },
+      {
+        "check": "KIS live load/read",
+        "result": "passed",
+        "evidence": "load_skill returned snapshot a37081f574386b25; read_skill_file(references/work-management.md) returned sha256 8f2468cd9cada88d9e83ca59efd79346e78521da0487fb3ad98b9ff106ac2b36"
+      },
+      {
+        "check": "Work Management priority projection",
+        "result": "passed",
+        "evidence": "Complete inventory proved issue #80 absent; preview/create applied TASK-080 and re-read shows work_state=active, priority=critical, effort=small, record_type=task"
+      },
+      {
+        "check": "skills-ref portable validator",
+        "result": "not-observable",
+        "evidence": "skills-ref CLI is not installed on this host; no runtime package installation was performed"
+      },
+      {
+        "check": "dynamic trigger/output behavioral runs",
+        "result": "not-observable",
+        "evidence": "This environment does not expose the repeated isolated model-activation/output runner required by the repository evaluation standard; no behavioral pass is fabricated"
+      }
+    ]
+  },
+  "snapshot_manifest_order": "relative-posix-path-casefold-then-exact"
+}
