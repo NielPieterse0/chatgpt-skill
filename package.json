@@ -7,8 +7,9 @@
     "verify-project": "python scripts/project_contract.py validate --repo .",
     "verify-compliance": "python scripts/skill_compliance.py validate --repo .",
     "verify-catalogue-evaluations": "python scripts/catalogue_evaluation.py validate --repo .",
+    "verify-intake": "python scripts/intake_queue.py validate --repo-root .",
     "verify-bootstrap": "python -m unittest discover -s tests -v && npm run verify-project && python scripts/skill_security.py validate --repo . --skip-git",
-    "verify": "python -m unittest discover -s tests -v && npm run verify-project && npm run verify-compliance && npm run verify-catalogue-evaluations && python scripts/skill_security.py validate --repo . && python scripts/skill_security.py catalog --repo .",
+    "verify": "python -m unittest discover -s tests -v && npm run verify-project && npm run verify-compliance && npm run verify-catalogue-evaluations && npm run verify-intake && python scripts/skill_security.py validate --repo . && python scripts/skill_security.py catalog --repo .",
     "catalog": "python scripts/skill_security.py catalog --repo ."
   }
 }
