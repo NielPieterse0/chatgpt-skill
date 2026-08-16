@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NielPieterse0/chatgpt-skill/schemas/plugin-portfolio-record.schema.json",
+  "title": "ChatGPT Plugin Portfolio Record",
+  "description": "Structural schema for non-runtime plugin portfolio records. Repository acceptance additionally requires the semantic and cross-field gates enforced by scripts/plugin_portfolio.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "x-repository-semantic-constraints": [
+    "dependency ids are unique within dependencies",
+    "target ids are unique within targets",
+    "app ids are unique within each target app_access array",
+    "repository paths are forward-slash relative paths without traversal",
+    "verified, import-isolate, accepted, rollback, and activation lifecycle gates are enforced by scripts/plugin_portfolio.py"
+  ],
+  "required": [
+    "schema_version",
+    "plugin_id",
+    "display_name",
+    "plugin_kind",
+    "portfolio_status",
+    "source_status",
+    "source",
+    "contents",
+    "capabilities",
+    "dependencies",
+    "targets",
+    "evaluation",
+    "update",
+    "rollback"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "plugin_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 100},
+    "display_name": {"type": "string", "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+    "plugin_kind": {"enum": ["codex-plugin", "claude-plugin", "host-managed", "other"]},
+    "portfolio_status": {
+      "enum": ["candidate", "assessed", "pilot_ready", "accepted", "deferred", "rejected", "suspended"]
+    },
+    "source_status": {"enum": ["unverified", "handoff_pending", "verified", "stale", "unavailable"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provenance_type", "owner", "canonical_uri", "version",
+        "immutable_revision", "retrieved_at", "artifact_sha256",
+        "license_or_terms", "handoff"
+      ],
+      "properties": {
+        "provenance_type": {"enum": ["import-isolate", "trusted-local", "host-managed"]},
+        "owner": {"type": ["string", "null"], "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+        "canonical_uri": {"type": ["string", "null"], "minLength": 1, "maxLength": 1000, "pattern": "^[A-Za-z][A-Za-z0-9+.-]*://\\S+$"},
+        "version": {"type": ["string", "null"], "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+        "immutable_revision": {
+          "type": ["string", "null"],
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "retrieved_at": {"type": ["string", "null"], "format": "date"},
+        "artifact_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "license_or_terms": {"type": ["string", "null"], "minLength": 1, "maxLength": 500, "pattern": "\\S"},
+        "handoff": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/handoff"}
+          ]
+        }
+      }
+    },
+    "contents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skills", "apps", "app_templates", "mcp_or_tooling", "resources"],
+      "properties": {
+        "skills": {"$ref": "#/$defs/stringList"},
+        "apps": {"$ref": "#/$defs/stringList"},
+        "app_templates": {"$ref": "#/$defs/stringList"},
+        "mcp_or_tooling": {"$ref": "#/$defs/stringList"},
+        "resources": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filesystem_read", "filesystem_write", "process_execution",
+        "network", "credentials", "external_mutation"
+      ],
+      "properties": {
+        "filesystem_read": {"$ref": "#/$defs/stringList"},
+        "filesystem_write": {"$ref": "#/$defs/stringList"},
+        "process_execution": {"type": "boolean"},
+        "network": {"type": "boolean"},
+        "credentials": {"type": "boolean"},
+        "external_mutation": {"type": "boolean"}
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/dependency"}
+    },
+    "targets": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/target"}
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence", "baseline", "reviewer", "reviewed_at"],
+      "properties": {
+        "status": {"enum": ["not_started", "partial", "passed", "failed", "deferred", "stale"]},
+        "evidence": {"$ref": "#/$defs/pathList"},
+        "baseline": {"type": ["string", "null"], "minLength": 1, "maxLength": 500, "pattern": "\\S"},
+        "reviewer": {"type": ["string", "null"], "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+        "reviewed_at": {"type": ["string", "null"], "format": "date"}
+      }
+    },
+    "update": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["last_accepted_revision", "last_checked_at", "delta_evidence"],
+      "properties": {
+        "last_accepted_revision": {
+          "type": ["string", "null"],
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "last_checked_at": {"type": ["string", "null"], "format": "date"},
+        "delta_evidence": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/repositoryPath"}
+          ]
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disable_method", "uninstall_method", "retained_evidence"],
+      "properties": {
+        "disable_method": {"type": ["string", "null"], "minLength": 1, "maxLength": 1000, "pattern": "\\S"},
+        "uninstall_method": {"type": ["string", "null"], "minLength": 1, "maxLength": 1000, "pattern": "\\S"},
+        "retained_evidence": {"$ref": "#/$defs/pathList"}
+      }
+    }
+  },
+  "$defs": {
+    "repositoryPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^(?!.*\\\\)(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?=.*\\S).+$"
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 500, "pattern": "\\S"}
+    },
+    "pathList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/repositoryPath"}
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "artifact", "artifact_sha256"],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,160}$"},
+        "artifact": {"type": "string", "pattern": "^[A-Za-z0-9._-]{1,200}$"},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "version", "required"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "maxLength": 300, "pattern": "\\S"},
+        "kind": {"enum": ["executable", "library", "mcp-server", "service", "app", "other"]},
+        "version": {"type": ["string", "null"], "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_id", "installation_status", "activation_status", "app_access"],
+      "properties": {
+        "target_id": {"type": "string", "minLength": 1, "maxLength": 200, "pattern": "\\S"},
+        "installation_status": {
+          "enum": ["not_observed", "not_installed", "installed", "unavailable", "disabled"]
+        },
+        "activation_status": {"enum": ["not_observed", "inactive", "active", "blocked"]},
+        "app_access": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/appAccess"}
+        }
+      }
+    },
+    "appAccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["app_id", "access_status"],
+      "properties": {
+        "app_id": {"type": "string", "minLength": 1, "maxLength": 300, "pattern": "\\S"},
+        "access_status": {
+          "enum": ["not_observed", "unavailable", "not_connected", "connected", "authorized", "blocked"]
+        }
+      }
+    }
+  }
+}
