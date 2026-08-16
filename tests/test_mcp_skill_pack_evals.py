@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = (
+    "kis-mcp",
     "mcp-development",
     "openai-mcp-server",
     "openai-mcp-app-ui",
