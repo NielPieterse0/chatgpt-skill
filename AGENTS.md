@@ -127,6 +127,7 @@ Stop and request direction before proceeding when the task requires destructive 
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative portable-core and runtime-adapter boundary, including the ChatGPT-first and future Codex target strategy.
 - [`docs/architecture/import-isolate-handoff.md`](docs/architecture/import-isolate-handoff.md): authoritative responsibility boundary for externally acquired source material and finalized import-isolate handoffs.
+- [`docs/architecture/plugin-portfolio-methodology.md`](docs/architecture/plugin-portfolio-methodology.md): authoritative plugin portfolio boundaries, lifecycle states, intake/update methodology, pilot evidence rules, and dashboard requirements.
 - Nested `AGENTS.md` files: path-specific working rules, when present.
 - Documents under `docs/`: product, other architecture, decision, planning, coding, testing, and operational knowledge, when present.
 - Adopted skill directories: skill-specific implementation and usage documentation.
