@@ -266,6 +266,11 @@
         "check": "dynamic trigger/output behavioral runs",
         "result": "not-observable",
         "evidence": "This environment exposes structural KIS skill evaluation but no repeated isolated model-activation runner. Trigger/output/abuse definitions are tracked for future behavioral execution; no trigger-rate or output-quality delta is fabricated."
+      },
+      {
+        "check": "GitHub Actions run 31929826089",
+        "result": "failed-fixed",
+        "evidence": "Exact-head CI at 724bc15708fc6fd551b73766ddd87bc878f50bb0 exposed OS-dependent pathlib ordering in snapshot tree manifests: individual file SHA-256 values matched, but Windows case-insensitive Path ordering differed from Linux POSIX ordering. The manifest order is now explicitly relative POSIX path casefold-then-exact and the test uses that rule."
       }
     ]
   },
@@ -278,5 +283,6 @@
       "Diff adopted-after against the proposed KIS-MCP skill and verify only accepted/adapted deltas changed.",
       "Persist new source/adopted manifests and verification evidence as the next baseline."
     ]
-  }
+  },
+  "snapshot_manifest_order": "relative-posix-path-casefold-then-exact"
 }

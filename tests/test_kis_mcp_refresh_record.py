@@ -11,14 +11,18 @@ ALLOWED_DISPOSITIONS = {"adopt", "adapt", "defer", "not-applicable", "preserve-l
 
 
 def tree_manifest(path: Path) -> tuple[str, dict[str, str]]:
-    files: dict[str, str] = {}
-    for candidate in sorted(path.rglob("*")):
+    entries = []
+    for candidate in path.rglob("*"):
         if candidate.is_file():
             relative = candidate.relative_to(path).as_posix()
-            files[relative] = hashlib.sha256(candidate.read_bytes()).hexdigest()
+            entries.append((relative, hashlib.sha256(candidate.read_bytes()).hexdigest()))
+
+    # Canonicalize ordering independently of pathlib's OS-specific path ordering.
+    entries.sort(key=lambda item: (item[0].casefold(), item[0]))
+    files = dict(entries)
 
     digest = hashlib.sha256()
-    for relative, file_hash in files.items():
+    for relative, file_hash in entries:
         digest.update(relative.encode())
         digest.update(b"\0")
         digest.update(file_hash.encode())
@@ -34,6 +38,10 @@ class KisMcpRefreshRecordTests(unittest.TestCase):
     def test_record_has_diffable_baselines_and_allowed_decisions(self) -> None:
         self.assertEqual(self.record["schema_version"], 1)
         self.assertEqual(self.record["skill_id"], "kis-mcp")
+        self.assertEqual(
+            self.record["snapshot_manifest_order"],
+            "relative-posix-path-casefold-then-exact",
+        )
         self.assertEqual(self.record["authority"]["issue_number"], 57)
         self.assertEqual(self.record["previous_source_baseline"]["status"], "legacy-non-diffable")
         self.assertIsNone(self.record["previous_source_baseline"]["mcp_development_source_hash"])
