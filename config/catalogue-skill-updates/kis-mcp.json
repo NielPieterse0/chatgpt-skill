@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "skill_id": "kis-mcp",
+  "comparison_date": "2026-08-16",
+  "authority": {
+    "repository": "NielPieterse0/chatgpt-skill",
+    "issue_number": 57,
+    "repository_revision": "c371551a66c3878642527ecc646d029ddc5d83eb"
+  },
+  "previous_source_baseline": {
+    "status": "legacy-non-diffable",
+    "prior_refresh_issue": 13,
+    "prior_authority_revision": "4fb47ff59f3e0039b53403c8e13f0ac4df11ff77",
+    "source": "NielPieterse0/kis-mcp",
+    "mcp_development_source_hash": null,
+    "reason": "The 2026-08-13 refresh tracked kis-mcp repository history, not an immutable mcp-development comparison snapshot. Issue 57 establishes the first diffable MCP-guidance baseline without inventing a historical hash."
+  },
+  "adopted_before": {
+    "snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/adopted-before",
+    "kis_snapshot_id": "c4ada48dff958cd9",
+    "entrypoint_sha256": "9286a17c7176a8c1e50e316185d020c88250741d70eb13256d211c5577208951",
+    "tree_sha256": "6ec02470c809095213ff8fba0d49675365aae6aa2305be36334dcd75c4fa76f4",
+    "files": {
+      "references/concepts-and-errors.md": "9661cbb46ba10ada55b8bcec7111c166489bf4117a958ff29603c32622b4abbd",
+      "references/operator-support.md": "3ecb70ccbbe477cfc0103cfc874f7bf2d83bbfbbefc977f5c0eb214f8d971545",
+      "references/projects-and-context.md": "933e4d46d555e318274f1b3d294732c820caf3cf99be55d3cf340e9e954f0a5e",
+      "references/providers-and-workflows.md": "3b2f7fc4cf3162e0bdf9015b71c788989152df594b0ea622604b0cdc3f6e5502",
+      "references/skills-module.md": "b5b1be9ac6620aa3452a86971b3fab1ef6a915025e2e1ba53176fc41ff231d66",
+      "references/tool-selection-and-schemas.md": "eb122602dc390a633782312d4c12e9a3d8939c633e295d506756f7088bfdaa6e",
+      "references/work-management.md": "2e44699b8da1e87cf54b19c5ca620b1196e3f445a77967fa583b7c4612d678e9",
+      "SKILL.md": "9286a17c7176a8c1e50e316185d020c88250741d70eb13256d211c5577208951"
+    },
+    "file_count": 8
+  },
+  "source_baseline": {
+    "snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/source",
+    "skills": {
+      "mcp-development": {
+        "tree_sha256": "a37c9947f23f30e91ef250c265bd663f4f98ccf2d9f73cc078a35487fc990b93",
+        "files": {
+          "references/apps.md": "9497b73750d4f1d269ad9e7d5c1122175ce0da2728b82b7823dbb888f27ae5a9",
+          "references/local-packaging.md": "2130abcdc3c65452776069a19f04b6a033dbccc9fd5ebc200736e8bb6ef5fe25",
+          "references/protocol-baseline.md": "ec122b5ade58d9dda09bdedf825b92b814118dd669bf4d8bbffcfdb5cad388ff",
+          "SKILL.md": "715ff50a8fc19bf21f5d5ff32a17c603dd85b79af78727171ef9ee8df9d3d174"
+        },
+        "file_count": 4
+      },
+      "openai-mcp-server": {
+        "tree_sha256": "5bbe11fb53adcadb4d50cfbacdba791227ea03e4c81f045f03289391d7aa9703",
+        "files": {
+          "SKILL.md": "d79239e82c8b7e5f8b2978e67153527fa0e4bf24362d6063b44a5d1b6f465c54"
+        },
+        "file_count": 1
+      },
+      "openai-mcp-app-ui": {
+        "tree_sha256": "61c4bcc000deb6c53d2c1d0456479630daa6839caac9da7f5eb252e7a5eb07c9",
+        "files": {
+          "SKILL.md": "0cb19011cd042706510c8a72cca0028db6dedfa85492e8b69b4a36fd44e35854"
+        },
+        "file_count": 1
+      },
+      "mcpb-local-packaging": {
+        "tree_sha256": "6ac01d96b9f0224d4246bf3d3d075dc86de052145c15a1c83f02025d9d296db8",
+        "files": {
+          "SKILL.md": "b373a685dc233d16ffa7d80261e6bd75a2a619feb03d1bfce739400016aeefc8"
+        },
+        "file_count": 1
+      }
+    },
+    "repository_decision": {
+      "path": "docs/architecture/skills-over-mcp-compatibility-decision.md",
+      "repository_revision": "c371551a66c3878642527ecc646d029ddc5d83eb",
+      "sha256": "d024bc95099421ab78befa2e2bfcfe3f251c86cf8b399616867b836162434975"
+    }
+  },
+  "review_scope": [
+    "KIS operational-vs-protocol authority boundary",
+    "MCP initialization/version/capability negotiation",
+    "progressive discovery and original-schema preservation",
+    "OpenAI target reconnect/metadata-cache behavior",
+    "MCP Skills transport compatibility and trust boundary",
+    "MCP Apps UI relevance",
+    "MCPB local-packaging relevance",
+    "KIS HR-001/HR-002/HR-003 and Work Management preservation"
+  ],
+  "decisions": [
+    {
+      "id": "delta-001",
+      "source": "mcp-development/SKILL.md",
+      "topic": "Protocol/version/transport/capability decisions are distinct from KIS operation",
+      "disposition": "adapt",
+      "target_files": [
+        "SKILL.md"
+      ],
+      "rationale": "Adds an explicit handoff to mcp-development without turning kis-mcp into a second protocol guide."
+    },
+    {
+      "id": "delta-002",
+      "source": "mcp-development/SKILL.md and references/protocol-baseline.md",
+      "topic": "Capability support must be established from negotiated live runtime evidence",
+      "disposition": "adopt",
+      "target_files": [
+        "SKILL.md",
+        "references/operator-support.md"
+      ],
+      "rationale": "KIS diagnostics benefit directly from separating specification availability from negotiated client/server support."
+    },
+    {
+      "id": "delta-003",
+      "source": "mcp-development/SKILL.md",
+      "topic": "Large operation catalogues should use progressive discovery while preserving original schemas and authorization",
+      "disposition": "preserve-local",
+      "target_files": [
+        "SKILL.md"
+      ],
+      "rationale": "KIS already implements a bounded direct profile plus search/describe/effect-dispatch long tail; the refresh records and preserves the stronger existing contract."
+    },
+    {
+      "id": "delta-004",
+      "source": "openai-mcp-server/SKILL.md",
+      "topic": "Reconnect or refresh the target connection after tool metadata changes before diagnosing stale selection/schema behavior",
+      "disposition": "adapt",
+      "target_files": [
+        "references/operator-support.md"
+      ],
+      "rationale": "Useful for KIS ChatGPT diagnostics; kept as target troubleshooting rather than core protocol policy."
+    },
+    {
+      "id": "delta-005",
+      "source": "docs/architecture/skills-over-mcp-compatibility-decision.md",
+      "topic": "Emerging MCP Skills support remains a complementary read-only projection with KIS as catalogue/telemetry/governance authority",
+      "disposition": "adapt",
+      "target_files": [
+        "references/skills-module.md"
+      ],
+      "rationale": "This is current repository-owned architecture and materially changes how future MCP-delivered skills must be interpreted."
+    },
+    {
+      "id": "delta-006",
+      "source": "docs/architecture/skills-over-mcp-compatibility-decision.md",
+      "topic": "Per-file digests are integrity evidence; remote skill content remains untrusted and metadata grants no permissions",
+      "disposition": "adopt",
+      "target_files": [
+        "references/skills-module.md"
+      ],
+      "rationale": "Directly protects KIS Skills security and preserves execution authority."
+    },
+    {
+      "id": "delta-007",
+      "source": "openai-mcp-app-ui/SKILL.md",
+      "topic": "MCP Apps UI resource/bridge/window.openai implementation guidance",
+      "disposition": "not-applicable",
+      "target_files": [],
+      "rationale": "kis-mcp is an operational workflow skill, not an MCP Apps UI implementation skill."
+    },
+    {
+      "id": "delta-008",
+      "source": "mcpb-local-packaging/SKILL.md",
+      "topic": "MCPB manifest, bundled runtime, installation, and local packaging workflow",
+      "disposition": "not-applicable",
+      "target_files": [],
+      "rationale": "Local MCPB distribution is outside kis-mcp operation and remains owned by the packaging specialist."
+    },
+    {
+      "id": "delta-009",
+      "source": "mcp-development/SKILL.md and openai-mcp-server/SKILL.md",
+      "topic": "General MCP server construction, primitive design, transport implementation, and authorization architecture",
+      "disposition": "defer",
+      "target_files": [],
+      "rationale": "Those concerns remain in mcp-development/openai-mcp-server unless a future KIS task specifically changes server implementation; copying them would broaden trigger scope and duplicate authority."
+    },
+    {
+      "id": "delta-010",
+      "source": "kis-mcp adopted-before",
+      "topic": "Project-neutral routing, exact HR-001/HR-002/HR-003 semantics, Work Management projection model, effect dispatch, exact-head delivery, and runtime Skills telemetry",
+      "disposition": "preserve-local",
+      "target_files": [
+        "SKILL.md",
+        "references/work-management.md",
+        "references/tool-selection-and-schemas.md",
+        "references/providers-and-workflows.md"
+      ],
+      "rationale": "These KIS-specific semantics are stronger local governance and must not be replaced by generic MCP guidance."
+    }
+  ],
+  "kis_specific_overrides": [
+    "Only HR-001, HR-002, and HR-003 are Work hard rules.",
+    "Repository/source/Git evidence is authoritative; Work Management is an operational projection.",
+    "Project identity and provider routing remain explicit and project-neutral.",
+    "Discovered operations retain original schema, effect, readiness, approval, and authorization boundaries.",
+    "Exact-head verification and governed delivery/closeout remain KIS/repository workflow concerns.",
+    "KIS Skills catalogue identity, immutable snapshot hashes, activation/outcome telemetry, and local governance remain authoritative over transport projections."
+  ],
+  "renamed_or_removed_source_mappings": [],
+  "adopted_after": {
+    "snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/adopted-after",
+    "tree_sha256": "16ecf05d49c30a94e5dc5074993c1cd62318ce9bc7e3a9e2433a936b17308bd5",
+    "files": {
+      "references/concepts-and-errors.md": "9661cbb46ba10ada55b8bcec7111c166489bf4117a958ff29603c32622b4abbd",
+      "references/operator-support.md": "c0b1f4b44bb3fa56d0a552baab74f94f461ae96d3a50d7eda70bf92b17615905",
+      "references/projects-and-context.md": "933e4d46d555e318274f1b3d294732c820caf3cf99be55d3cf340e9e954f0a5e",
+      "references/providers-and-workflows.md": "3b2f7fc4cf3162e0bdf9015b71c788989152df594b0ea622604b0cdc3f6e5502",
+      "references/skills-module.md": "1cd9c84ba101553c6ffbb67c633270785590305eb22c14f11a5636ba5b020a03",
+      "references/tool-selection-and-schemas.md": "eb122602dc390a633782312d4c12e9a3d8939c633e295d506756f7088bfdaa6e",
+      "references/work-management.md": "2e44699b8da1e87cf54b19c5ca620b1196e3f445a77967fa583b7c4612d678e9",
+      "SKILL.md": "389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c"
+    },
+    "file_count": 8,
+    "kis_snapshot_id": "f853cda32ccd482d",
+    "entrypoint_sha256": "389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c"
+  },
+  "verification": {
+    "status": "passed-with-limitations",
+    "checks": [
+      {
+        "check": "focused refresh/eval tests",
+        "result": "passed",
+        "evidence": "python -m unittest tests.test_kis_mcp_refresh_record tests.test_mcp_skill_pack_evals -v: 8 passed"
+      },
+      {
+        "check": "repository verification",
+        "result": "passed",
+        "evidence": "npm run verify: 82 tests passed; 3 Windows symlink tests skipped because the host lacks symlink privilege; project contract, skill-security validation, and catalogue checks passed"
+      },
+      {
+        "check": "KIS catalogue refresh",
+        "result": "passed",
+        "evidence": "refresh_skills -> snapshot f853cda32ccd482d, skill_count 38"
+      },
+      {
+        "check": "KIS structural evaluation",
+        "result": "passed",
+        "evidence": "evaluate_skill(kis-mcp) -> 8 files, 70582 bytes, entrypoint sha256 389528d0f24af9cce028cf53505b7bd42c19fcf96aa969820c8a3b9c8a7ca84c"
+      },
+      {
+        "check": "canonical catalogue byte identity",
+        "result": "passed",
+        "evidence": "All 8 files under C:/Projects/.agents/skills/kis-mcp match adopted-after snapshot SHA-256 values"
+      },
+      {
+        "check": "KIS live load/read",
+        "result": "passed",
+        "evidence": "load_skill and read_skill_file(references/skills-module.md) returned snapshot f853cda32ccd482d; resource sha256 1cd9c84ba101553c6ffbb67c633270785590305eb22c14f11a5636ba5b020a03"
+      },
+      {
+        "check": "Skills over MCP compatibility projection",
+        "result": "passed",
+        "evidence": ".work/evals/kis-mcp/iteration-1/skills-over-mcp-projection.json: all identity checks passed; file count and changed resource hashes matched; permission_grants_applied=false"
+      },
+      {
+        "check": "KIS operational telemetry smoke",
+        "result": "passed",
+        "evidence": "Version-filtered telemetry for project chatgpt-skill recorded loaded_count=1 and resource_read_count=1, no failures; cost metrics remain unobserved"
+      },
+      {
+        "check": "bounded exact-diff review",
+        "result": "passed",
+        "evidence": "adopted-before -> adopted-after changes only SKILL.md, references/operator-support.md, and references/skills-module.md; test enforces this exact set"
+      },
+      {
+        "check": "automated documentation review",
+        "result": "not-observable",
+        "evidence": "review_change_with_agent returned AGENT_EVIDENCE_INCOMPLETE because the tracked source/baseline snapshots exceeded its bounded evidence budget; no pass is claimed"
+      },
+      {
+        "check": "dynamic trigger/output behavioral runs",
+        "result": "not-observable",
+        "evidence": "This environment exposes structural KIS skill evaluation but no repeated isolated model-activation runner. Trigger/output/abuse definitions are tracked for future behavioral execution; no trigger-rate or output-quality delta is fabricated."
+      }
+    ]
+  },
+  "next_baseline": {
+    "source_snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/source",
+    "adopted_snapshot_path": "references/catalogue-update-baselines/kis-mcp/2026-08-16/adopted-after",
+    "procedure": [
+      "Snapshot the next accepted MCP-development/specialist sources before editing.",
+      "Diff this source snapshot against the next source snapshot and classify every material delta.",
+      "Diff adopted-after against the proposed KIS-MCP skill and verify only accepted/adapted deltas changed.",
+      "Persist new source/adopted manifests and verification evidence as the next baseline."
+    ]
+  }
+}
