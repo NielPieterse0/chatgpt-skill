@@ -151,6 +151,7 @@ For final review, also run `git diff --check` and inspect `git status --short`. 
 - [`AGENTS.md`](AGENTS.md): repository-wide behavioral rules, required workflow, constraints, validation expectations, and completion criteria.
 - [`docs/architecture/skill-runtime-adapters.md`](docs/architecture/skill-runtime-adapters.md): authoritative ChatGPT-first adapter strategy and the boundary between portable adoption logic and target-specific integration.
 - [`docs/architecture/import-isolate-handoff.md`](docs/architecture/import-isolate-handoff.md): responsibility boundary for externally acquired source material and finalized `import-isolate` handoffs.
+- [`docs/architecture/plugin-portfolio-methodology.md`](docs/architecture/plugin-portfolio-methodology.md): plugin-versus-skill/app/adapter boundaries, portfolio lifecycle, intake/update/rollback flow, pilot rules, and reporting requirements.
 - `docs/`: other product, architecture, decision, planning, coding, testing, and operational documents, when added.
 - Nested `AGENTS.md` files: path-specific working rules, when added.
 - Adopted skill directories: skill-specific implementation and usage documentation.
