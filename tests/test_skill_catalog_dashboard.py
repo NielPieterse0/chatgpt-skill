@@ -123,6 +123,79 @@ class SkillCatalogDashboardTests(unittest.TestCase):
             "blocking_reasons": [] if disposition == "admit" else ["test:blocker"],
         }
 
+    def _programme_summary(
+        self,
+        entries: tuple[object, ...],
+        *,
+        evaluated_at: str = "2026-08-16",
+        overrides: dict[str, dict[str, object]] | None = None,
+    ) -> dict[str, object]:
+        overrides = overrides or {}
+        rows: list[dict[str, object]] = []
+        snapshot_lines: list[str] = []
+        for entry in entries:
+            name = entry.name
+            digest = entry.content_sha256 or ""
+            override = overrides.get(name, {})
+            recorded_digest = str(override.get("content_sha256", digest))
+            snapshot_lines.append(f"{name}:{recorded_digest}\n")
+            row: dict[str, object] = {
+                "skill_id": name,
+                "content_sha256": recorded_digest,
+                "catalogue_status": "active",
+                "structural_status": "pass",
+                "structural_evidence": {
+                    "file_count": 1,
+                    "total_bytes": 1,
+                    "skill_md_lines": 5,
+                    "symlink_count": 0,
+                },
+                "repo_adoption_status": "not_recorded",
+                "tracked_definition_status": "missing",
+                "behavioral_status": "not_observable",
+                "compatibility_status": "partial",
+                "human_review_status": "pending",
+                "recommendation": "defer",
+                "blocking_reasons": ["isolated_behavioral_runner_unavailable"],
+                "prior_issue_54_status": "not_in_cohort",
+            }
+            row.update(override)
+            rows.append(row)
+        covered = len(rows)
+        return {
+            "schema_version": 1,
+            "issue": 55,
+            "evaluated_at": evaluated_at,
+            "source_revision": "f" * 40,
+            "catalogue_root": "test-catalogue",
+            "catalogue_snapshot_sha256": hashlib.sha256(
+                "".join(sorted(snapshot_lines)).encode("utf-8")
+            ).hexdigest(),
+            "owner": "chatgpt-skill evaluation programme",
+            "evaluation_standard": "docs/testing/skill-evaluation-standard.md",
+            "global_limitations": ["isolated_behavioral_runner_unavailable"],
+            "coverage": {
+                "total_catalogue_count": covered,
+                "active_count": covered,
+                "current_covered_count": covered,
+                "current_coverage": 1.0 if covered else 0.0,
+                "defer_count": sum(row["recommendation"] == "defer" for row in rows),
+                "suspend_count": sum(row["recommendation"] == "suspend" for row in rows),
+            },
+            "skills": rows,
+            "re_evaluation": {
+                "owner": "chatgpt-skill evaluation programme",
+                "max_age_days": 90,
+                "triggers": ["canonical skill content hash changes"],
+            },
+        }
+
+    def _write_programme_summary(self, repo: Path, payload: dict[str, object]) -> Path:
+        target = repo / "docs" / "testing" / "full-catalogue-skill-evaluation.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(payload), encoding="utf-8")
+        return target
+
     def _telemetry_db(self, path: Path) -> None:
         connection = sqlite3.connect(path)
         try:
@@ -502,6 +575,145 @@ class SkillCatalogDashboardTests(unittest.TestCase):
             self.assertEqual(evidence.evaluation_disposition, "revise")
             self.assertEqual(evidence.last_evaluated_at, "2026-08-12")
             self.assertTrue(evidence.evaluation_path.endswith("iteration-2\\scorecard.json") or evidence.evaluation_path.endswith("iteration-2/scorecard.json"))
+
+    def test_tracked_programme_defers_provide_current_hash_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            self._skill(catalog, "beta")
+            entries = discover_catalog([catalog]).entries
+            programme = self._programme_summary(entries)
+            self._write_programme_summary(repo, programme)
+
+            payload = report_to_dict(
+                build_report([catalog], repo_root=repo, telemetry_db=base / "missing.sqlite3")
+            )
+
+            self.assertEqual(payload["summary"]["repo_evaluated_count"], 2)
+            self.assertEqual(payload["summary"]["evaluation_coverage"], 1.0)
+            self.assertEqual(payload["summary"]["defer_count"], 2)
+            rows = {item["name"]: item for item in payload["skills"]}
+            self.assertEqual(rows["alpha"]["evaluation_status"], "defer")
+            self.assertTrue(rows["alpha"]["evaluation_path"].endswith("full-catalogue-skill-evaluation.json"))
+
+    def test_tracked_programme_hash_drift_is_stale_and_excluded_from_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            self._skill(catalog, "beta")
+            entries = discover_catalog([catalog]).entries
+            programme = self._programme_summary(
+                entries, overrides={"alpha": {"content_sha256": "0" * 64}}
+            )
+            self._write_programme_summary(repo, programme)
+
+            payload = report_to_dict(
+                build_report([catalog], repo_root=repo, telemetry_db=base / "missing.sqlite3")
+            )
+
+            self.assertEqual(payload["summary"]["repo_evaluated_count"], 1)
+            self.assertEqual(payload["summary"]["evaluation_coverage"], 0.5)
+            self.assertEqual(payload["summary"]["stale_evaluation_count"], 1)
+            rows = {item["name"]: item for item in payload["skills"]}
+            self.assertEqual(rows["alpha"]["evaluation_status"], "stale")
+            self.assertTrue(any("programme" in item and "hash" in item for item in rows["alpha"]["warnings"]))
+
+    def test_expired_tracked_programme_summary_is_stale_and_excluded(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            entries = discover_catalog([catalog]).entries
+            programme = self._programme_summary(entries, evaluated_at="2000-01-01")
+            self._write_programme_summary(repo, programme)
+
+            payload = report_to_dict(
+                build_report([catalog], repo_root=repo, telemetry_db=base / "missing.sqlite3")
+            )
+
+            self.assertEqual(payload["summary"]["repo_evaluated_count"], 0)
+            self.assertEqual(payload["summary"]["stale_evaluation_count"], 1)
+            self.assertEqual(payload["summary"]["evaluation_coverage"], 0.0)
+            self.assertTrue(any("evidence age" in item for item in payload["skills"][0]["warnings"]))
+
+    def test_malformed_tracked_programme_summary_cannot_inflate_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            entries = discover_catalog([catalog]).entries
+            programme = self._programme_summary(entries)
+            programme["coverage"]["current_covered_count"] = 99
+            self._write_programme_summary(repo, programme)
+
+            payload = report_to_dict(
+                build_report([catalog], repo_root=repo, telemetry_db=base / "missing.sqlite3")
+            )
+
+            self.assertEqual(payload["summary"]["repo_evaluated_count"], 0)
+            self.assertEqual(payload["summary"]["evaluation_coverage"], 0.0)
+            self.assertTrue(any("programme evaluation summary invalid" in item for item in payload["skills"][0]["warnings"]))
+
+    def test_current_generated_scorecard_overrides_tracked_programme_defer(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            entry = discover_catalog([catalog]).entries[0]
+            self._write_programme_summary(repo, self._programme_summary((entry,)))
+            target = repo / ".work" / "evals" / "alpha" / "iteration-1"
+            target.mkdir(parents=True)
+            (target / "scorecard.json").write_text(
+                json.dumps(self._scorecard("alpha", entry.content_sha256 or "", disposition="admit")),
+                encoding="utf-8",
+            )
+
+            evidence = collect_repository_evidence(repo, [entry])["alpha"]
+
+            self.assertEqual(evidence.evaluation_status, "admit")
+            self.assertEqual(evidence.evaluation_disposition, "admit")
+            self.assertTrue(evidence.evaluation_path.endswith("scorecard.json"))
+
+    def test_stale_generated_scorecard_is_excluded_from_current_coverage(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._skill(catalog, "alpha")
+            entry = discover_catalog([catalog]).entries[0]
+            target = repo / ".work" / "evals" / "alpha" / "iteration-1"
+            target.mkdir(parents=True)
+            (target / "scorecard.json").write_text(
+                json.dumps(self._scorecard("alpha", "0" * 64, disposition="defer")),
+                encoding="utf-8",
+            )
+
+            payload = report_to_dict(
+                build_report([catalog], repo_root=repo, telemetry_db=base / "missing.sqlite3")
+            )
+
+            self.assertEqual(payload["summary"]["stale_evaluation_count"], 1)
+            self.assertEqual(payload["summary"]["repo_evaluated_count"], 0)
+            self.assertEqual(payload["summary"]["evaluation_coverage"], 0.0)
 
     def test_incomplete_evaluation_json_cannot_inflate_coverage(self) -> None:
         with tempfile.TemporaryDirectory() as raw:

@@ -10,7 +10,7 @@ from .models import DashboardReport, RepoEvidence, SkillReportRow, TelemetryEvid
 from .repo import collect_repository_evidence
 from .telemetry import load_telemetry_json, load_telemetry_sqlite
 
-_EVALUATED_STATES = {"admit", "revise", "defer", "stale"}
+_EVALUATED_STATES = {"admit", "revise", "defer", "suspend"}
 
 
 def _default_telemetry_path(catalog_roots: list[Path | str]) -> Path | None:
@@ -105,6 +105,7 @@ def build_report(
         "admit_count": sum(1 for row in rows if row.repository.evaluation_disposition == "admit"),
         "revise_count": sum(1 for row in rows if row.repository.evaluation_disposition == "revise"),
         "defer_count": sum(1 for row in rows if row.repository.evaluation_disposition == "defer"),
+        "suspended_count": sum(1 for row in rows if row.repository.evaluation_disposition == "suspend"),
         "stale_evaluation_count": sum(1 for row in rows if row.repository.evaluation_status == "stale"),
         "compliance": load_compliance_summary(repo_path),
     }
