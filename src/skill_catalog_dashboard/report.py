@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Iterable
 
 from .catalog import discover_catalog
+from .compliance import load_compliance_summary
 from .models import DashboardReport, RepoEvidence, SkillReportRow, TelemetryEvidence
 from .repo import collect_repository_evidence
 from .telemetry import load_telemetry_json, load_telemetry_sqlite
@@ -105,6 +106,7 @@ def build_report(
         "revise_count": sum(1 for row in rows if row.repository.evaluation_disposition == "revise"),
         "defer_count": sum(1 for row in rows if row.repository.evaluation_disposition == "defer"),
         "stale_evaluation_count": sum(1 for row in rows if row.repository.evaluation_status == "stale"),
+        "compliance": load_compliance_summary(repo_path),
     }
     root_states = [status for _, status in inventory.root_statuses]
     if root_states and all(status == "observed" for status in root_states):

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
 import subprocess
@@ -1042,6 +1043,57 @@ class SkillCatalogDashboardTests(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=5)
+
+    def test_dashboard_marks_expired_compliance_audit_stale(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            repo = Path(raw)
+            audit_dir = repo / "docs" / "audits"
+            audit_dir.mkdir(parents=True)
+            source = repo / "source.md"
+            source.write_text("baseline\n", encoding="utf-8")
+            matrix = {
+                "schema_version": 1,
+                "audited_at": "2000-01-01",
+                "sources": {"S": {"path": "source.md", "sha256": hashlib.sha256(source.read_bytes()).hexdigest()}},
+                "requirements": [{"status": "compliant"}],
+                "reaudit": {"max_age_days": 90, "triggers": ["source change"]},
+            }
+            (audit_dir / "agent-skills-compliance-matrix.json").write_text(
+                json.dumps(matrix), encoding="utf-8"
+            )
+            from skill_catalog_dashboard.compliance import load_compliance_summary
+
+            compliance = load_compliance_summary(repo)
+        self.assertEqual(compliance["status"], "stale_audit")
+        self.assertGreater(compliance["audit_age_days"], 90)
+
+    def test_report_surfaces_repository_compliance_summary(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            catalog.mkdir()
+            self._skill(catalog, "alpha")
+            payload = report_to_dict(
+                build_report(
+                    [catalog],
+                    repo_root=ROOT,
+                    telemetry_db=base / "missing.sqlite3",
+                )
+            )
+        compliance = payload["summary"]["compliance"]
+        self.assertEqual(compliance["status"], "observed")
+        self.assertGreater(compliance["counts"]["compliant"], 0)
+        self.assertGreaterEqual(compliance["audit_age_days"], 0)
+        self.assertEqual(compliance["source_drift_count"], 0)
+        html = render_html(
+            build_report(
+                [catalog],
+                repo_root=ROOT,
+                telemetry_db=base / "missing.sqlite3",
+            )
+        )
+        self.assertIn("Compliance", html)
+        self.assertIn("Audit age", html)
 
 
 if __name__ == "__main__":
