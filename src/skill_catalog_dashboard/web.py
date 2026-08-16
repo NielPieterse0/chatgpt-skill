@@ -14,6 +14,10 @@ def _text(value: object) -> str:
 def render_html(report: DashboardReport) -> str:
     payload = report_to_dict(report)
     summary = payload["summary"]
+    compliance = summary.get("compliance", {})
+    compliance_counts = compliance.get("counts", {}) if isinstance(compliance, dict) else {}
+    compliance_status = compliance.get("status", "not_available") if isinstance(compliance, dict) else "invalid"
+    audit_age = compliance.get("audit_age_days") if isinstance(compliance, dict) else None
     rows: list[str] = []
     for skill in payload["skills"]:
         telemetry = skill["telemetry"]
@@ -62,6 +66,8 @@ code{{font-size:.8rem}} .warnings{{margin-top:1rem}} .scroll{{overflow:auto;max-
 <div class="card"><strong>Repo evaluated</strong><div>{summary['repo_evaluated_count']}</div></div>
 <div class="card"><strong>Unevaluated</strong><div>{summary['unevaluated_count']}</div></div>
 <div class="card"><strong>Coverage</strong><div>{float(summary['evaluation_coverage']) * 100:.1f}%</div></div>
+<div class="card"><strong>Compliance</strong><div>{_text(compliance_status)}</div><div>C {compliance_counts.get('compliant', 0)} | P {compliance_counts.get('partial', 0)} | N {compliance_counts.get('non_compliant', 0)} | U {compliance_counts.get('unevidenced', 0)}</div></div>
+<div class="card"><strong>Audit age</strong><div>{_text(audit_age)} days</div></div>
 </div>
 <div class="warnings"><ul>{warning_items}</ul></div>
 <div class="scroll"><table>

@@ -53,6 +53,16 @@ class KisMcpRefreshRecordTests(unittest.TestCase):
             self.assertTrue(decision["rationale"])
             self.assertIsInstance(decision["target_files"], list)
 
+    def test_snapshot_baselines_disable_text_conversion(self) -> None:
+        attributes = ROOT / ".gitattributes"
+        self.assertTrue(attributes.is_file(), ".gitattributes must protect immutable snapshot bytes")
+        lines = {
+            line.strip()
+            for line in attributes.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        }
+        self.assertIn("references/catalogue-update-baselines/** -text", lines)
+
     def test_recorded_snapshot_hashes_match_tracked_bytes(self) -> None:
         for key in ("adopted_before", "adopted_after"):
             entry = self.record[key]

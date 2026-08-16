@@ -1,0 +1,9 @@
+# Immutable evidence snapshots are byte-addressed and must survive checkout unchanged.
+references/catalogue-update-baselines/** -text
+# Audited text snapshots use LF so source fingerprints are platform-independent.
+references/agent-skills-specification.md text eol=lf
+references/agents-skills-support.md text eol=lf
+references/optimising-skill-description.md text eol=lf
+references/evaluating-skills.md text eol=lf
+references/using-scripts-skills.md text eol=lf
+references/skills-best-practice.md text eol=lf
