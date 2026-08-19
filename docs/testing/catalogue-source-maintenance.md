@@ -15,7 +15,7 @@ Issue #83 adds a read-only review trigger for repository-sourced and snapshot-so
 python scripts/catalogue_source_delta.py `
   --repo . `
   --catalog-root 'C:\Projects\.agents\skills' `
-  --source-repo 'https://github.com/NielPieterse0/kis-mcp.git=C:\Projects\kis-mcp' `
+  --source-repo 'https://github.com/example/upstream-skill-source.git=C:\path\to\source-checkout' `
   --output '.work\source-delta\report.json'
 ```
 
