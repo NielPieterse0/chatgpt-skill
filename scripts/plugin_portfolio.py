@@ -409,7 +409,7 @@ def _validate_evidence_references(
     update = record.get("update")
     if isinstance(update, dict):
         delta = update.get("delta_evidence")
-        if isinstance(delta, str) and _is_safe_path(delta):
+        if isinstance(delta, str) and len(delta) <= 500 and _is_safe_path(delta):
             values.append(delta)
     for value in sorted(set(values)):
         _validate_evidence_path(value, report, path)
