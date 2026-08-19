@@ -231,7 +231,7 @@ class SkillsOverMcpCompatibilityTests(unittest.TestCase):
             target = root / "outside.txt"
             target.write_text("outside\n", encoding="utf-8")
             (skill / "references" / "linked.txt").symlink_to(target)
-            with self.assertRaisesRegex(ValueError, "linked path"):
+            with self.assertRaisesRegex(ValueError, r"linked.*path"):
                 skills_over_mcp_compat.build_projection(
                     skill,
                     expected_skill_id="sample-skill",
