@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
+import stat
 from pathlib import Path
 from typing import Mapping, Sequence
 
@@ -25,18 +27,46 @@ def _require_sha256(value: str, label: str) -> str:
     return value
 
 
+def _is_link_like(path: Path) -> bool:
+    try:
+        if path.is_symlink():
+            return True
+        attributes = getattr(path.stat(follow_symlinks=False), "st_file_attributes", 0)
+    except OSError as exc:
+        raise ValueError(f"unable to inspect path identity: {path}") from exc
+    reparse_flag = getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)
+    return bool(attributes & reparse_flag)
+
+
 def _collect_files(skill_dir: Path) -> list[Path]:
-    if skill_dir.is_symlink():
-        raise ValueError("skill directory must not be a linked path")
     if not skill_dir.is_dir():
         raise ValueError("skill directory does not exist")
+    if _is_link_like(skill_dir):
+        raise ValueError("skill directory must not be a linked or reparse path")
+
+    def fail_walk(error: OSError) -> None:
+        raise ValueError(f"unable to enumerate skill package: {skill_dir}") from error
 
     files: list[Path] = []
-    for path in sorted(skill_dir.rglob("*"), key=lambda item: item.as_posix().casefold()):
-        if path.is_symlink():
-            raise ValueError(f"skill contains linked path: {path.relative_to(skill_dir).as_posix()}")
-        if path.is_file():
-            files.append(path)
+    for current, directories, names in os.walk(
+        skill_dir, topdown=True, onerror=fail_walk, followlinks=False
+    ):
+        current_path = Path(current)
+        for directory in list(directories):
+            child = current_path / directory
+            if _is_link_like(child):
+                raise ValueError(
+                    f"skill contains linked or reparse path: {child.relative_to(skill_dir).as_posix()}"
+                )
+        for name in names:
+            path = current_path / name
+            if _is_link_like(path):
+                raise ValueError(
+                    f"skill contains linked or reparse path: {path.relative_to(skill_dir).as_posix()}"
+                )
+            if path.is_file():
+                files.append(path)
+    files.sort(key=lambda item: (item.relative_to(skill_dir).as_posix().casefold(), item.as_posix()))
     return files
 
 

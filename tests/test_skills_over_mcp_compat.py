@@ -7,6 +7,7 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "skills_over_mcp_compat.py"
@@ -186,6 +187,27 @@ class SkillsOverMcpCompatibilityTests(unittest.TestCase):
                     expected_file_count=1,
                 )
 
+    def test_path_identity_inspection_error_fails_closed(self) -> None:
+        path = Path("unreadable")
+        with mock.patch.object(Path, "is_symlink", return_value=False), mock.patch.object(
+            Path, "stat", side_effect=OSError("denied")
+        ):
+            with self.assertRaisesRegex(ValueError, "inspect path identity"):
+                skills_over_mcp_compat._is_link_like(path)
+
+    def test_walk_enumeration_error_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            skill = self._skill(Path(tmp))
+
+            def failing_walk(*args, **kwargs):
+                onerror = kwargs["onerror"]
+                onerror(OSError("walk denied"))
+                return []
+
+            with mock.patch.object(skills_over_mcp_compat.os, "walk", side_effect=failing_walk):
+                with self.assertRaisesRegex(ValueError, "enumerate skill package"):
+                    skills_over_mcp_compat._collect_files(skill)
+
     @unittest.skipIf(os.name == "nt", "Windows symlink creation may require developer privileges")
     def test_rejects_linked_skill_directory(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -193,7 +215,7 @@ class SkillsOverMcpCompatibilityTests(unittest.TestCase):
             target = self._skill(root / "target")
             linked = root / "sample-skill"
             linked.symlink_to(target, target_is_directory=True)
-            with self.assertRaisesRegex(ValueError, "skill directory must not be a linked path"):
+            with self.assertRaisesRegex(ValueError, "skill directory must not be a linked"):
                 skills_over_mcp_compat.build_projection(
                     linked,
                     expected_skill_id="sample-skill",
@@ -209,7 +231,7 @@ class SkillsOverMcpCompatibilityTests(unittest.TestCase):
             target = root / "outside.txt"
             target.write_text("outside\n", encoding="utf-8")
             (skill / "references" / "linked.txt").symlink_to(target)
-            with self.assertRaisesRegex(ValueError, "linked path"):
+            with self.assertRaisesRegex(ValueError, r"linked.*path"):
                 skills_over_mcp_compat.build_projection(
                     skill,
                     expected_skill_id="sample-skill",
