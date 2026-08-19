@@ -88,9 +88,9 @@ Before editing:
 
 ## Work Management
 
-Work for this repository is tracked by issue-backed records and projected into the shared GitHub user Project `NielPieterse0/1`. KIS Work Management in `C:\Projects\kis-mcp` is the operational control plane for reading, reconciling, and validating that lifecycle.
+Work for this repository is tracked by issue-backed records and projected into the shared GitHub user Project `NielPieterse0/1`. The currently commissioned KIS Work Management capabilities and workflows are the operational control plane for reading, reconciling, and validating that lifecycle; repository operation must not depend on a particular KIS implementation checkout path.
 
-The machine-readable binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json). It records the KIS schema source, required capabilities and operations, the Project identity, and an exact-source safety rule: only records sourced from `NielPieterse0/chatgpt-skill` are mutation-eligible.
+The machine-readable binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json). It records the required KIS capability families and operations, the Project identity, and an exact-source safety rule: only records sourced from `NielPieterse0/chatgpt-skill` are mutation-eligible.
 
 For each work item, read the source issue and current Project status before claiming it, use a clean issue worktree, keep lifecycle state current, complete required verification and review/merge, then close the source issue and reconcile its Project projection to `Done`. The issue remains the stable source identity throughout; stale Project state must be reconciled rather than silently treated as authoritative.
 
