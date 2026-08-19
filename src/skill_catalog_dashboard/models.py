@@ -80,9 +80,40 @@ class SkillReportRow:
 
 
 @dataclass(frozen=True, slots=True)
+class IntakeRecord:
+    candidate_id: str
+    candidate_type: str
+    requested_at: str
+    source_repository: str
+    source_issue_number: int
+    work_management_state: str
+    provenance_type: str
+    provenance_state: str
+    license_state: str
+    adaptation_state: str
+    evaluation_state: str
+    human_review_state: str
+    disposition: str
+    next_action: str | None
+    assessment_states: Mapping[str, str]
+    targets: Mapping[str, str]
+    source_path: str | None = None
+    warnings: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class IntakeSnapshot:
+    records: tuple[IntakeRecord, ...]
+    status: str
+    source: str | None = None
+    warnings: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
 class DashboardReport:
     summary: Mapping[str, object]
     sources: Mapping[str, object]
     skills: tuple[SkillReportRow, ...]
+    intake: tuple[IntakeRecord, ...] = ()
     warnings: tuple[str, ...] = ()
     schema_version: int = 1

@@ -44,6 +44,28 @@ def render_html(report: DashboardReport) -> str:
             f"<td>{_text(warnings)}</td>"
             "</tr>"
         )
+    intake_rows: list[str] = []
+    for item in payload["intake"]:
+        issue = item["source_issue"]
+        assessments = " | ".join(
+            f"{name}:{state}" for name, state in sorted(item["assessment_states"].items())
+        )
+        warnings = "; ".join(item["warnings"]) if item["warnings"] else ""
+        intake_rows.append(
+            "<tr>"
+            f"<td><strong>{_text(item['candidate_id'])}</strong></td>"
+            f"<td>{_text(item['candidate_type'])}</td>"
+            f"<td>{_text(item['provenance_type'])} / {_text(item['provenance_state'])}</td>"
+            f"<td>{_text(item['license_state'])}</td>"
+            f"<td>{_text(assessments)}</td>"
+            f"<td>{_text(item['evaluation_state'])}</td>"
+            f"<td>{_text(item['disposition'])}</td>"
+            f"<td>{_text(item['next_action'])}</td>"
+            f"<td>{_text(issue['repository'])}#{_text(issue['number'])}</td>"
+            f"<td>{_text(item['work_management_state'])}</td>"
+            f"<td>{_text(warnings)}</td>"
+            "</tr>"
+        )
     warning_items = "".join(f"<li>{_text(item)}</li>" for item in payload["warnings"])
     return f"""<!doctype html>
 <html lang="en">
@@ -68,11 +90,19 @@ code{{font-size:.8rem}} .warnings{{margin-top:1rem}} .scroll{{overflow:auto;max-
 <div class="card"><strong>Coverage</strong><div>{float(summary['evaluation_coverage']) * 100:.1f}%</div></div>
 <div class="card"><strong>Compliance</strong><div>{_text(compliance_status)}</div><div>C {compliance_counts.get('compliant', 0)} | P {compliance_counts.get('partial', 0)} | N {compliance_counts.get('non_compliant', 0)} | U {compliance_counts.get('unevidenced', 0)}</div></div>
 <div class="card"><strong>Audit age</strong><div>{_text(audit_age)} days</div></div>
+<div class="card"><strong>Intake candidates</strong><div>{summary['intake_candidate_count']}</div></div>
+<div class="card"><strong>Intake actionable</strong><div>{summary['intake_actionable_count']}</div></div>
+<div class="card"><strong>Intake WM blocked</strong><div>{summary['intake_work_management_blocked_count']}</div></div>
 </div>
 <div class="warnings"><ul>{warning_items}</ul></div>
 <div class="scroll"><table>
 <thead><tr><th>Name</th><th>Description</th><th>Source</th><th>Modified</th><th>Status</th><th>Adoption</th><th>Evaluation</th><th>Usage</th><th>Last used</th><th>Warnings</th></tr></thead>
 <tbody>{''.join(rows)}</tbody>
+</table></div>
+<h2>Intake queue</h2>
+<div class="scroll"><table>
+<thead><tr><th>Candidate</th><th>Type</th><th>Provenance</th><th>License</th><th>Assessments</th><th>Evaluation</th><th>Disposition</th><th>Next action</th><th>Source issue</th><th>Work Management</th><th>Warnings</th></tr></thead>
+<tbody>{''.join(intake_rows)}</tbody>
 </table></div>
 </body></html>"""
 

@@ -6,8 +6,8 @@
     "local_root": "C:\\Projects\\ChatGPT-skill"
   },
   "work_management": {
-    "authority_root": "C:\\Projects\\kis-mcp",
-    "schema_source": "C:\\Projects\\kis-mcp\\settings\\work-management\\github-project-schema.json",
+    "authority": "commissioned_kis_work_management",
+    "discovery": "capability_driven",
     "github_project": {
       "owner": "NielPieterse0",
       "owner_type": "user",
