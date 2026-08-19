@@ -56,8 +56,8 @@ When authorities conflict, follow the highest applicable authority and report th
 
 ## Work Management Control Plane
 
-- Use `C:\Projects\kis-mcp` as the operational authority for Work Management workflows and capability routing. Repository files remain authoritative for accepted repository content; Work Management owns tracked-work lifecycle state.
-- The repository-owned binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json), which records the KIS Work Management schema source, required capability families and operations, and GitHub user Project `NielPieterse0/1`.
+- Use the currently commissioned KIS Work Management capabilities and workflows as the operational authority for tracked-work lifecycle state and capability routing. Do not depend on or infer authority from a particular KIS implementation repository or local checkout path.
+- The repository-owned binding is [`settings/projects/chatgpt-skill.json`](settings/projects/chatgpt-skill.json), which records the required KIS capability families and operations, the GitHub user Project `NielPieterse0/1`, and the exact repository source-scope rule.
 - Preserve GitHub issue-backed source identity. The shared GitHub Project is a projection of that source identity and lifecycle state, not a replacement source of truth.
 - Before changing a Project record, require an exact source repository match to `NielPieterse0/chatgpt-skill`. Shared-Project items sourced from other repositories are out of scope.
 - Before claiming Todo work, re-read the current Project state and source issue. Claim it as `In Progress`; if another agent has already claimed the issue or established an active issue branch/worktree marker, select different work.

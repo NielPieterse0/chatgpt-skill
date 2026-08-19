@@ -17,7 +17,10 @@ class ProjectContractTests(unittest.TestCase):
         self.assertEqual("chatgpt-skill", data["project_id"])
         self.assertEqual("NielPieterse0/chatgpt-skill", data["repository"]["full_name"])
         work = data["work_management"]
-        self.assertEqual(r"C:\Projects\kis-mcp\settings\work-management\github-project-schema.json", work["schema_source"])
+        self.assertEqual("commissioned_kis_work_management", work["authority"])
+        self.assertEqual("capability_driven", work["discovery"])
+        self.assertNotIn("authority_root", work)
+        self.assertNotIn("schema_source", work)
         self.assertEqual({"owner": "NielPieterse0", "owner_type": "user", "number": 1}, work["github_project"])
         self.assertTrue(work["source_scope"]["exact_match_required"])
         self.assertEqual("NielPieterse0/chatgpt-skill", work["source_scope"]["repository"])

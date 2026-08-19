@@ -37,6 +37,6 @@ Run targeted compatibility tests, the live projection, `python scripts/project_c
 - #54 top-five skill evaluation work.
 - #55 catalogue evaluation programme.
 - #56 workspace dashboard.
-- Any change to `C:\Projects\kis-mcp`.
+- Any change to the KIS implementation or runtime repository.
 - Production MCP Skills capability registration or server implementation.
 - Shared lifecycle or runtime-adapter authority changes.

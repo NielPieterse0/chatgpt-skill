@@ -7,7 +7,8 @@ from pathlib import Path
 
 CONFIG_PATH = Path("settings/projects/chatgpt-skill.json")
 EXPECTED_REPOSITORY = "NielPieterse0/chatgpt-skill"
-EXPECTED_SCHEMA_SOURCE = r"C:\Projects\kis-mcp\settings\work-management\github-project-schema.json"
+EXPECTED_WORK_AUTHORITY = "commissioned_kis_work_management"
+EXPECTED_DISCOVERY = "capability_driven"
 REQUIRED_CAPABILITIES = {
     "project_management.read",
     "project_management.write",
@@ -56,7 +57,8 @@ def validate_project_contract(repo: Path) -> list[ValidationIssue]:
     checks = [
         (data.get("project_id") == "chatgpt-skill", "PROJECT_ID_INVALID", "project_id must be chatgpt-skill"),
         (repository.get("full_name") == EXPECTED_REPOSITORY, "REPOSITORY_INVALID", f"repository.full_name must be {EXPECTED_REPOSITORY}"),
-        (work.get("schema_source") == EXPECTED_SCHEMA_SOURCE, "SCHEMA_SOURCE_INVALID", f"work_management.schema_source must be {EXPECTED_SCHEMA_SOURCE}"),
+        (work.get("authority") == EXPECTED_WORK_AUTHORITY, "WORK_AUTHORITY_INVALID", f"work_management.authority must be {EXPECTED_WORK_AUTHORITY}"),
+        (work.get("discovery") == EXPECTED_DISCOVERY, "WORK_DISCOVERY_INVALID", f"work_management.discovery must be {EXPECTED_DISCOVERY}"),
         (project == {"owner": "NielPieterse0", "owner_type": "user", "number": 1}, "PROJECT_BINDING_INVALID", "github_project must bind user project NielPieterse0/1"),
         (source_scope.get("repository") == EXPECTED_REPOSITORY and source_scope.get("exact_match_required") is True, "SOURCE_SCOPE_UNSAFE", "source_scope must require an exact NielPieterse0/chatgpt-skill match"),
         (identity.get("source_kind") == "issue" and identity.get("preserve_issue_backed_identity") is True and identity.get("projection") == "github_project", "IDENTITY_CONTRACT_INVALID", "issue-backed identity must be preserved and Project treated as projection"),
