@@ -30,6 +30,10 @@ Apply instructions in this order:
 
 When authorities conflict, follow the highest applicable authority and report the conflict.
 
+## Writing Style
+
+Apply `writing-style` to all LLM-written output in this project, including plans, board or issue text, comments, documentation, summaries, reports, status updates, and closeout notes. For detailed Google style questions, start at `C:\Projects\References\google-developer-style-guide\000-index.md` and read only the relevant page or pages; project-specific authority still wins.
+
 ## Source and Reference Authority
 
 - Treat `references/` as source evidence, comparative material, and implementation examples—not as repository policy or accepted project state.

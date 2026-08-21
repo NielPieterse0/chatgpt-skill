@@ -1,0 +1,49 @@
+{
+  "skill_name": "writing-style",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Write an implementation plan from these facts: the API contract is approved, migration is blocked on one schema decision, tests must run before merge, and no deployment is authorized.",
+      "expected_outcome": "Produce a decision-oriented plan that leads with the blocker and ordered work, without filler or invented authority.",
+      "assertions": [
+        {"id":"critical-first","text":"The unresolved schema decision appears before background detail.","critical":true,"method":"human"},
+        {"id":"ordered-actions","text":"Sequential work is presented as an ordered sequence.","critical":true,"method":"human"},
+        {"id":"authority","text":"The plan does not imply deployment is authorized.","critical":true,"method":"human"}
+      ],
+      "human_review": ["The plan is concise, scannable, and preserves the supplied authority boundary."]
+    },
+    {
+      "id": "output-002",
+      "prompt": "Write a project-board update: verification passed locally, GitHub CI has not run, the issue remains open, and the next action is to publish the branch.",
+      "expected_outcome": "Produce a short status update that distinguishes completed evidence from pending evidence and states the next action directly.",
+      "assertions": [
+        {"id":"status-first","text":"Current status and the open blocker appear before background.","critical":true,"method":"human"},
+        {"id":"no-overclaim","text":"The update does not call CI successful or the issue complete.","critical":true,"method":"human"}
+      ],
+      "human_review": ["The board text is immediately actionable and does not overstate completion."]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Write an issue comment: the exact-head test run failed because the dependency lock file is stale; no fix is merged yet; the next step is to refresh the lock file and rerun the exact-head gate.",
+      "expected_outcome": "Produce a concise comment that names the failure, avoids blame or hype, and states the next action.",
+      "assertions": [
+        {"id":"failure-first","text":"The failed gate and cause are stated directly.","critical":true,"method":"human"},
+        {"id":"next-action","text":"The next action is explicit and does not imply the fix already landed.","critical":true,"method":"human"},
+        {"id":"tone","text":"The wording is professional and avoids filler, slang, or difficulty claims.","critical":false,"method":"human"}
+      ],
+      "human_review": ["The comment is suitable for a technical issue history and preserves uncertainty accurately."]
+    },
+    {
+      "id": "output-004",
+      "prompt": "Write a repository documentation procedure: users in the EU region must enable regional routing before creating a token; after routing is enabled they create the token and then verify the endpoint.",
+      "expected_outcome": "Produce a scannable procedure with the regional condition before the instructions and numbered sequential steps.",
+      "assertions": [
+        {"id":"condition-first","text":"The EU-region condition appears before the instructions it controls.","critical":true,"method":"human"},
+        {"id":"numbered-sequence","text":"The ordered actions use a numbered list or equivalent explicit sequence.","critical":true,"method":"human"},
+        {"id":"plain-language","text":"The procedure uses direct wording and avoids unnecessary jargon or introductory filler.","critical":false,"method":"human"}
+      ],
+      "human_review": ["The procedure is easy to scan and does not hide a prerequisite after an action."]
+    }
+  ]
+}
