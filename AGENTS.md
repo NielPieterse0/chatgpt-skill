@@ -48,9 +48,9 @@ Apply `writing-style` to all LLM-written output in this project, including plans
 
 ## Repository Constraints
 
-- Work only inside `C:\Projects\ChatGPT-skill` or its registered isolated worktrees under `C:\Projects\.kis\worktrees\chatgpt-skill`.
+- Work only inside `C:\Projects\ChatGPT-skill` or its registered isolated worktrees under `C:\Projects\.kis\worktrees\chatgpt-skill`, except for controlled post-merge publication to the canonical workspace catalogue defined in [`docs/operations/workspace-skill-catalogue.md`](docs/operations/workspace-skill-catalogue.md).
 - Use `.work/` for temporary, generated, exploratory, or otherwise unplaceable artifacts.
-- Do not modify `C:\Projects\.agents\skills` or another external skill library unless the explicit human instruction for the current tracked task authorizes a bounded catalogue adoption, withdrawal, or audit operation. Preserve evidence and update the source work record for every such mutation.
+- Treat `C:\Projects\.agents\skills` and other external skill libraries as read-only except for the repository-owned post-merge publication path. Publish only accepted `origin/main` skill packages through `scripts/sync_workspace_catalogue.py`; never edit catalogue skills manually or publish branch/worktree state. Preserve evidence and update the source work record for every catalogue mutation.
 - Repo at `https://github.com/NielPieterse0/chatgpt-skill.git`
 - Preserve unrelated working-tree changes.
 - Change only files required by the assigned scope.
@@ -89,6 +89,7 @@ Apply `writing-style` to all LLM-written output in this project, including plans
 7. Make the smallest coherent change that satisfies the requested scope.
 8. Validate the changed artifacts using repository-defined commands and targeted checks.
 9. Review the final diff for unintended changes, duplicated authority, sensitive content, stale references, unsupported source claims, and unrecorded portability assumptions.
+10. After an accepted merge that adds or changes `skills/*`, refresh `origin/main`, publish the affected merged skill packages with `scripts/sync_workspace_catalogue.py`, and verify workspace/KIS discovery before marking the work complete. Follow [`docs/operations/workspace-skill-catalogue.md`](docs/operations/workspace-skill-catalogue.md); a merge without successful catalogue publication is incomplete.
 
 ## Validation
 
@@ -114,6 +115,7 @@ Stop when all of the following are true:
 - authoritative documentation is updated without unnecessary duplication;
 - source authority and repository decisions are unambiguous;
 - the final diff contains no unrelated changes;
+- when accepted work adds or changes a skill, the merged package is synchronized to the canonical workspace catalogue and discoverability is verified;
 - remaining risks, assumptions, skipped checks, and follow-up work are reported.
 
 Stop and request direction before proceeding when the task requires destructive action not explicitly authorized, expands beyond the stated scope, conflicts with a higher authority, or depends on missing information that would materially change the implementation.
@@ -126,6 +128,7 @@ Stop and request direction before proceeding when the task requires destructive 
 - [`docs/testing/skill-evaluation-standard.md`](docs/testing/skill-evaluation-standard.md): trigger, output, efficiency, abuse, compatibility, human-review, and release-evidence requirements.
 - [`docs/plans/skill-adoption-implementation-backlog.md`](docs/plans/skill-adoption-implementation-backlog.md): dependency-ordered active and historical implementation work and stop criteria.
 - [`docs/operations/github-repository-hygiene.md`](docs/operations/github-repository-hygiene.md): accepted GitHub repository settings, main-branch controls, automation, and closeout requirements.
+- [`docs/operations/workspace-skill-catalogue.md`](docs/operations/workspace-skill-catalogue.md): controlled post-merge publication from accepted repository skills into the canonical workspace catalogue and its discovery gate.
 - [`SECURITY.md`](SECURITY.md): vulnerability reporting and immediate containment.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md): contribution and pull-request workflow.
 - [`README.md`](README.md): project overview, quick start, repository navigation, and common workflows.

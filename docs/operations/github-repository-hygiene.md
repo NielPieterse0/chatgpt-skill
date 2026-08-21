@@ -50,9 +50,10 @@ For a single-owner repository, required approving review count may remain zero u
 3. Run `npm run verify`.
 4. Run `git diff --check`.
 5. Confirm the `Verify` workflow succeeded for the accepted commit.
-6. Confirm repository visibility, default branch, remote identity, and administrative access.
-7. Confirm no stale pull requests, branches, failed workflow runs, or generated artifacts require action.
-8. Confirm the runtime kill switch remains disabled unless an adopted skill has passed admission and explicit enablement.
+6. When the accepted commit adds or changes `skills/*`, synchronize those merged packages to the canonical workspace catalogue and verify discovery according to [`workspace-skill-catalogue.md`](workspace-skill-catalogue.md).
+7. Confirm repository visibility, default branch, remote identity, and administrative access.
+8. Confirm no stale pull requests, branches, failed workflow runs, or generated artifacts require action.
+9. Confirm the runtime kill switch remains disabled unless an adopted skill has passed admission and explicit enablement.
 
 ## Exceptions
 
