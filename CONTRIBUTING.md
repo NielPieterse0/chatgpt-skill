@@ -12,6 +12,9 @@ Follow [`AGENTS.md`](AGENTS.md) for repository-wide execution rules. This file s
 4. Record source requirements, repository decisions, provenance, compatibility, security boundaries, and validation in the applicable authoritative artifacts.
 5. Run the narrowest relevant checks, then `npm run verify`.
 6. Open a pull request using the repository template and include exact validation evidence.
+7. After a merged skill change, synchronize accepted `origin/main` packages to the canonical workspace catalogue and verify discovery before closeout. See [`docs/operations/workspace-skill-catalogue.md`](docs/operations/workspace-skill-catalogue.md).
+
+Configure the repository-local post-merge safety hook once per checkout with `npm run setup-hooks`. Remote GitHub merges still require the explicit post-merge publication step because they do not execute local hooks.
 
 ## Pull requests
 

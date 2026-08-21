@@ -9,6 +9,8 @@
     "verify-catalogue-evaluations": "python scripts/catalogue_evaluation.py validate --repo .",
     "verify-plugin-portfolio": "python scripts/plugin_portfolio.py validate --repo .",
     "verify-intake": "python scripts/intake_queue.py validate --repo-root .",
+    "setup-hooks": "git config --local core.hooksPath .githooks",
+    "sync-workspace-catalogue": "python scripts/sync_workspace_catalogue.py --repo . --source-ref origin/main",
     "verify-bootstrap": "python -m unittest discover -s tests -v && npm run verify-project && python scripts/skill_security.py validate --repo . --skip-git",
     "verify": "python -m unittest discover -s tests -v && npm run verify-project && npm run verify-compliance && npm run verify-catalogue-evaluations && npm run verify-plugin-portfolio && npm run verify-intake && python scripts/skill_security.py validate --repo . && python scripts/skill_security.py catalog --repo .",
     "catalog": "python scripts/skill_security.py catalog --repo ."
