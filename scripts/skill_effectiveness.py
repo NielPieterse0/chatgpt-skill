@@ -150,9 +150,13 @@ def _validate_definition_documents(
         raise EvaluationError("trigger-cases.json must contain a list")
     trigger_ids: set[str] = set()
     categories = defaultdict(int)
+    split_counts = defaultdict(int)
+    split_categories = defaultdict(lambda: defaultdict(int))
     for raw_case in trigger:
         case = _require_exact_keys(
-            raw_case, {"id", "query", "expected", "category", "rationale"}, "trigger definition"
+            raw_case,
+            {"id", "query", "expected", "category", "rationale", "split"},
+            "trigger definition",
         )
         case_id = _require_text(case["id"], "trigger definition.id")
         if case_id in trigger_ids:
@@ -164,7 +168,11 @@ def _validate_definition_documents(
             raise EvaluationError("trigger definition.expected is invalid")
         if case["category"] not in {"positive", "near_miss", "conflict", "prompt_injection"}:
             raise EvaluationError("trigger definition.category is invalid")
+        if case["split"] not in {"train", "validation"}:
+            raise EvaluationError("trigger definition.split must be train or validation")
         categories[case["category"]] += 1
+        split_counts[case["split"]] += 1
+        split_categories[case["split"]][case["category"]] += 1
 
     output_value = _require_exact_keys(
         output_doc, {"skill_name", "baseline", "evals"}, "output-evals.json"
@@ -229,6 +237,24 @@ def _validate_definition_documents(
     for category, minimum in minimums.items():
         if categories[category] < minimum:
             raise EvaluationError(f"trigger definitions require at least {minimum} {category} cases")
+    if set(split_counts) != {"train", "validation"}:
+        raise EvaluationError("trigger definitions require both train and validation splits")
+    train_ratio = split_counts["train"] / len(trigger)
+    if not 0.55 <= train_ratio <= 0.7:
+        raise EvaluationError("trigger train split must remain approximately 60 percent")
+    for split in ("train", "validation"):
+        for category in minimums:
+            if split_categories[split][category] == 0:
+                raise EvaluationError(
+                    f"trigger {split} split must include at least one {category} case"
+                )
+    for category in minimums:
+        category_total = categories[category]
+        category_train_ratio = split_categories["train"][category] / category_total
+        if not (1 / 3) <= category_train_ratio <= (2 / 3):
+            raise EvaluationError(
+                f"trigger {category} coverage must remain proportionally balanced across splits"
+            )
     return trigger, output, abuse
 
 
@@ -548,6 +574,7 @@ def _trigger_dimension(definitions: list[dict[str, Any]], record: dict[str, Any]
             {
                 "id": definition["id"],
                 "category": category,
+                "split": definition["split"],
                 "expected": expected,
                 "triggers": result["triggers"],
                 "runs": result["runs"],
