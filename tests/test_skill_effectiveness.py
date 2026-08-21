@@ -570,6 +570,49 @@ class SkillEffectivenessTests(unittest.TestCase):
                         self.skill_id, trigger, output, abuse
                     )
 
+    def test_trigger_definition_split_contract_fails_closed(self) -> None:
+        base = ROOT / "tests" / "skills" / self.skill_id
+        trigger = json.loads((base / "trigger-cases.json").read_text(encoding="utf-8"))
+        output = json.loads((base / "output-evals.json").read_text(encoding="utf-8"))
+        abuse = json.loads((base / "abuse-cases.json").read_text(encoding="utf-8"))
+
+        missing = copy.deepcopy(trigger)
+        missing[0].pop("split")
+        with self.assertRaises(skill_effectiveness.EvaluationError):
+            skill_effectiveness._validate_definition_documents(self.skill_id, missing, output, abuse)
+
+        invalid = copy.deepcopy(trigger)
+        invalid[0]["split"] = "holdout"
+        with self.assertRaises(skill_effectiveness.EvaluationError):
+            skill_effectiveness._validate_definition_documents(self.skill_id, invalid, output, abuse)
+
+        imbalanced = copy.deepcopy(trigger)
+        for case in imbalanced:
+            case["split"] = "train"
+        with self.assertRaises(skill_effectiveness.EvaluationError):
+            skill_effectiveness._validate_definition_documents(self.skill_id, imbalanced, output, abuse)
+
+        missing_validation_category = copy.deepcopy(trigger)
+        for case in missing_validation_category:
+            if case["category"] == "prompt_injection":
+                case["split"] = "train"
+        with self.assertRaises(skill_effectiveness.EvaluationError):
+            skill_effectiveness._validate_definition_documents(
+                self.skill_id, missing_validation_category, output, abuse
+            )
+
+        disproportionate_category = copy.deepcopy(trigger)
+        positive_validation = next(
+            case
+            for case in disproportionate_category
+            if case["category"] == "positive" and case["split"] == "validation"
+        )
+        positive_validation["split"] = "train"
+        with self.assertRaises(skill_effectiveness.EvaluationError):
+            skill_effectiveness._validate_definition_documents(
+                self.skill_id, disproportionate_category, output, abuse
+            )
+
     def test_definition_revision_is_resolved_and_hashed(self) -> None:
         record = self._record()
         scorecard = skill_effectiveness.evaluate_record(ROOT, self.skill_id, record)

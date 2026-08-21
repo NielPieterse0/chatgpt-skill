@@ -55,6 +55,16 @@ Keep a fixed train/validation split when optimizing descriptions:
 
 Do not tune descriptions to validation failures or copy exact query phrases into the description.
 
+Each generic `trigger-cases.json` case must carry a fixed `split` value of `train` or `validation`. The train cohort must remain approximately 60% of the tracked cases, and both cohorts must retain proportionally balanced positive, near-miss, conflict, and prompt-injection coverage. The repository validator rejects missing, invalid, or materially imbalanced splits.
+
+For description optimization, record each candidate iteration by stable iteration ID, the exact description text, its SHA-256, and train results. Record held-out validation results separately for every candidate iteration; validation results may select the winner but must not be used to guide the next revision. The selected iteration must have the highest validation pass rate. Only after selection, run at least four fresh sanity cases that do not duplicate tracked queries and include at least two should-trigger and two should-not-trigger cases. Use `scripts/trigger_optimization.py` to validate this evidence. This keeps revision input, validation-based selection, and post-selection sanity evidence mechanically distinct while preserving every candidate description for review.
+
+```text
+python scripts/trigger_optimization.py --repo . --skill <skill-name> --record <optimization.json> --output <summary.json>
+```
+
+The optimization validator requires three bounded runs per tracked or fresh case. It records trigger rates for train, validation, and fresh-sanity cohorts and binds the record to the full Git commit containing the tracked trigger definitions. Keep generated optimization evidence under `.work/evals/<skill-name>/`; it is evaluation evidence, not runtime package content.
+
 ### 3. Output-quality evaluation
 
 Run each representative task with:
