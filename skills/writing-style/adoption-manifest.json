@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "skill": "writing-style",
+  "source": {
+    "repository": "https://github.com/NielPieterse0/chatgpt-skill.git",
+    "revision": "aa1d49a98cc7ee7221828d5f8a3bacd32b93d9b9",
+    "imported_at": "2026-08-21",
+    "provenance_type": "trusted-local",
+    "handoff": null,
+    "adopted_content_sha256": "8fc22d1290ca31414ba8fe6fd7c3cf836586ee12ec4ba03c5bd750857c2f03fd"
+  },
+  "license": {
+    "identifier": "LicenseRef-Repository-Owned",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-08-21"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Disable runtime control and remove only the skills/writing-style directory, then regenerate the catalog."
+  }
+}
