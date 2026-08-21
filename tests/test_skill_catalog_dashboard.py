@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import sqlite3
 import subprocess
@@ -22,6 +23,7 @@ from skill_catalog_dashboard.repo import _candidate_order_key, collect_repositor
 from skill_catalog_dashboard.report import build_report, report_to_dict, report_to_json
 from skill_catalog_dashboard.telemetry import load_telemetry_json, load_telemetry_sqlite
 from skill_catalog_dashboard.web import make_server, render_html
+from skill_catalog_dashboard.work import load_work_management_json
 
 
 class SkillCatalogDashboardTests(unittest.TestCase):
@@ -195,6 +197,78 @@ class SkillCatalogDashboardTests(unittest.TestCase):
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(payload), encoding="utf-8")
         return target
+
+    def _write_project_binding(self, repo: Path) -> None:
+        source = ROOT / "settings" / "projects" / "chatgpt-skill.json"
+        target = repo / "settings" / "projects" / "chatgpt-skill.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+
+    def _source_issue_export(self, path: Path, open_numbers: list[int]) -> Path:
+        issues = [
+            {
+                "number": number,
+                "state": "open",
+                "url": f"https://github.com/NielPieterse0/chatgpt-skill/issues/{number}",
+            }
+            for number in open_numbers
+        ]
+        path.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "scope": "open_issues",
+                    "repository": "NielPieterse0/chatgpt-skill",
+                    "complete": True,
+                    "truncated": False,
+                    "issues": issues,
+                }
+            ),
+            encoding="utf-8",
+        )
+        return path
+
+    def _schema_status_export(
+        self,
+        path: Path,
+        *,
+        fields_ready: bool = True,
+        missing_fields: list[str] | None = None,
+        type_mismatches: list[str] | None = None,
+        missing_options: list[str] | None = None,
+    ) -> Path:
+        path.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "project_id": "chatgpt-skill",
+                    "ready": False,
+                    "fields_ready": fields_ready,
+                    "views_ready": False,
+                    "missing_fields": missing_fields or [],
+                    "type_mismatches": type_mismatches or [],
+                    "missing_options": missing_options or [],
+                }
+            ),
+            encoding="utf-8",
+        )
+        return path
+
+    def _work_contract_export(self, path: Path) -> Path:
+        config = json.loads(
+            (ROOT / "settings" / "projects" / "chatgpt-skill.json").read_text(encoding="utf-8")
+        )
+        fingerprints = config["work_management"]["contract_fingerprints"]
+        path.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "canonical_contracts": {"fingerprints": fingerprints},
+                }
+            ),
+            encoding="utf-8",
+        )
+        return path
 
     def _telemetry_db(self, path: Path) -> None:
         connection = sqlite3.connect(path)
@@ -1062,6 +1136,710 @@ class SkillCatalogDashboardTests(unittest.TestCase):
             self.assertTrue(malformed.warnings)
 
 
+    def test_work_management_snapshot_projects_issue_backed_lifecycle_work(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "result": {
+                            "schema_version": 1,
+                            "project_id": "chatgpt-skill",
+                            "repository": "nielpieterse0/chatgpt-skill",
+                            "complete": True,
+                            "truncated": False,
+                            "include_history": True,
+                            "next_eligible_item_id": "item-79",
+                            "cards": [
+                                {
+                                    "item_id": "item-85",
+                                    "repository": "NielPieterse0/chatgpt-skill",
+                                    "number": 85,
+                                    "title": "Evaluation runner",
+                                    "source_state": "open",
+                                    "work_state": "ready",
+                                    "execution_owner": None,
+                                    "priority": "high",
+                                    "effort": "large",
+                                    "blocked_by": None,
+                                    "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/85",
+                                },
+                                {
+                                    "item_id": "item-79",
+                                    "repository": "NielPieterse0/chatgpt-skill",
+                                    "number": 79,
+                                    "title": "Lifecycle queue",
+                                    "source_state": "open",
+                                    "work_state": "ready",
+                                    "execution_owner": None,
+                                    "priority": "high",
+                                    "effort": "medium",
+                                    "blocked_by": None,
+                                    "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/79",
+                                },
+                                {
+                                    "item_id": "item-93",
+                                    "repository": "NielPieterse0/chatgpt-skill",
+                                    "number": 93,
+                                    "title": "External experiment",
+                                    "source_state": "open",
+                                    "work_state": "blocked",
+                                    "execution_owner": None,
+                                    "priority": "high",
+                                    "effort": "small",
+                                    "blocked_by": "external capability",
+                                    "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/93",
+                                },
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            source = self._source_issue_export(Path(raw) / "issues.json", [79, 85, 93])
+            schema = self._schema_status_export(Path(raw) / "schema-status.json")
+            contract = self._work_contract_export(Path(raw) / "work-contract.json")
+            snapshot = load_work_management_json(
+                path,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+
+            self.assertEqual(snapshot.status, "observed")
+            self.assertEqual([item.number for item in snapshot.items], [79, 85, 93])
+            self.assertEqual(snapshot.items[2].source_state, "open")
+            self.assertEqual(snapshot.items[2].work_state, "blocked")
+            self.assertEqual(snapshot.items[2].priority, "high")
+
+    def test_work_management_snapshot_rejects_non_v1_outer_envelopes(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            result = {
+                "schema_version": 1,
+                "project_id": "chatgpt-skill",
+                "repository": "NielPieterse0/chatgpt-skill",
+                "complete": True,
+                "truncated": False,
+                "include_history": True,
+                "cards": [],
+            }
+            envelopes = ({}, {"schema_version": True}, {"schema_version": "1"}, {"schema_version": 2})
+            for envelope in envelopes:
+                with self.subTest(envelope=envelope):
+                    path.write_text(json.dumps({**envelope, "result": result}), encoding="utf-8")
+                    snapshot = load_work_management_json(path)
+                    self.assertEqual(snapshot.status, "invalid")
+                    self.assertEqual(snapshot.items, ())
+                    self.assertTrue(any("envelope schema_version" in item for item in snapshot.warnings))
+
+    def test_work_management_snapshot_rejects_non_v1_supporting_evidence(self) -> None:
+        invalid_versions = (
+            ("missing", None),
+            ("boolean-true", True),
+            ("boolean-false", False),
+            ("string", "1"),
+            ("zero", 0),
+            ("version-two", 2),
+        )
+        for target in ("work", "source", "schema", "contract"):
+            for label, version in invalid_versions:
+                with self.subTest(target=target, version=label), tempfile.TemporaryDirectory() as raw:
+                    base = Path(raw)
+                    work = base / "work.json"
+                    work.write_text(json.dumps({
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "cards": [],
+                    }), encoding="utf-8")
+                    source = self._source_issue_export(base / "issues.json", [])
+                    schema = self._schema_status_export(base / "schema.json")
+                    contract = self._work_contract_export(base / "contract.json")
+                    selected = {"work": work, "source": source, "schema": schema, "contract": contract}[target]
+                    payload = json.loads(selected.read_text(encoding="utf-8"))
+                    if label == "missing":
+                        payload.pop("schema_version")
+                    else:
+                        payload["schema_version"] = version
+                    selected.write_text(json.dumps(payload), encoding="utf-8")
+
+                    snapshot = load_work_management_json(
+                        work,
+                        source_issues_json=source,
+                        schema_status_json=schema,
+                        contract_json=contract,
+                    )
+
+                    self.assertEqual(snapshot.status, "invalid")
+                    self.assertEqual(snapshot.items, ())
+                    self.assertTrue(any("schema_version" in item for item in snapshot.warnings))
+
+    def test_work_management_snapshot_rejects_foreign_scope_and_preserves_incomplete(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            base = {
+                "schema_version": 1,
+                "project_id": "chatgpt-skill",
+                "repository": "nielpieterse0/chatgpt-skill",
+                "complete": False,
+                "truncated": True,
+                "next_eligible_item_id": "partial-ready",
+                "cards": [
+                    {
+                        "item_id": "partial-ready",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "number": 85,
+                        "title": "Partial ready work",
+                        "source_state": "open",
+                        "work_state": "ready",
+                        "priority": "high",
+                        "effort": "large",
+                        "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/85",
+                    }
+                ],
+            }
+            path.write_text(json.dumps(base), encoding="utf-8")
+            incomplete = load_work_management_json(path)
+            self.assertEqual(incomplete.status, "incomplete")
+            self.assertEqual(incomplete.items, ())
+            self.assertTrue(incomplete.warnings)
+
+            base["complete"] = True
+            base["truncated"] = False
+            base["next_eligible_item_id"] = None
+            base["cards"] = [
+                {
+                    "item_id": "foreign",
+                    "repository": "NielPieterse0/kis-mcp",
+                    "number": 1,
+                    "title": "wrong repository",
+                    "source_state": "open",
+                    "work_state": "ready",
+                    "url": "https://github.com/NielPieterse0/kis-mcp/issues/1",
+                }
+            ]
+            path.write_text(json.dumps(base), encoding="utf-8")
+            invalid = load_work_management_json(path)
+            self.assertEqual(invalid.status, "invalid")
+            self.assertEqual(invalid.items, ())
+
+    def test_work_management_snapshot_requires_explicit_boolean_truncation(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            base = {
+                "schema_version": 1,
+                "project_id": "chatgpt-skill",
+                "repository": "nielpieterse0/chatgpt-skill",
+                "complete": True,
+                "next_eligible_item_id": None,
+                "cards": [],
+            }
+            for value in (None, "false", 0):
+                with self.subTest(truncated=value):
+                    payload = dict(base)
+                    payload["truncated"] = value
+                    path.write_text(json.dumps(payload), encoding="utf-8")
+                    snapshot = load_work_management_json(path)
+                    self.assertEqual(snapshot.status, "invalid")
+                    self.assertEqual(snapshot.items, ())
+            path.write_text(json.dumps(base), encoding="utf-8")
+            missing = load_work_management_json(path)
+            self.assertEqual(missing.status, "invalid")
+            self.assertEqual(missing.items, ())
+
+    def test_work_management_snapshot_preserves_kis_owned_lifecycle_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "nielpieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": "kis-next",
+                        "cards": [
+                            {
+                                "item_id": "kis-next",
+                                "repository": "NielPieterse0/chatgpt-skill",
+                                "number": 87,
+                                "title": "KIS-owned lifecycle values",
+                                "source_state": "open",
+                                "work_state": "future-kis-state",
+                                "priority": "future-priority",
+                                "effort": "future-effort",
+                                "execution_owner": "kis-owner",
+                                "blocked_by": "KIS dependency expression",
+                                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/87",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            snapshot = load_work_management_json(path)
+
+            self.assertEqual(snapshot.status, "unverified")
+            self.assertEqual(len(snapshot.items), 1)
+            self.assertTrue(snapshot.warnings)
+            item = snapshot.items[0]
+            self.assertEqual(item.work_state, "future-kis-state")
+            self.assertEqual(item.priority, "future-priority")
+            self.assertEqual(item.effort, "future-effort")
+            self.assertEqual(item.execution_owner, "kis-owner")
+            self.assertEqual(item.blocked_by, "KIS dependency expression")
+
+    def test_work_management_snapshot_validates_identity_not_kis_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            card = {
+                "item_id": "item-85",
+                "repository": "NielPieterse0/chatgpt-skill",
+                "number": 85,
+                "title": "Work item",
+                "source_state": "open",
+                "work_state": "future-state",
+                "priority": "future-priority",
+                "effort": "future-effort",
+                "blocked_by": "future-dependency",
+                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/85",
+            }
+            base = {
+                "schema_version": 1,
+                "project_id": "chatgpt-skill",
+                "repository": "nielpieterse0/chatgpt-skill",
+                "complete": True,
+                "truncated": False,
+                "include_history": True,
+                "next_eligible_item_id": "item-85",
+            }
+            path.write_text(json.dumps({**base, "cards": [card]}), encoding="utf-8")
+            observed = load_work_management_json(path)
+            self.assertEqual(observed.status, "unverified")
+            self.assertEqual(observed.items[0].work_state, "future-state")
+            self.assertEqual(observed.items[0].priority, "future-priority")
+            self.assertEqual(observed.items[0].effort, "future-effort")
+
+            duplicate_item = {
+                **card,
+                "number": 86,
+                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/86",
+            }
+            path.write_text(json.dumps({**base, "cards": [card, duplicate_item]}), encoding="utf-8")
+            self.assertEqual(load_work_management_json(path).status, "invalid")
+
+            duplicate_issue = {**card, "item_id": "item-other"}
+            path.write_text(json.dumps({**base, "cards": [card, duplicate_issue]}), encoding="utf-8")
+            self.assertEqual(load_work_management_json(path).status, "invalid")
+
+            stale_next = {**base, "next_eligible_item_id": "missing", "cards": [card]}
+            path.write_text(json.dumps(stale_next), encoding="utf-8")
+            stale_next_snapshot = load_work_management_json(path)
+            self.assertEqual(stale_next_snapshot.status, "unverified")
+            self.assertEqual([item.number for item in stale_next_snapshot.items], [85])
+
+            closed = {
+                **card,
+                "item_id": "closed-109",
+                "number": 109,
+                "source_state": "closed",
+                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/109",
+            }
+            closed_payload = {**base, "cards": [card, closed]}
+            path.write_text(json.dumps(closed_payload), encoding="utf-8")
+            closed_snapshot = load_work_management_json(path)
+            self.assertEqual(closed_snapshot.status, "unverified")
+            self.assertEqual([item.number for item in closed_snapshot.items], [85])
+
+            path.write_text(
+                json.dumps({**base, "cards": [card, {**closed, "url": "https://example.invalid/109"}]}),
+                encoding="utf-8",
+            )
+            self.assertEqual(load_work_management_json(path).status, "invalid")
+
+    def test_work_management_source_coverage_mismatch_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "work.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": "item-87",
+                        "cards": [
+                            {
+                                "item_id": "item-87",
+                                "repository": "NielPieterse0/chatgpt-skill",
+                                "number": 87,
+                                "title": "Projected work",
+                                "source_state": "open",
+                                "work_state": "ready",
+                                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/87",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source = self._source_issue_export(Path(raw) / "issues.json", [87, 88])
+
+            snapshot = load_work_management_json(path, source_issues_json=source)
+
+            self.assertEqual(snapshot.status, "invalid")
+            self.assertEqual(snapshot.items, ())
+            self.assertTrue(any("missing=[88]" in warning for warning in snapshot.warnings))
+
+            projected = json.loads(path.read_text(encoding="utf-8"))
+            projected["cards"].append({
+                "item_id": "item-88",
+                "repository": "NielPieterse0/chatgpt-skill",
+                "number": 88,
+                "title": "Extra projected work",
+                "source_state": "open",
+                "work_state": "ready",
+                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/88",
+            })
+            path.write_text(json.dumps(projected), encoding="utf-8")
+            source = self._source_issue_export(Path(raw) / "issues.json", [87])
+
+            extra = load_work_management_json(path, source_issues_json=source)
+
+            self.assertEqual(extra.status, "invalid")
+            self.assertEqual(extra.items, ())
+            self.assertTrue(any("extra=[88]" in warning for warning in extra.warnings))
+
+    def test_work_management_requires_history_scope_and_kis_field_schema(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            work = base / "work.json"
+            payload = {
+                "schema_version": 1,
+                "project_id": "chatgpt-skill",
+                "repository": "NielPieterse0/chatgpt-skill",
+                "complete": True,
+                "truncated": False,
+                "include_history": False,
+                "next_eligible_item_id": "item-87",
+                "cards": [
+                    {
+                        "item_id": "item-87",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "number": 87,
+                        "title": "Open work",
+                        "source_state": "open",
+                        "work_state": "ready",
+                        "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/87",
+                    },
+                    {
+                        "item_id": "item-109",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "number": 109,
+                        "title": "Historical work",
+                        "source_state": "closed",
+                        "work_state": "done",
+                        "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/109",
+                    },
+                ],
+            }
+            work.write_text(json.dumps(payload), encoding="utf-8")
+            source = self._source_issue_export(base / "issues.json", [87])
+            schema = self._schema_status_export(base / "schema-status.json")
+            contract = self._work_contract_export(base / "work-contract.json")
+
+            unverified_history = load_work_management_json(
+                work,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+            self.assertEqual(unverified_history.status, "invalid")
+            self.assertEqual(unverified_history.items, ())
+            self.assertTrue(any("include_history=true" in warning for warning in unverified_history.warnings))
+
+            payload["include_history"] = True
+            work.write_text(json.dumps(payload), encoding="utf-8")
+            drifted_schema = self._schema_status_export(
+                base / "schema-drift.json",
+                fields_ready=False,
+                missing_fields=["Priority"],
+            )
+            schema_drift = load_work_management_json(
+                work,
+                source_issues_json=source,
+                schema_status_json=drifted_schema,
+                contract_json=contract,
+            )
+            self.assertEqual(schema_drift.status, "invalid")
+            self.assertTrue(any("missing_fields" in warning for warning in schema_drift.warnings))
+
+            observed = load_work_management_json(
+                work,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+            self.assertEqual(observed.status, "observed")
+            self.assertEqual([item.number for item in observed.items], [87])
+
+            stale_contract = json.loads(contract.read_text(encoding="utf-8"))
+            stale_contract["canonical_contracts"]["fingerprints"]["work_selection"] = "0" * 64
+            contract.write_text(json.dumps(stale_contract), encoding="utf-8")
+            stale = load_work_management_json(
+                work,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+            self.assertEqual(stale.status, "invalid")
+            self.assertTrue(any("fingerprints" in warning for warning in stale.warnings))
+
+            contract = self._work_contract_export(base / "work-contract-extra.json")
+            extra_contract = json.loads(contract.read_text(encoding="utf-8"))
+            extra_contract["canonical_contracts"]["fingerprints"]["future_contract"] = "d" * 64
+            contract.write_text(json.dumps(extra_contract), encoding="utf-8")
+            extra = load_work_management_json(
+                work,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+            self.assertEqual(extra.status, "invalid")
+            self.assertTrue(any("repository binding" in warning for warning in extra.warnings))
+
+    def test_work_management_uses_repository_owned_binding(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            repo = base / "repo"
+            binding = repo / "settings" / "projects" / "chatgpt-skill.json"
+            binding.parent.mkdir(parents=True)
+            fingerprints = {
+                "work_item_semantics": "a" * 64,
+                "work_lifecycle_operations": "b" * 64,
+                "work_selection": "c" * 64,
+            }
+            binding.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "custom-project",
+                        "repository": {"full_name": "ExampleOrg/example"},
+                        "work_management": {
+                            "contract_fingerprints": fingerprints,
+                            "source_scope": {
+                                "repository": "ExampleOrg/example",
+                                "exact_match_required": True,
+                            },
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            work = base / "work.json"
+            work.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "custom-project",
+                        "repository": "ExampleOrg/example",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": "item-4",
+                        "cards": [
+                            {
+                                "item_id": "item-4",
+                                "repository": "ExampleOrg/example",
+                                "number": 4,
+                                "title": "Bound work",
+                                "source_state": "open",
+                                "work_state": "custom-state",
+                                "url": "https://github.com/ExampleOrg/example/issues/4",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            source = base / "issues.json"
+            source.write_text(json.dumps({
+                "schema_version": 1,
+                "scope": "open_issues",
+                "repository": "ExampleOrg/example",
+                "complete": True,
+                "truncated": False,
+                "issues": [{
+                    "number": 4,
+                    "state": "open",
+                    "url": "https://github.com/ExampleOrg/example/issues/4",
+                }],
+            }), encoding="utf-8")
+            schema = base / "schema.json"
+            schema.write_text(json.dumps({
+                "schema_version": 1,
+                "project_id": "custom-project",
+                "fields_ready": True,
+                "missing_fields": [],
+                "type_mismatches": [],
+                "missing_options": [],
+            }), encoding="utf-8")
+            contract = base / "contract.json"
+            contract.write_text(json.dumps({
+                "schema_version": 1,
+                "canonical_contracts": {"fingerprints": dict(fingerprints)},
+            }), encoding="utf-8")
+
+            snapshot = load_work_management_json(
+                work,
+                repo_root=repo,
+                source_issues_json=source,
+                schema_status_json=schema,
+                contract_json=contract,
+            )
+
+            self.assertEqual(snapshot.status, "observed")
+            self.assertEqual(snapshot.items[0].repository, "ExampleOrg/example")
+            self.assertEqual(snapshot.items[0].work_state, "custom-state")
+
+    def test_report_projects_work_queue_without_changing_skill_totals(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._write_project_binding(repo)
+            self._skill(catalog, "alpha")
+            work = base / "work.json"
+            work.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "nielpieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": "plugin",
+                        "cards": [
+                            {
+                                "item_id": "plugin",
+                                "repository": "NielPieterse0/chatgpt-skill",
+                                "number": 87,
+                                "title": "Plugin pilot wiring",
+                                "source_state": "open",
+                                "work_state": "ready",
+                                "priority": "high",
+                                "effort": "medium",
+                                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/87",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source = self._source_issue_export(base / "issues.json", [87])
+            schema = self._schema_status_export(base / "schema-status.json")
+            contract = self._work_contract_export(base / "work-contract.json")
+
+            report = build_report(
+                [catalog],
+                repo_root=repo,
+                telemetry_db=base / "missing.sqlite3",
+                work_management_json=work,
+                source_issues_json=source,
+                work_schema_status_json=schema,
+                work_contract_json=contract,
+            )
+            payload = report_to_dict(report)
+
+            self.assertEqual(payload["schema_version"], 2)
+            self.assertEqual(payload["summary"]["total_catalogue_count"], 1)
+            self.assertEqual(payload["summary"]["work_item_count"], 1)
+            self.assertEqual(payload["summary"]["work_state_counts"], {"ready": 1})
+            self.assertEqual(payload["work"][0]["source_issue"]["number"], 87)
+            self.assertEqual(payload["work"][0]["source_state"], "open")
+            self.assertNotIn("is_next", payload["work"][0])
+            html = render_html(report)
+            self.assertIn("Lifecycle work queue", html)
+            self.assertIn("State: ready", html)
+            self.assertIn("Plugin pilot wiring", html)
+            self.assertNotIn("Next eligible", html)
+
+    def test_report_keeps_work_counts_null_when_source_coverage_is_unverified(self) -> None:
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            catalog = base / "catalog"
+            repo = base / "repo"
+            catalog.mkdir()
+            repo.mkdir()
+            self._write_project_binding(repo)
+            self._skill(catalog, "alpha")
+            work = base / "work.json"
+            work.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "NielPieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": "item-87",
+                        "cards": [
+                            {
+                                "item_id": "item-87",
+                                "repository": "NielPieterse0/chatgpt-skill",
+                                "number": 87,
+                                "title": "Visible but unverified work",
+                                "source_state": "open",
+                                "work_state": "ready",
+                                "url": "https://github.com/NielPieterse0/chatgpt-skill/issues/87",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            payload = report_to_dict(
+                build_report(
+                    [catalog],
+                    repo_root=repo,
+                    telemetry_db=base / "missing.sqlite3",
+                    work_management_json=work,
+                )
+            )
+
+            self.assertEqual(payload["sources"]["work_management"]["status"], "unverified")
+            self.assertEqual(len(payload["work"]), 1)
+            self.assertNotIn("is_next", payload["work"][0])
+            self.assertIsNone(payload["summary"]["work_item_count"])
+            self.assertIsNone(payload["summary"]["work_state_counts"])
+            html = render_html(
+                build_report(
+                    [catalog],
+                    repo_root=repo,
+                    telemetry_db=base / "missing.sqlite3",
+                    work_management_json=work,
+                )
+            )
+            self.assertIn("Work projection status: <strong>unverified</strong>", html)
+            self.assertIn("Unverified state: ready", html)
+
     def test_report_aggregates_counts_and_exact_hash_usage(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
             base = Path(raw)
@@ -1175,7 +1953,27 @@ class SkillCatalogDashboardTests(unittest.TestCase):
             repo = base / "repo"
             catalog.mkdir()
             repo.mkdir()
+            self._write_project_binding(repo)
             self._skill(catalog, "alpha")
+            work = base / "work.json"
+            work.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "project_id": "chatgpt-skill",
+                        "repository": "nielpieterse0/chatgpt-skill",
+                        "complete": True,
+                        "truncated": False,
+                        "include_history": True,
+                        "next_eligible_item_id": None,
+                        "cards": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            source = self._source_issue_export(base / "issues.json", [])
+            schema = self._schema_status_export(base / "schema-status.json")
+            contract = self._work_contract_export(base / "work-contract.json")
 
             completed = subprocess.run(
                 [
@@ -1188,6 +1986,14 @@ class SkillCatalogDashboardTests(unittest.TestCase):
                     str(repo),
                     "--telemetry-db",
                     str(base / "missing.sqlite3"),
+                    "--work-management-json",
+                    str(work),
+                    "--source-issues-json",
+                    str(source),
+                    "--work-schema-status-json",
+                    str(schema),
+                    "--work-contract-json",
+                    str(contract),
                 ],
                 cwd=ROOT,
                 check=False,
@@ -1199,6 +2005,7 @@ class SkillCatalogDashboardTests(unittest.TestCase):
             payload = json.loads(completed.stdout)
             self.assertEqual(payload["summary"]["total_catalogue_count"], 1)
             self.assertEqual(payload["skills"][0]["name"], "alpha")
+            self.assertEqual(payload["sources"]["work_management"]["status"], "observed")
 
     def test_web_server_requires_literal_ipv4_loopback_binding(self) -> None:
         with tempfile.TemporaryDirectory() as raw:
@@ -1247,10 +2054,21 @@ class SkillCatalogDashboardTests(unittest.TestCase):
                 with urllib.request.urlopen(base_url + "/", timeout=5) as response:
                     html = response.read().decode("utf-8")
                 self.assertIn("Workspace Skill Catalogue", html)
-                request = urllib.request.Request(base_url + "/api/report", data=b"{}", method="POST")
-                with self.assertRaises(urllib.error.HTTPError) as raised:
-                    urllib.request.urlopen(request, timeout=5)
-                self.assertEqual(raised.exception.code, 405)
+                for method in ("POST", "PUT", "PATCH", "DELETE"):
+                    with self.subTest(method=method):
+                        connection = http.client.HTTPConnection(
+                            "127.0.0.1", server.server_address[1], timeout=5
+                        )
+                        try:
+                            connection.request(method, "/api/report", body=b"{}")
+                            rejected = connection.getresponse()
+                            self.assertEqual(rejected.status, 405)
+                            self.assertEqual(rejected.read(), b"method not allowed\n")
+                        finally:
+                            connection.close()
+                        with urllib.request.urlopen(base_url + "/api/report", timeout=5) as response:
+                            after_rejection = json.loads(response.read().decode("utf-8"))
+                        self.assertEqual(after_rejection, payload)
             finally:
                 server.shutdown()
                 server.server_close()

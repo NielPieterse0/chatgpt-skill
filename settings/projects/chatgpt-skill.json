@@ -25,6 +25,11 @@
       "runtime.project_management_schema_status",
       "runtime.project_management_verify_traceability"
     ],
+    "contract_fingerprints": {
+      "work_item_semantics": "84b8f094300153e1a49798f245516b3aafb7c0aa893caf3fb2cbbc3201217940",
+      "work_lifecycle_operations": "f8c7915d113b9dc0c5ba576790fa52a179427a073d5facd0c6b48c1f7779c1de",
+      "work_selection": "3b678e4f9f4b06f9f3c9aa86ab7a48db1747f806a1e74af3ba6f4d4c1ff2e48c"
+    },
     "source_scope": {
       "repository": "NielPieterse0/chatgpt-skill",
       "exact_match_required": true
@@ -33,6 +38,14 @@
       "source_kind": "issue",
       "preserve_issue_backed_identity": true,
       "projection": "github_project"
+    },
+    "projection_invariants": {
+      "all_open_source_issues_projected": true,
+      "closed_source_issues_retained_for_history": true,
+      "require_current_kis_metadata_contract": true,
+      "reconcile_before_claim": true,
+      "reconcile_before_closeout": true,
+      "fail_closed_on_projection_drift": true
     }
   }
 }
