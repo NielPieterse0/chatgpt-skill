@@ -15,7 +15,7 @@ This document defines the accepted GitHub repository operating state. `AGENTS.md
 | Merge strategy | Squash merge only |
 | Source branches | Delete after merge |
 | Wiki | Disabled |
-| Projects | Disabled unless an accepted workflow requires them |
+| Work Project | User Project `NielPieterse0/1` required as the KIS Work Management projection for repository issues |
 | Issues | Enabled for defects and skill candidates |
 | Vulnerabilities | Private security advisories; never ordinary issues |
 | Actions token | Read-only by default; workflow permissions narrowed further in each workflow |
@@ -50,10 +50,11 @@ For a single-owner repository, required approving review count may remain zero u
 3. Run `npm run verify`.
 4. Run `git diff --check`.
 5. Confirm the `Verify` workflow succeeded for the accepted commit.
-6. When the accepted commit adds or changes `skills/*`, synchronize those merged packages to the canonical workspace catalogue and verify discovery according to [`workspace-skill-catalogue.md`](workspace-skill-catalogue.md).
-7. Confirm repository visibility, default branch, remote identity, and administrative access.
-8. Confirm no stale pull requests, branches, failed workflow runs, or generated artifacts require action.
-9. Confirm the runtime kill switch remains disabled unless an adopted skill has passed admission and explicit enablement.
+6. Reconcile all open `NielPieterse0/chatgpt-skill` issues into Work Project `NielPieterse0/1`, verify the current KIS metadata contract, and block closeout on missing items, stale dependencies, or metadata drift. Retain closed issues in the Project as history.
+7. When the accepted commit adds or changes `skills/*`, synchronize those merged packages to the canonical workspace catalogue and verify discovery according to [`workspace-skill-catalogue.md`](workspace-skill-catalogue.md).
+8. Confirm repository visibility, default branch, remote identity, and administrative access.
+9. Confirm no stale pull requests, branches, failed workflow runs, or generated artifacts require action.
+10. Confirm the runtime kill switch remains disabled unless an adopted skill has passed admission and explicit enablement.
 
 ## Exceptions
 

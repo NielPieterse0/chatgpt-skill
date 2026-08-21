@@ -110,10 +110,34 @@ class IntakeSnapshot:
 
 
 @dataclass(frozen=True, slots=True)
+class WorkItem:
+    item_id: str
+    number: int
+    title: str
+    url: str
+    repository: str
+    source_state: str
+    work_state: str
+    priority: str | None
+    effort: str | None
+    execution_owner: str | None
+    blocked_by: str | None
+
+
+@dataclass(frozen=True, slots=True)
+class WorkSnapshot:
+    items: tuple[WorkItem, ...]
+    status: str
+    source: str | None = None
+    warnings: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
 class DashboardReport:
     summary: Mapping[str, object]
     sources: Mapping[str, object]
     skills: tuple[SkillReportRow, ...]
     intake: tuple[IntakeRecord, ...] = ()
+    work: tuple[WorkItem, ...] = ()
     warnings: tuple[str, ...] = ()
-    schema_version: int = 1
+    schema_version: int = 2

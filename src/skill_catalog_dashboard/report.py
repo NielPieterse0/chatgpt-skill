@@ -10,6 +10,7 @@ from .intake import load_intake_queue
 from .models import DashboardReport, RepoEvidence, SkillReportRow, TelemetryEvidence
 from .repo import collect_repository_evidence
 from .telemetry import load_telemetry_json, load_telemetry_sqlite
+from .work import load_work_management_json
 
 _EVALUATED_STATES = {"admit", "revise", "defer", "suspend"}
 
@@ -30,6 +31,10 @@ def build_report(
     repo_root: Path | str,
     telemetry_db: Path | str | None = None,
     telemetry_json: Path | str | None = None,
+    work_management_json: Path | str | None = None,
+    source_issues_json: Path | str | None = None,
+    work_schema_status_json: Path | str | None = None,
+    work_contract_json: Path | str | None = None,
 ) -> DashboardReport:
     roots = list(catalog_roots)
     if telemetry_db is not None and telemetry_json is not None:
@@ -38,6 +43,13 @@ def build_report(
     repo_path = Path(repo_root).expanduser().resolve()
     repository = collect_repository_evidence(repo_path, inventory.entries)
     intake = load_intake_queue(repo_path)
+    work = load_work_management_json(
+        work_management_json,
+        repo_root=repo_path,
+        source_issues_json=source_issues_json,
+        schema_status_json=work_schema_status_json,
+        contract_json=work_contract_json,
+    )
     if telemetry_json is not None:
         telemetry = load_telemetry_json(telemetry_json)
     else:
@@ -99,6 +111,8 @@ def build_report(
         warnings.append(f"repository evidence unavailable: {repo_path}")
     warnings.extend(telemetry.warnings)
     warnings.extend(intake.warnings)
+    warnings.extend(work.warnings)
+    work_observed = work.status == "observed"
     summary: dict[str, object] = {
         "total_catalogue_count": total,
         "active_count": active,
@@ -114,6 +128,18 @@ def build_report(
         "intake_actionable_count": sum(1 for item in intake.records if item.next_action is not None),
         "intake_deferred_count": sum(1 for item in intake.records if item.disposition == "defer"),
         "intake_work_management_blocked_count": sum(1 for item in intake.records if item.work_management_state == "blocked"),
+        "work_item_count": len(work.items) if work_observed else None,
+        "work_state_counts": (
+            {
+                state: sum(1 for item in work.items if item.work_state == state)
+                for state in sorted(
+                    {item.work_state for item in work.items},
+                    key=lambda value: (value.casefold(), value),
+                )
+            }
+            if work_observed
+            else None
+        ),
         "compliance": load_compliance_summary(repo_path),
     }
     root_states = [status for _, status in inventory.root_statuses]
@@ -135,6 +161,7 @@ def build_report(
         },
         "repository": {"root": str(repo_path), "status": "observed" if repo_path.is_dir() else "not_available"},
         "intake": {"source": intake.source, "status": intake.status},
+        "work_management": {"source": work.source, "status": work.status},
         "telemetry": {
             "source": telemetry.source,
             "status": telemetry.status,
@@ -146,6 +173,7 @@ def build_report(
         sources=sources,
         skills=tuple(rows),
         intake=intake.records,
+        work=work.items,
         warnings=tuple(warnings),
     )
 
@@ -234,6 +262,20 @@ def report_to_dict(report: DashboardReport) -> dict[str, object]:
         }
         for item in report.intake
     ]
+    work = [
+        {
+            "item_id": item.item_id,
+            "source_issue": {"repository": item.repository, "number": item.number, "url": item.url},
+            "title": item.title,
+            "source_state": item.source_state,
+            "work_state": item.work_state,
+            "priority": item.priority,
+            "effort": item.effort,
+            "execution_owner": item.execution_owner,
+            "blocked_by": item.blocked_by,
+        }
+        for item in report.work
+    ]
     return {
         "schema_version": report.schema_version,
         "summary": dict(report.summary),
@@ -241,6 +283,7 @@ def report_to_dict(report: DashboardReport) -> dict[str, object]:
         "warnings": list(report.warnings),
         "skills": skills,
         "intake": intake,
+        "work": work,
     }
 
 
