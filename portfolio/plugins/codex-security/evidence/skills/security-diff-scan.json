@@ -1,0 +1,30 @@
+{
+  "canonical_workspace_adjacent": [
+    "security-guide",
+    "code-review"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "security-diff-scan",
+  "frontmatter_name": "security-diff-scan",
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 21276,
+  "source_path": "skills/security-diff-scan/SKILL.md",
+  "source_skill_sha256": "c3644054e82854377d985a85a5fa52a5ea239cceab03e965e45921509ddd5312",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true
+  },
+  "structural_status": "passed"
+}

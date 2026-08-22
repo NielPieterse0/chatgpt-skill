@@ -1,0 +1,11 @@
+{
+  "from_file_count": 0,
+  "from_version": "0.1.14",
+  "plugin_id": "codex-security",
+  "reason": "The staged 0.1.14 directory exists but contains no files, so a content delta cannot be reconstructed without inventing a prior baseline.",
+  "schema_version": 1,
+  "status": "baseline_unavailable",
+  "to_bundle_sha256": "a3baba26f0009c0fa54db60f5cc52326857106c21882092210f6598e33d11394",
+  "to_file_count": 96,
+  "to_version": "0.1.15"
+}
