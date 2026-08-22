@@ -1,0 +1,145 @@
+{
+  "bundle_digest_algorithm": "sha256 over sorted UTF-8 relative path, NUL, and raw SHA-256 digest bytes for each file",
+  "bundle_sha256": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+  "conceptual_workspace_overlap": {
+    "brainstorming": [
+      "develop-code",
+      "smarter-code"
+    ],
+    "dispatching-parallel-agents": [
+      "develop-code"
+    ],
+    "executing-plans": [
+      "develop-code"
+    ],
+    "finishing-a-development-branch": [
+      "develop-code",
+      "github-delivery",
+      "github-pr-maintenance"
+    ],
+    "receiving-code-review": [
+      "code-review",
+      "develop-code"
+    ],
+    "requesting-code-review": [
+      "code-review",
+      "code-verification"
+    ],
+    "subagent-driven-development": [
+      "develop-code"
+    ],
+    "systematic-debugging": [
+      "code-verification",
+      "develop-code"
+    ],
+    "test-driven-development": [
+      "code-verification",
+      "develop-code"
+    ],
+    "using-git-worktrees": [
+      "develop-code",
+      "github-delivery"
+    ],
+    "using-superpowers": [
+      "develop-code"
+    ],
+    "verification-before-completion": [
+      "code-verification"
+    ],
+    "writing-plans": [
+      "develop-code"
+    ],
+    "writing-skills": [
+      "create-skill",
+      "evaluate-skill",
+      "improve-skill"
+    ]
+  },
+  "disposition": "defer_runtime_evaluation",
+  "evaluation_scope": "static_only",
+  "exact_workspace_skill_overlap": [],
+  "executable_helpers": [
+    "skills/brainstorming/scripts/helper.js",
+    "skills/brainstorming/scripts/server.cjs",
+    "skills/brainstorming/scripts/start-server.sh",
+    "skills/brainstorming/scripts/stop-server.sh",
+    "skills/subagent-driven-development/scripts/review-package",
+    "skills/subagent-driven-development/scripts/sdd-workspace",
+    "skills/subagent-driven-development/scripts/task-brief",
+    "skills/systematic-debugging/condition-based-waiting-example.ts",
+    "skills/systematic-debugging/find-polluter.sh",
+    "skills/writing-skills/render-graphs.js"
+  ],
+  "file_count": 72,
+  "higher_authorities": [
+    "AGENTS.md",
+    "KIS Work Management",
+    "repository verification/closeout",
+    "canonical skill governance"
+  ],
+  "host_harnesses": [
+    "claude-code",
+    "antigravity",
+    "codex-app",
+    "codex-cli",
+    "cursor",
+    "factory-droid",
+    "gemini-cli",
+    "github-copilot-cli",
+    "kimi-code",
+    "opencode",
+    "pi"
+  ],
+  "host_specific_assumptions": [
+    "automatic skill triggering",
+    "host-specific plugin installation and bootstrap",
+    "subagent/task delegation surfaces",
+    "git/worktree lifecycle commands",
+    "target-specific tool names and agents/openai.yaml metadata"
+  ],
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "reason": "Issue #88 forbids installation, activation, and execution. Mandatory lifecycle instructions conflict with repository authority; executable helpers, multi-harness assumptions, external mutation workflows, and optional remote-logo telemetry require separately approved adaptation and runtime evaluation.",
+  "remote_plugin_id": "plugins~Plugin_60aea7460bd4819199fd97a9553a5e12",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "network_telemetry",
+    "external_mutation",
+    "host_specific_workflow"
+  ],
+  "schema_version": 1,
+  "security_gate": "blocked_for_runtime",
+  "skill_count": 14,
+  "skills": [
+    "brainstorming",
+    "dispatching-parallel-agents",
+    "executing-plans",
+    "finishing-a-development-branch",
+    "receiving-code-review",
+    "requesting-code-review",
+    "subagent-driven-development",
+    "systematic-debugging",
+    "test-driven-development",
+    "using-git-worktrees",
+    "using-superpowers",
+    "verification-before-completion",
+    "writing-plans",
+    "writing-skills"
+  ],
+  "source_locator": "C:\\Projects\\ChatGPT-skill\\.work\\niel-work\\superpowers\\6.2.0",
+  "source_provenance": "trusted-local",
+  "total_bytes": 471835,
+  "upstream_authentication_status": "not_observed",
+  "upstream_identity_basis": "owner, version, repository URI, and MIT license are bundle-declared; the deterministic local bundle digest authenticates bytes only, not publisher origin",
+  "visual_companion_telemetry": {
+    "behavior": "optional_remote_logo_load",
+    "opt_out_environment_variables": [
+      "SUPERPOWERS_DISABLE_TELEMETRY",
+      "DISABLE_TELEMETRY",
+      "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC"
+    ],
+    "remote_url": "https://primeradiant.com/brand/superpowers-visual-brainstorming-logo.png",
+    "version_disclosure": "documented as included in the remote image request behavior"
+  }
+}

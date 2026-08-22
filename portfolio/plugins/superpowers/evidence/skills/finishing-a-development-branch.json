@@ -1,0 +1,30 @@
+{
+  "canonical_workspace_adjacent": [
+    "develop-code",
+    "github-delivery",
+    "github-pr-maintenance"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "finishing-a-development-branch",
+  "frontmatter_name": "finishing-a-development-branch",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 7022,
+  "source_path": "skills/finishing-a-development-branch/SKILL.md",
+  "source_skill_sha256": "d0ac8360ed9d59121776ef95c84bcb38e9747de0d7ae7e227dca81e437593b9b",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": false
+  },
+  "structural_status": "passed"
+}

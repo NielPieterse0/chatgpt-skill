@@ -1,0 +1,28 @@
+{
+  "canonical_workspace_adjacent": [
+    "code-verification"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "verification-before-completion",
+  "frontmatter_name": "verification-before-completion",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 3646,
+  "source_path": "skills/verification-before-completion/SKILL.md",
+  "source_skill_sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": false
+  },
+  "structural_status": "passed"
+}

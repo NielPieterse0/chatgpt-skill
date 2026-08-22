@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "code-verification",
+    "develop-code"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "test-driven-development",
+  "frontmatter_name": "test-driven-development",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 9015,
+  "source_path": "skills/test-driven-development/SKILL.md",
+  "source_skill_sha256": "bf1b8216e523851a411e91d429a7c1c2a173e79d88957bc78e348218d50edd54",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": false
+  },
+  "structural_status": "passed"
+}

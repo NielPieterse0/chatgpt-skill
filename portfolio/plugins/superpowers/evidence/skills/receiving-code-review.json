@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "code-review",
+    "develop-code"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "receiving-code-review",
+  "frontmatter_name": "receiving-code-review",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 6203,
+  "source_path": "skills/receiving-code-review/SKILL.md",
+  "source_skill_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": false
+  },
+  "structural_status": "passed"
+}
