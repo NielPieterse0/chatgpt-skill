@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "code-verification",
+    "develop-code"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "systematic-debugging",
+  "frontmatter_name": "systematic-debugging",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 9465,
+  "source_path": "skills/systematic-debugging/SKILL.md",
+  "source_skill_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": false
+  },
+  "structural_status": "passed"
+}

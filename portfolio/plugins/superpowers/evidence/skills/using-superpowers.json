@@ -1,0 +1,28 @@
+{
+  "canonical_workspace_adjacent": [
+    "develop-code"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "using-superpowers",
+  "frontmatter_name": "using-superpowers",
+  "plugin_id": "superpowers",
+  "plugin_version": "6.2.0",
+  "runtime_blockers": [
+    "authority_conflict",
+    "process_execution",
+    "host_specific_subagent_or_skill_dispatch"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 3063,
+  "source_path": "skills/using-superpowers/SKILL.md",
+  "source_skill_sha256": "55379fe7c1c473a02c61961c822996bff30e1320d6921d9062509bc508482c05",
+  "static_signals": {
+    "mentions_external_write": false,
+    "mentions_process": true,
+    "mentions_subagent_or_skill_dispatch": true
+  },
+  "structural_status": "passed"
+}
