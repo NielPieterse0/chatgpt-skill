@@ -110,10 +110,30 @@ class IntakeSnapshot:
 
 
 @dataclass(frozen=True, slots=True)
+class PluginReportRow:
+    plugin_id: str
+    source_path: str
+    record: Mapping[str, object]
+    update_check_age_days: int | None
+    high_risk: bool
+    target_observations: tuple[Mapping[str, object], ...] = ()
+    warnings: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class PluginSnapshot:
+    records: tuple[PluginReportRow, ...]
+    status: str
+    source: str | None = None
+    warnings: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
 class DashboardReport:
     summary: Mapping[str, object]
     sources: Mapping[str, object]
     skills: tuple[SkillReportRow, ...]
     intake: tuple[IntakeRecord, ...] = ()
+    plugins: tuple[PluginReportRow, ...] = ()
     warnings: tuple[str, ...] = ()
     schema_version: int = 1
