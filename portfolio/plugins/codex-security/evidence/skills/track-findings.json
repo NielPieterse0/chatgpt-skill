@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "github"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "track-findings",
+  "frontmatter_name": "track-findings",
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 20302,
+  "source_path": "skills/track-findings/SKILL.md",
+  "source_skill_sha256": "cb6e7625bc7c10fbc7b94d99918667c9e942bacb56d871e837a6939d20f4fd8c",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true
+  },
+  "structural_status": "passed"
+}

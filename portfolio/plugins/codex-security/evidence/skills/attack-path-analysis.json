@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "security-guide"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "attack-path-analysis",
+  "frontmatter_name": "attack-path-analysis",
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 8536,
+  "source_path": "skills/attack-path-analysis/SKILL.md",
+  "source_skill_sha256": "29a4747a24da3285a95828c264ed4e2730969cc3e09bf25cf9ce426d005638ed",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": false
+  },
+  "structural_status": "passed"
+}

@@ -1,0 +1,30 @@
+{
+  "canonical_workspace_adjacent": [
+    "security-guide",
+    "code-work"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "fix-finding",
+  "frontmatter_name": "fix-finding",
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 9967,
+  "source_path": "skills/fix-finding/SKILL.md",
+  "source_skill_sha256": "0e3ac8898a43b08c415c380fe59e8a052c17fb8264af945a66ce6b14121fd601",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true
+  },
+  "structural_status": "passed"
+}
