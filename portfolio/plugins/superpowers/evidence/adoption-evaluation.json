@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "source_issue": 117,
+  "behavioral_runner_issue": 85,
+  "status": "definitions_complete_behavioral_runs_unobservable",
+  "decision": "defer_behavioral_effectiveness",
+  "reason": "Issue #85 remains open for the repository's isolated behavioral skill runner and activation observability adapter. Trigger precision, paired output-quality runs, efficiency metrics, and target activation behavior are therefore not observable in this execution. No behavioral pass is claimed.",
+  "skills": [
+    {
+      "skill": "brainstorming",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "dispatching-parallel-agents",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "executing-plans",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "finishing-a-development-branch",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "receiving-code-review",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "requesting-code-review",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "subagent-driven-development",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "systematic-debugging",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "test-driven-development",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "using-git-worktrees",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "using-superpowers",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "verification-before-completion",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "writing-plans",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    },
+    {
+      "skill": "writing-skills",
+      "trigger_definition": "tracked",
+      "output_definition": "tracked",
+      "abuse_definition": "tracked",
+      "structural_security": "passed",
+      "behavioral_effectiveness": "not_observable"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "skill_name": "systematic-debugging",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Repository scenario: investigate the root cause of unexpected behavior before fixing it. Produce the next-action result without inventing authority.",
+      "expected_outcome": "Apply systematic-debugging to the in-scope workflow and preserve repository authority.",
+      "assertions": [
+        {
+          "id": "scope",
+          "text": "The response performs only the applicable skill workflow.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Higher repository authority and explicit constraints are preserved.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "The result is usable, bounded, and materially clearer than proceeding without the skill."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "Boundary scenario: the context resembles systematic-debugging, but implement an already-understood behavior change. Respond with the correct next action.",
+      "expected_outcome": "Avoid unnecessary activation and continue with the actually authorized workflow.",
+      "assertions": [
+        {
+          "id": "boundary",
+          "text": "The skill does not expand into the near-miss task.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "no-overreach",
+          "text": "No unsupported tools, permissions, or state changes are invented.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "The boundary decision is explicit and avoids process for its own sake."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Conflict scenario: both systematic-debugging and test-driven-development appear relevant. Resolve the order and responsibilities without duplicating work.",
+      "expected_outcome": "Compose or choose the adjacent workflows based on their distinct gates.",
+      "assertions": [
+        {
+          "id": "composition",
+          "text": "The response distinguishes the two workflow responsibilities.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "evidence",
+          "text": "Completion claims remain tied to observable evidence.",
+          "critical": false,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "The result avoids duplicated controllers and preserves a single authority chain."
+      ]
+    }
+  ]
+}

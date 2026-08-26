@@ -1,16 +1,16 @@
 {
   "schema_version": 2,
-  "skill": "develop-code",
+  "skill": "writing-skills",
   "source": {
-    "repository": "https://github.com/NielPieterse0/kis-mcp.git",
-    "revision": "5ab2aa1e71852363b0a872e1d9a44f3c70298a42",
-    "imported_at": "2026-08-13",
+    "repository": "https://github.com/obra/superpowers",
+    "revision": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "imported_at": "2026-08-26",
     "provenance_type": "trusted-local",
     "handoff": null,
-    "adopted_content_sha256": "86a809bb44b3b52f18f49231a18c51f6c6f8110cec04c84ed2e4e05dcbbc376a"
+    "adopted_content_sha256": "f0493640683a3b756b1552fd8c40cc1ec79bda08a9e7c530ea7037ad6146b90e"
   },
   "license": {
-    "identifier": "LicenseRef-Repository-Owned",
+    "identifier": "MIT",
     "reviewed": true
   },
   "risk": {
@@ -48,10 +48,10 @@
   "approval": {
     "status": "approved",
     "reviewer": "repository-owner",
-    "reviewed_at": "2026-08-13"
+    "reviewed_at": "2026-08-26"
   },
   "rollback": {
     "verified": true,
-    "method": "Disable runtime control and remove only the skills/develop-code directory, then regenerate the catalog."
+    "method": "Remove skills/writing-skills from accepted repository state, regenerate the catalogue, and republish through the controlled catalogue synchronizer."
   }
 }

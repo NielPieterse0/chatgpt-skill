@@ -9,7 +9,17 @@ Own the lifecycle and evidence chain:
 
 `Understand -> classify -> specify -> plan -> implement -> review -> verify -> close`
 
-Project instructions and canonical repository documentation override this skill. This skill owns lifecycle state, classification, default artifact locations, traceability, gates, and completion. Referenced sub-skills own specialist methods; return here after each finishes.
+Project instructions and canonical repository documentation override this skill. This skill owns development lifecycle semantics, classification, artifact contracts, traceability, and quality gates; it does not override repository workflow authority.
+
+## Repository authority
+
+Before mutating a repository, determine its declared workflow authority.
+
+- For a KIS-managed repository, load `kis-mcp` first. Use KIS for Work Management state, governed repository/GitHub operations, bounded verification and review, integration, and worktree/repository hygiene.
+- Do not bypass KIS with direct Git, GitHub, or process actions when a governed route exists. Do not create a worktree when repository policy prohibits it.
+- Specialist skills may provide methods such as brainstorming, planning, TDD, debugging, or focused review, but they remain subordinate to repository instructions and KIS authority.
+- If a named specialist is unavailable, apply this skill's base contract directly and record the missing specialization; runtime-specific skill availability is not itself a blocker unless repository policy makes it one.
+- For repositories that do not declare KIS as authority, follow their native workflow and explicit user authorization.
 
 ## Start
 
@@ -29,32 +39,32 @@ Load [lifecycle](./references/lifecycle.md) and enforce every applicable gate.
 
 - Write a compact specification and inline plan.
 - Implement one bounded change.
-- For a behavior change, **REQUIRED SUB-SKILL:** Use `superpowers:test-driven-development`.
+- For a behavior change, when available and applicable, use `test-driven-development`.
 - Review the final diff against the brief, then verify with current evidence.
-- **REQUIRED SUB-SKILL:** Use `superpowers:verification-before-completion` before any completion claim.
+- When available and applicable, use `verification-before-completion` before any completion claim.
 
 ### Medium
 
 - Create an explicit specification and implementation plan with traceable reviewable tasks.
-- If requirements or design are unclear, **REQUIRED SUB-SKILL:** Use `superpowers:brainstorming`.
-- **REQUIRED SUB-SKILL:** Use `superpowers:writing-plans` to produce the plan within this skill's artifact contract.
-- For behavior changes, **REQUIRED SUB-SKILL:** Use `superpowers:test-driven-development`.
-- At review checkpoints, **REQUIRED SUB-SKILL:** Use `superpowers:requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
-- **REQUIRED SUB-SKILL:** Use `superpowers:verification-before-completion` before closeout.
+- If requirements or design are unclear, when available and applicable, use `brainstorming`.
+- When available and applicable, use `writing-plans` to produce the plan within this skill's artifact contract.
+- For behavior changes, when available and applicable, use `test-driven-development`.
+- At review checkpoints, when available and applicable, use `requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
+- When available and applicable, use `verification-before-completion` before closeout.
 
 ### Complex
 
 - Create the detailed specification and plan defined by the artifact contract. Preserve unresolved decisions; do not invent product or risk decisions.
-- If requirements, architecture, or trade-offs are not already approved, **REQUIRED SUB-SKILL:** Use `superpowers:brainstorming`.
-- Require human review and approval of the written specification, then **REQUIRED SUB-SKILL:** Use `superpowers:writing-plans`.
+- If requirements, architecture, or trade-offs are not already approved, when available and applicable, use `brainstorming`.
+- Require human review and approval of the written specification, then when available and applicable, use `writing-plans`.
 - Require human review and approval of the written plan before implementation.
-- Select one executor: **REQUIRED SUB-SKILL:** Use `superpowers:subagent-driven-development` for independently reviewable tasks with subagents, or `superpowers:executing-plans` for inline/separate-session execution.
-- For behavior changes, **REQUIRED SUB-SKILL:** Use `superpowers:test-driven-development`.
-- At task and whole-change gates, **REQUIRED SUB-SKILL:** Use `superpowers:requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
-- **REQUIRED SUB-SKILL:** Use `superpowers:verification-before-completion` before closeout.
-- When a branch-based delivery workflow applies and the user has authorized its actions, **REQUIRED SUB-SKILL:** Use `superpowers:finishing-a-development-branch`.
+- Select one executor: when available and applicable, use `subagent-driven-development` for independently reviewable tasks with subagents, or `executing-plans` for inline/separate-session execution.
+- For behavior changes, when available and applicable, use `test-driven-development`.
+- At task and whole-change gates, when available and applicable, use `requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
+- When available and applicable, use `verification-before-completion` before closeout.
+- When a branch-based delivery workflow applies and the user has authorized its actions, when available and applicable, use `finishing-a-development-branch`.
 
-Do not reproduce, approximate, or continue a sub-skill from memory. Invoke it explicitly, follow it within project authority and this skill's artifact contract, record its result, then return to the current lifecycle gate.
+Do not reproduce or approximate an unavailable specialist from memory. When a specialist is selected and available, invoke it explicitly, follow it within project and KIS authority, record its result, then return to the current lifecycle gate. Otherwise execute this skill's base gate directly and disclose the missing specialization.
 
 ## Review Contract
 
@@ -71,13 +81,13 @@ Review the current specification, plan, documentation, implementation diff, test
 - freshness and sufficiency of verification evidence;
 - rollback, recovery, migration, and operational readiness when applicable.
 
-Use the mapping in [Superpowers integration](./references/superpowers-integration.md). When the planned `security-review`, `code-review`, `simpler-code`, or `smarter-code` skills become available and their trigger applies, invoke them with `REQUIRED SUB-SKILL` and return here. Their absence never converts an unperformed specialist review into a pass.
+Use the mapping in [Specialist integration](./references/superpowers-integration.md). When `security-review`, `code-review`, `simpler-code`, or `smarter-code` is available, permitted, and applicable, invoke it and return here. Its absence never converts an unperformed specialist review into a pass; the base Review Contract remains mandatory.
 
 Fix blocking findings, rerun affected checks, and re-review the changed scope. Do not let an earlier approval or test run cover later edits.
 
 ## Close Gate
 
-Close only when applicable requirements are satisfied, spec and plan mappings reconcile, blocking findings are resolved, required checks pass on the current state, evidence is recorded, recovery is understood, and every remaining item is explicitly optional or out of scope.
+Close only when applicable requirements are satisfied, spec and plan mappings reconcile, blocking findings are resolved, required checks pass on the current state, evidence is recorded, recovery is understood, and every remaining item is explicitly optional or out of scope. In a KIS-managed repository, KIS review/verification and Work Management projection must also reflect the current state before closeout.
 
 Report the development level, artifacts, implemented scope, review findings or clean result, exact verification commands and outcomes, recovery/rollback, skipped checks, residual risks, and optional follow-ups. Never describe unverified behavior as complete.
 

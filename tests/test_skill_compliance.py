@@ -115,7 +115,8 @@ class SkillComplianceTests(unittest.TestCase):
         package_checks = payload["package_checks"]
         self.assertEqual(package_checks["invalid_reference_count"], 0)
         self.assertEqual(package_checks["over_500_line_count"], 0)
-        self.assertEqual(package_checks["skill_count"], 3)
+        expected_skill_count = sum(1 for _ in (ROOT / "skills").glob("*/SKILL.md"))
+        self.assertEqual(package_checks["skill_count"], expected_skill_count)
 
 
 if __name__ == "__main__":
