@@ -1,20 +1,20 @@
 # Specialist Skill Integration
 
-`develop-code` remains the controller. Invoke only canonical skills available in the active runtime and applicable to the classified work.
+`develop-code` remains the lifecycle controller. Repository instructions and KIS decide which specialist methods are permitted or selected; availability alone never makes a specialist mandatory.
 
-| Need | Invocation | Return evidence |
+| Need | Optional specialist method | Return evidence |
 |---|---|---|
-| Unclear requirements/design | **REQUIRED SUB-SKILL:** Use `brainstorming` | Approved decisions or explicitly open decisions reflected in the spec |
-| Explicit implementation plan | **REQUIRED SUB-SKILL:** Use `writing-plans` | Plan in the canonical project location, mapped to requirements |
-| Independent read/investigation domains | Use `dispatching-parallel-agents` when isolation is real | Bounded per-domain findings plus integrated verification |
-| Same-session task delegation | **REQUIRED SUB-SKILL:** Use `subagent-driven-development` | Per-task implementation, test, and review evidence |
-| Inline or separate-session plan execution | **REQUIRED SUB-SKILL:** Use `executing-plans` | Completed task state and specified checks |
-| Unknown bug or regression cause | **REQUIRED SUB-SKILL:** Use `systematic-debugging` | Reproduction, root-cause evidence, hypothesis result, verified fix |
-| Behavior change | **REQUIRED SUB-SKILL:** Use `test-driven-development` | Observed failing test, minimal fix, passing test, safe refactor |
-| Request review checkpoint | Use `requesting-code-review` | Independent findings against requirements and exact change |
-| Assess received review feedback | Use `receiving-code-review` | Evidence-backed disposition and verified fixes |
-| Completion claim | **REQUIRED SUB-SKILL:** Use `verification-before-completion` | Fresh command output supporting each claim |
-| Authorized branch closeout | **REQUIRED SUB-SKILL:** Use `finishing-a-development-branch` | Verified head and repository-authorized integration handoff |
+| Unclear requirements/design | `brainstorming` | Approved decisions or explicitly open decisions reflected in the spec |
+| Explicit implementation plan | `writing-plans` | Plan in the canonical project location, mapped to requirements |
+| Independent read/investigation domains | `dispatching-parallel-agents` when isolation is real | Bounded per-domain findings plus integrated verification |
+| Same-session task delegation | `subagent-driven-development` | Per-task implementation, test, and review evidence |
+| Inline or separate-session plan execution | `executing-plans` | Completed task state and specified checks |
+| Unknown bug or regression cause | `systematic-debugging` | Reproduction, root-cause evidence, hypothesis result, verified fix |
+| Behavior change | `test-driven-development` | Observed failing test, minimal fix, passing test, safe refactor |
+| Request review checkpoint | `requesting-code-review` | Independent findings against requirements and exact change |
+| Assess received review feedback | `receiving-code-review` | Evidence-backed disposition and verified fixes |
+| Completion evidence | `verification-before-completion` | Fresh command output supporting each claim |
+| Repository-authorized branch closeout | `finishing-a-development-branch` | Verified head and repository-authorized integration handoff |
 
 Do not copy a specialist's full process into lifecycle artifacts. Pass it canonical inputs and constraints, let it own its method, then bring its outputs back to the current gate.
 

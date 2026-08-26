@@ -39,30 +39,30 @@ Load [lifecycle](./references/lifecycle.md) and enforce every applicable gate.
 
 - Write a compact specification and inline plan.
 - Implement one bounded change.
-- For a behavior change, when available and applicable, use `test-driven-development`.
+- For a behavior change, apply `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
 - Review the final diff against the brief, then verify with current evidence.
-- When available and applicable, use `verification-before-completion` before any completion claim.
+- Apply `verification-before-completion` only as a specialist evidence method within the repository-authorized completion gate.
 
 ### Medium
 
 - Create an explicit specification and implementation plan with traceable reviewable tasks.
-- If requirements or design are unclear, when available and applicable, use `brainstorming`.
-- When available and applicable, use `writing-plans` to produce the plan within this skill's artifact contract.
-- For behavior changes, when available and applicable, use `test-driven-development`.
-- At review checkpoints, when available and applicable, use `requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
-- When available and applicable, use `verification-before-completion` before closeout.
+- If requirements or design are unclear, use `brainstorming` only when repository/KIS authority permits or selects that specialist method.
+- Use `writing-plans` only when repository/KIS authority permits or selects it; this skill's artifact contract remains controlling.
+- For behavior changes, use `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
+- At review checkpoints, use `requesting-code-review` only when repository/KIS authority permits or selects it; otherwise perform the base review contract.
+- Use `verification-before-completion` only as a specialist evidence method inside the repository-authorized closeout gate.
 
 ### Complex
 
 - Create the detailed specification and plan defined by the artifact contract. Preserve unresolved decisions; do not invent product or risk decisions.
-- If requirements, architecture, or trade-offs are not already approved, when available and applicable, use `brainstorming`.
-- Require human review and approval of the written specification, then when available and applicable, use `writing-plans`.
+- If requirements, architecture, or trade-offs are not already approved, use `brainstorming` only when repository/KIS authority permits or selects that specialist method.
+- Require human review and approval of the written specification, then use `writing-plans` only when repository/KIS authority permits or selects it.
 - Require human review and approval of the written plan before implementation.
-- Select one executor: when available and applicable, use `subagent-driven-development` for independently reviewable tasks with subagents, or `executing-plans` for inline/separate-session execution.
-- For behavior changes, when available and applicable, use `test-driven-development`.
-- At task and whole-change gates, when available and applicable, use `requesting-code-review` when available; otherwise perform the review contract directly and disclose the missing specialist.
-- When available and applicable, use `verification-before-completion` before closeout.
-- When a branch-based delivery workflow applies and the user has authorized its actions, when available and applicable, use `finishing-a-development-branch`.
+- Select an executor only through repository/KIS authority; `subagent-driven-development` and `executing-plans` are optional specialist execution methods, not lifecycle authorities.
+- For behavior changes, use `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
+- At task and whole-change gates, use `requesting-code-review` only when repository/KIS authority permits or selects it; otherwise perform the base review contract.
+- Use `verification-before-completion` only as a specialist evidence method inside the repository-authorized closeout gate.
+- For branch closeout, `finishing-a-development-branch` may supply method guidance only after KIS or other repository authority selects and authorizes that path.
 
 Do not reproduce or approximate an unavailable specialist from memory. When a specialist is selected and available, invoke it explicitly, follow it within project and KIS authority, record its result, then return to the current lifecycle gate. Otherwise execute this skill's base gate directly and disclose the missing specialization.
 
@@ -81,7 +81,7 @@ Review the current specification, plan, documentation, implementation diff, test
 - freshness and sufficiency of verification evidence;
 - rollback, recovery, migration, and operational readiness when applicable.
 
-Use the mapping in [Specialist integration](./references/superpowers-integration.md). When `security-review`, `code-review`, `simpler-code`, or `smarter-code` is available, permitted, and applicable, invoke it and return here. Its absence never converts an unperformed specialist review into a pass; the base Review Contract remains mandatory.
+Use the mapping in [Specialist integration](./references/superpowers-integration.md) only to select specialist methods permitted by repository/KIS authority. `security-review`, `code-review`, `simpler-code`, or `smarter-code` may contribute evidence when selected; none of them independently creates a review gate or mutation authority. Their absence never converts an unperformed base Review Contract into a pass.
 
 Fix blocking findings, rerun affected checks, and re-review the changed scope. Do not let an earlier approval or test run cover later edits.
 
