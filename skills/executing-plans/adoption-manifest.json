@@ -1,16 +1,16 @@
 {
   "schema_version": 2,
-  "skill": "develop-code",
+  "skill": "executing-plans",
   "source": {
-    "repository": "https://github.com/NielPieterse0/kis-mcp.git",
-    "revision": "5ab2aa1e71852363b0a872e1d9a44f3c70298a42",
-    "imported_at": "2026-08-13",
+    "repository": "https://github.com/obra/superpowers",
+    "revision": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "imported_at": "2026-08-26",
     "provenance_type": "trusted-local",
     "handoff": null,
-    "adopted_content_sha256": "b52662ecb9d3ca0ab43bf02ecba7b0728bed3cc3da0605f98d9492ff9f7f704e"
+    "adopted_content_sha256": "2cae69c7bad90abbbeec0f74f4d4606bd0635eb1d93ed384a6d46ea1fd26fb30"
   },
   "license": {
-    "identifier": "LicenseRef-Repository-Owned",
+    "identifier": "MIT",
     "reviewed": true
   },
   "risk": {
@@ -48,10 +48,10 @@
   "approval": {
     "status": "approved",
     "reviewer": "repository-owner",
-    "reviewed_at": "2026-08-13"
+    "reviewed_at": "2026-08-26"
   },
   "rollback": {
     "verified": true,
-    "method": "Disable runtime control and remove only the skills/develop-code directory, then regenerate the catalog."
+    "method": "Remove skills/executing-plans from accepted repository state, regenerate the catalogue, and republish through the controlled catalogue synchronizer."
   }
 }

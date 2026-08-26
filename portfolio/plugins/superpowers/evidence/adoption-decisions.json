@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_bundle_sha256": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+  "source_version": "6.2.0",
+  "decision_date": "2026-08-26",
+  "authority": "issue-117",
+  "skills": [
+    {"skill":"brainstorming","decision":"adapt","target":"skills/brainstorming","reason":"Preserve design-before-implementation discipline; remove visual companion, server, telemetry, and host-specific tool assumptions."},
+    {"skill":"dispatching-parallel-agents","decision":"adapt","target":"skills/dispatching-parallel-agents","reason":"Preserve independent-task parallelism and bounded integration; use only delegation surfaces actually available in the runtime."},
+    {"skill":"executing-plans","decision":"adapt","target":"skills/executing-plans","reason":"Preserve plan review, task execution, checkpoints, and stop conditions; remove plugin namespace and host-specific assumptions."},
+    {"skill":"finishing-a-development-branch","decision":"adapt","target":"skills/finishing-a-development-branch","reason":"Preserve exact-head readiness, explicit outcome choice, and safe cleanup; route Git/GitHub mutation through repository and KIS delivery authority."},
+    {"skill":"receiving-code-review","decision":"adapt","target":"skills/receiving-code-review","reason":"Preserve evidence-based feedback assessment, clarification, pushback, and fix verification without external-thread mutation behavior."},
+    {"skill":"requesting-code-review","decision":"adapt","target":"skills/requesting-code-review","reason":"Preserve independent review checkpoints and re-review discipline while using only review capabilities actually available."},
+    {"skill":"subagent-driven-development","decision":"adapt","target":"skills/subagent-driven-development","reason":"Preserve implementer, requirements-review, quality-review, and fix loops; remove helper scripts and model-tier assumptions."},
+    {"skill":"systematic-debugging","decision":"adapt","target":"skills/systematic-debugging","reason":"Preserve root-cause-first investigation, falsifiable hypotheses, and failed-fix reset discipline; remove executable helpers."},
+    {"skill":"test-driven-development","decision":"adapt","target":"skills/test-driven-development","reason":"Preserve RED-GREEN-REFACTOR and rationalization resistance within repository testing authority."},
+    {"skill":"using-git-worktrees","decision":"adapt","target":"skills/using-git-worktrees","reason":"Preserve existing-isolation detection, workspace selection, and baseline verification; route governed worktree and Git mutation through repository and KIS authority."},
+    {"skill":"using-superpowers","decision":"adapt","target":"skills/using-superpowers","reason":"Preserve current-skill selection, ordering, and composition; remove the blanket controller conflict and keep specialists subordinate to repository, develop-code, and KIS authority."},
+    {"skill":"verification-before-completion","decision":"adapt","target":"skills/verification-before-completion","reason":"Preserve evidence-before-claims and freshness discipline as a read-only verification gate."},
+    {"skill":"writing-plans","decision":"adapt","target":"skills/writing-plans","reason":"Preserve executable-plan structure, exact task contracts, and self-review while using repository-owned plan locations and controllers."},
+    {"skill":"writing-skills","decision":"adapt","target":"skills/writing-skills","reason":"Preserve behavioral RED-GREEN-REFACTOR and pressure-testing methods; keep package, evaluation, and revision lifecycle authority with create-skill, evaluate-skill, and improve-skill."}
+  ]
+}

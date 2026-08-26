@@ -81,11 +81,15 @@ class SuperpowersPluginPilotTests(unittest.TestCase):
             expected.add(path.relative_to(ROOT).as_posix())
         self.assertEqual(expected, set(record["evaluation"]["evidence"]))
 
-    def test_plugin_is_absent_from_repository_runtime_discovery(self) -> None:
+    def test_plugin_bundle_remains_uninstalled_after_skill_adaptation(self) -> None:
         runtime_control = read_json(ROOT / "config" / "runtime-control.json")
         self.assertFalse(runtime_control["skills_enabled"])
+        decisions = read_json(PLUGIN / "evidence" / "adoption-decisions.json")
         adopted_names = {path.parent.name for path in (ROOT / "skills").glob("*/SKILL.md")}
-        self.assertTrue(SKILLS.isdisjoint(adopted_names))
+        adapted = {entry["skill"] for entry in decisions["skills"] if entry["decision"] == "adapt"}
+        consolidated = {entry["skill"] for entry in decisions["skills"] if entry["decision"] == "consolidate"}
+        self.assertTrue(adapted.issubset(adopted_names))
+        self.assertTrue(consolidated.isdisjoint(adopted_names))
         self.assertNotIn("superpowers", adopted_names)
         self.assertFalse((ROOT / "skills" / "superpowers").exists())
 

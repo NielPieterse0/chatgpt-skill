@@ -1,28 +1,33 @@
 # Specialist Skill Integration
 
-`develop-code` remains the controller. Invoke only skills available in the active runtime and applicable to the classified work.
+`develop-code` remains the lifecycle controller. Repository instructions and KIS decide which specialist methods are permitted or selected; availability alone never makes a specialist mandatory.
 
-| Need | Invocation | Return evidence |
+| Need | Optional specialist method | Return evidence |
 |---|---|---|
-| Unclear requirements/design | **REQUIRED SUB-SKILL:** Use `superpowers:brainstorming` | Approved decisions or explicitly open decisions reflected in the spec |
-| Explicit implementation plan | **REQUIRED SUB-SKILL:** Use `superpowers:writing-plans` | Plan in the canonical project location, mapped to requirements |
-| Same-session task delegation | **REQUIRED SUB-SKILL:** Use `superpowers:subagent-driven-development` | Per-task implementation, test, and review evidence |
-| Inline or separate-session execution | **REQUIRED SUB-SKILL:** Use `superpowers:executing-plans` | Completed task state and specified checks |
-| Behavior change | **REQUIRED SUB-SKILL:** Use `superpowers:test-driven-development` | Observed failing test, minimal fix, passing test, safe refactor |
-| Code review checkpoint | **REQUIRED SUB-SKILL:** Use `superpowers:requesting-code-review` | Findings against requirements and current diff |
-| Completion claim | **REQUIRED SUB-SKILL:** Use `superpowers:verification-before-completion` | Fresh command output supporting each claim |
-| Authorized branch closeout | **REQUIRED SUB-SKILL:** Use `superpowers:finishing-a-development-branch` | Verified and user-selected integration/retention outcome |
+| Unclear requirements/design | `brainstorming` | Approved decisions or explicitly open decisions reflected in the spec |
+| Explicit implementation plan | `writing-plans` | Plan in the canonical project location, mapped to requirements |
+| Independent read/investigation domains | `dispatching-parallel-agents` when isolation is real | Bounded per-domain findings plus integrated verification |
+| Same-session task delegation | `subagent-driven-development` | Per-task implementation, test, and review evidence |
+| Inline or separate-session plan execution | `executing-plans` | Completed task state and specified checks |
+| Unknown bug or regression cause | `systematic-debugging` | Reproduction, root-cause evidence, hypothesis result, verified fix |
+| Behavior change | `test-driven-development` | Observed failing test, minimal fix, passing test, safe refactor |
+| Request review checkpoint | `requesting-code-review` | Independent findings against requirements and exact change |
+| Assess received review feedback | `receiving-code-review` | Evidence-backed disposition and verified fixes |
+| Completion evidence | `verification-before-completion` | Fresh command output supporting each claim |
+| Repository-authorized branch closeout | `finishing-a-development-branch` | Verified head and repository-authorized integration handoff |
 
-Do not copy a specialist's full process into lifecycle artifacts. Pass it the canonical inputs and constraints, let it own its method, then bring its outputs back to the current gate.
+Do not copy a specialist's full process into lifecycle artifacts. Pass it canonical inputs and constraints, let it own its method, then bring its outputs back to the current gate.
 
-## Planned Review Skills
+## Harmonized upstream responsibilities
 
-When installed and applicable:
+All 14 Superpowers 6.2.0 methods remain available as canonical skills, but overlapping authority is narrowed rather than duplicated:
 
-- **REQUIRED SUB-SKILL:** Use `security-review` for security, privacy, trust-boundary, secret, authorization, or sensitive-data review.
-- **REQUIRED SUB-SKILL:** Use `code-review` for implementation correctness and spec/plan compliance review.
-- **REQUIRED SUB-SKILL:** Use `simpler-code` to challenge unnecessary complexity without changing required behavior.
-- **REQUIRED SUB-SKILL:** Use `smarter-code` to assess whether a materially clearer, safer, or more effective design is warranted without expanding scope.
+- `using-superpowers` supplies current-skill selection and composition only; `develop-code` remains the code lifecycle controller and repository instructions remain higher authority.
+- `using-git-worktrees` supplies isolation detection, workspace selection, and baseline discipline only; KIS and `github-delivery` own governed worktree, Git, and GitHub mutations.
+- `writing-skills` supplies behavioral RED-GREEN-REFACTOR and pressure-testing method only; `create-skill`, `evaluate-skill`, and `improve-skill` own skill package and lifecycle decisions.
 
-If a named skill is unavailable, record that fact and perform the base Review Contract. Do not imitate an unavailable skill or claim its specialist gate passed.
+Remote publication, pull-request mutation, merge authority, deployment, credentials, runtime installation, and deletion never come from these specialist skills. Higher repository authority and live KIS/tool schemas remain controlling.
 
+## Other review specialists
+
+When installed and applicable, use `code-review`, `simpler-code`, `smarter-code`, and the repository's security review capability. If a named specialist is unavailable, record that fact and perform the base Review Contract; do not imitate an unavailable skill or claim its gate passed.
