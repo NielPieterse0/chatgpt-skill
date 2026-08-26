@@ -13,6 +13,7 @@
 
 ## Control Rules
 
+- Repository instructions define operational authority. In KIS-managed repositories, load `kis-mcp` and use KIS for Work Management state, governed repository/GitHub actions, verification/review, integration, and hygiene.
 - Stop at a gate when authority conflicts, a required approval is missing, a material product/risk choice remains open, a destructive action lacks consent, or verification fails.
 - A sub-skill result is phase evidence, not a lifecycle transition. Return here and evaluate the gate.
 - Update the specification before implementing a changed requirement. Update the plan before executing changed work.
