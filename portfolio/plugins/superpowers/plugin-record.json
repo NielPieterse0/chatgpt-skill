@@ -1,0 +1,149 @@
+{
+  "capabilities": {
+    "credentials": false,
+    "external_mutation": true,
+    "filesystem_read": [
+      "."
+    ],
+    "filesystem_write": [
+      "."
+    ],
+    "network": true,
+    "process_execution": true
+  },
+  "contents": {
+    "app_templates": [],
+    "apps": [],
+    "mcp_or_tooling": [
+      "skills/*/agents/openai.yaml",
+      "skills/brainstorming/scripts/",
+      "skills/subagent-driven-development/scripts/",
+      "skills/systematic-debugging/find-polluter.sh",
+      "skills/writing-skills/render-graphs.js"
+    ],
+    "resources": [
+      ".codex-plugin/plugin.json",
+      ".codex-plugin/assets/",
+      "assets/",
+      "README.md",
+      "LICENSE",
+      "skills/*/references and companion markdown"
+    ],
+    "skills": [
+      "brainstorming",
+      "dispatching-parallel-agents",
+      "executing-plans",
+      "finishing-a-development-branch",
+      "receiving-code-review",
+      "requesting-code-review",
+      "subagent-driven-development",
+      "systematic-debugging",
+      "test-driven-development",
+      "using-git-worktrees",
+      "using-superpowers",
+      "verification-before-completion",
+      "writing-plans",
+      "writing-skills"
+    ]
+  },
+  "dependencies": [
+    {
+      "id": "git",
+      "kind": "executable",
+      "required": true,
+      "version": null
+    },
+    {
+      "id": "shell",
+      "kind": "executable",
+      "required": true,
+      "version": null
+    },
+    {
+      "id": "node",
+      "kind": "executable",
+      "required": false,
+      "version": null
+    },
+    {
+      "id": "graphviz",
+      "kind": "executable",
+      "required": false,
+      "version": null
+    }
+  ],
+  "display_name": "Superpowers",
+  "evaluation": {
+    "baseline": "static source assessment only; staged runtime execution prohibited by issue #88",
+    "evidence": [
+      "portfolio/plugins/superpowers/evidence/bundle-assessment.json",
+      "portfolio/plugins/superpowers/evidence/skills/brainstorming.json",
+      "portfolio/plugins/superpowers/evidence/skills/dispatching-parallel-agents.json",
+      "portfolio/plugins/superpowers/evidence/skills/executing-plans.json",
+      "portfolio/plugins/superpowers/evidence/skills/finishing-a-development-branch.json",
+      "portfolio/plugins/superpowers/evidence/skills/receiving-code-review.json",
+      "portfolio/plugins/superpowers/evidence/skills/requesting-code-review.json",
+      "portfolio/plugins/superpowers/evidence/skills/subagent-driven-development.json",
+      "portfolio/plugins/superpowers/evidence/skills/systematic-debugging.json",
+      "portfolio/plugins/superpowers/evidence/skills/test-driven-development.json",
+      "portfolio/plugins/superpowers/evidence/skills/using-git-worktrees.json",
+      "portfolio/plugins/superpowers/evidence/skills/using-superpowers.json",
+      "portfolio/plugins/superpowers/evidence/skills/verification-before-completion.json",
+      "portfolio/plugins/superpowers/evidence/skills/writing-plans.json",
+      "portfolio/plugins/superpowers/evidence/skills/writing-skills.json"
+    ],
+    "reviewed_at": null,
+    "reviewer": null,
+    "status": "deferred"
+  },
+  "plugin_id": "superpowers",
+  "plugin_kind": "codex-plugin",
+  "portfolio_status": "deferred",
+  "rollback": {
+    "disable_method": "No repository runtime integration was created; keep runtime enablement disabled and revert the portfolio/intake records if support is withdrawn.",
+    "retained_evidence": [
+      "portfolio/plugins/superpowers/evidence/bundle-assessment.json",
+      "portfolio/plugins/superpowers/evidence/skills/brainstorming.json",
+      "portfolio/plugins/superpowers/evidence/skills/dispatching-parallel-agents.json",
+      "portfolio/plugins/superpowers/evidence/skills/executing-plans.json",
+      "portfolio/plugins/superpowers/evidence/skills/finishing-a-development-branch.json",
+      "portfolio/plugins/superpowers/evidence/skills/receiving-code-review.json",
+      "portfolio/plugins/superpowers/evidence/skills/requesting-code-review.json",
+      "portfolio/plugins/superpowers/evidence/skills/subagent-driven-development.json",
+      "portfolio/plugins/superpowers/evidence/skills/systematic-debugging.json",
+      "portfolio/plugins/superpowers/evidence/skills/test-driven-development.json",
+      "portfolio/plugins/superpowers/evidence/skills/using-git-worktrees.json",
+      "portfolio/plugins/superpowers/evidence/skills/using-superpowers.json",
+      "portfolio/plugins/superpowers/evidence/skills/verification-before-completion.json",
+      "portfolio/plugins/superpowers/evidence/skills/writing-plans.json",
+      "portfolio/plugins/superpowers/evidence/skills/writing-skills.json"
+    ],
+    "uninstall_method": null
+  },
+  "schema_version": 1,
+  "source": {
+    "artifact_sha256": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "canonical_uri": "https://github.com/obra/superpowers",
+    "handoff": null,
+    "immutable_revision": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "license_or_terms": "MIT (bundle LICENSE and manifest-declared; upstream authenticity not independently verified)",
+    "owner": "Jesse Vincent / obra",
+    "provenance_type": "trusted-local",
+    "retrieved_at": "2026-08-22",
+    "version": "6.2.0"
+  },
+  "source_status": "unverified",
+  "targets": [
+    {
+      "activation_status": "not_observed",
+      "app_access": [],
+      "installation_status": "not_observed",
+      "target_id": "codex"
+    }
+  ],
+  "update": {
+    "delta_evidence": null,
+    "last_accepted_revision": null,
+    "last_checked_at": "2026-08-22"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "adaptation": {
+    "state": "required"
+  },
+  "assessments": {
+    "capability": "passed",
+    "overlap": "passed",
+    "security": "failed",
+    "structural": "passed"
+  },
+  "candidate_id": "superpowers",
+  "candidate_type": "plugin",
+  "disposition": "defer",
+  "evaluation": {
+    "state": "deferred"
+  },
+  "human_review": {
+    "state": "pending"
+  },
+  "license": {
+    "identifier": "MIT (bundle LICENSE and manifest-declared; upstream authenticity not independently verified)",
+    "state": "reviewed"
+  },
+  "provenance": {
+    "candidate_sha256": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "handoff": null,
+    "revision": "a1cbc2e46d5c2709c5827fe28296a8dbcb972509e71cb3f2567295377d6f0430",
+    "source_locator": "C:\\Projects\\ChatGPT-skill\\.work\\niel-work\\superpowers\\6.2.0",
+    "state": "verified",
+    "type": "trusted-local"
+  },
+  "requested_at": "2026-08-16",
+  "schema_version": 1,
+  "source_issue": {
+    "number": 88,
+    "repository": "NielPieterse0/chatgpt-skill"
+  },
+  "targets": {
+    "plugin_activation": "inactive",
+    "plugin_installation": "not_installed",
+    "repository_admission": "pending",
+    "runtime_enablement": "disabled",
+    "workspace_catalogue": "not_applicable"
+  },
+  "work_management": {
+    "blocker_issue": null,
+    "record_id": "229480807",
+    "revision": "2026-08-22T00:33:40Z",
+    "state": "projected"
+  }
+}
