@@ -1,4 +1,6 @@
-# Medium Specification
+# Non-trivial Development Template (Standalone Fallback)
+
+Use only when KIS is not the repository authority and no repository template already applies.
 
 ## Specification
 
