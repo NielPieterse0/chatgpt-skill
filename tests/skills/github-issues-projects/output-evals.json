@@ -1,0 +1,56 @@
+{
+  "skill_name": "github-issues-projects",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "An issue has node ID I_abc, its Project item has node ID PVTI_def, and the Status field has ID PVTSSF_ghi with option ID opt_jkl. Explain which identity is used for what and what must be resolved before a field update.",
+      "expected_outcome": "Distinguish source-content, Project-item, field, and option identities without treating them as interchangeable or durable constants.",
+      "assertions": [
+        {"id":"identity","text":"Separates issue/content node ID, Project item ID, field ID, and single-select option ID by role.","critical":true,"method":"human"},
+        {"id":"freshness","text":"Requires current evidence for exact field and option identities rather than recommending hard-coded IDs.","critical":true,"method":"human"}
+      ],
+      "human_review": ["Identity semantics are explicit and do not imply mutation authority."]
+    },
+    {
+      "id": "output-002",
+      "prompt": "A ProjectV2 query fetched first:100 items and issue #800 is absent. The issue exists in the repository. Is the Project missing it?",
+      "expected_outcome": "Treat the result as incomplete until pagination is exhausted and distinguish source existence from Project projection membership.",
+      "assertions": [
+        {"id":"pagination","text":"Does not infer absence or drift from the first page alone.","critical":true,"method":"human"},
+        {"id":"projection","text":"Separates repository issue existence from Project-item membership.","critical":true,"method":"human"}
+      ],
+      "human_review": ["The response identifies the minimum pagination evidence needed before reconciliation conclusions."]
+    },
+    {
+      "id": "output-003",
+      "prompt": "The parent issue shows two sub-issues, and another issue is marked as blocked by one of them. Explain the relationship semantics without deciding our delivery order.",
+      "expected_outcome": "Explain parent/sub-issue structure separately from dependency/blocking relationships and leave repository scheduling policy to higher authority.",
+      "assertions": [
+        {"id":"relationships","text":"Distinguishes hierarchy from dependency semantics.","critical":true,"method":"human"},
+        {"id":"authority","text":"Does not convert GitHub relationships into a KIS or repository lifecycle decision.","critical":true,"method":"human"}
+      ],
+      "human_review": ["Relationship mechanics are useful without silently creating workflow authority."]
+    },
+    {
+      "id": "output-004",
+      "prompt": "A GitHub Projects field update returns an error after a field was renamed and the caller can see the issue but not the organization Project. Diagnose the likely classes of failure.",
+      "expected_outcome": "Separate stale identity, Project visibility/permission, invalid value shape, and provider failures; avoid guessing credentials or scopes without evidence.",
+      "assertions": [
+        {"id":"failure-classes","text":"Separates stale field/option identity from visibility, permission, invalid value, and provider failure classes.","critical":true,"method":"human"},
+        {"id":"no-guess","text":"Does not invent token scopes, IDs, or permissions.","critical":true,"method":"human"}
+      ],
+      "human_review": ["Diagnosis is evidence-directed and names the next identity or permission evidence to inspect."]
+    },
+    {
+      "id": "output-005",
+      "prompt": "The issue says Ready, the Project says Triage, and someone asks you to mark the KIS work item Done because the Project field looks stale.",
+      "expected_outcome": "Explain source-versus-projection reconciliation, require explicit authority direction, and leave the KIS transition to KIS authority.",
+      "assertions": [
+        {"id":"drift","text":"Does not label the difference drift until authority direction and current evidence are established.","critical":true,"method":"human"},
+        {"id":"kis-boundary","text":"Does not decide or execute the KIS lifecycle transition.","critical":true,"method":"human"}
+      ],
+      "human_review": ["The response composes GitHub knowledge with higher KIS authority instead of competing with it."]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "skill": "github-issues-projects",
+  "source": {
+    "repository": "https://docs.github.com/en/issues",
+    "revision": "a3fbb8e7ad7a011153755c9eaef74ae23a6d6e6e3f2ffb378949d5e604b7b00d",
+    "imported_at": "2026-08-27",
+    "provenance_type": "trusted-local",
+    "handoff": null,
+    "adopted_content_sha256": "05503faa18c6ddb621bf42b5830f3ae2478e1536e9582329acefd8890c8d078b"
+  },
+  "license": {
+    "identifier": "CC-BY-4.0",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-08-27"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only the skills/github-issues-projects package from the accepted catalogue source, then run the repository-owned workspace catalogue synchronization and regenerate discovery state."
+  }
+}
