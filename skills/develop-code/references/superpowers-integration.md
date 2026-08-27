@@ -1,33 +1,30 @@
 # Specialist Skill Integration
 
-`develop-code` remains the lifecycle controller. Repository instructions and KIS decide which specialist methods are permitted or selected; availability alone never makes a specialist mandatory.
+Repository instructions and, when present, KIS remain the workflow authority. `develop-code` selects specialist methods that add reasoning or engineering depth the governing workflow does not itself prescribe.
 
-| Need | Optional specialist method | Return evidence |
+| Need | Specialist method | Contribution |
 |---|---|---|
-| Unclear requirements/design | `brainstorming` | Approved decisions or explicitly open decisions reflected in the spec |
-| Explicit implementation plan | `writing-plans` | Plan in the canonical project location, mapped to requirements |
-| Independent read/investigation domains | `dispatching-parallel-agents` when isolation is real | Bounded per-domain findings plus integrated verification |
-| Same-session task delegation | `subagent-driven-development` | Per-task implementation, test, and review evidence |
-| Inline or separate-session plan execution | `executing-plans` | Completed task state and specified checks |
-| Unknown bug or regression cause | `systematic-debugging` | Reproduction, root-cause evidence, hypothesis result, verified fix |
-| Behavior change | `test-driven-development` | Observed failing test, minimal fix, passing test, safe refactor |
-| Request review checkpoint | `requesting-code-review` | Independent findings against requirements and exact change |
-| Assess received review feedback | `receiving-code-review` | Evidence-backed disposition and verified fixes |
-| Completion evidence | `verification-before-completion` | Fresh command output supporting each claim |
-| Repository-authorized branch closeout | `finishing-a-development-branch` | Verified head and repository-authorized integration handoff |
+| Requirements/design need exploration | `brainstorming` | Clarified decisions, trade-offs, and open questions |
+| Implementation needs a durable plan | `writing-plans` | Executable tasks mapped to current requirements |
+| Independent read/investigation domains | `dispatching-parallel-agents` | Bounded parallel findings with integrated verification |
+| Independently reviewable implementation tasks | `subagent-driven-development` | Per-task implementation, tests, and review evidence |
+| Approved plan needs execution support | `executing-plans` | Plan execution with checkpoints |
+| Unknown defect/regression cause | `systematic-debugging` | Reproduction, root-cause evidence, hypothesis tests, verified fix |
+| Behavior change | `test-driven-development` | Failing test, minimal implementation, passing test, safe refactor |
+| Request a review | `requesting-code-review` | Independent findings against current requirements and change |
+| Process review feedback | `receiving-code-review` | Evidence-backed disposition and verified corrections |
+| Completion evidence | `verification-before-completion` | Fresh evidence supporting completion claims |
+| Authorized branch closeout | `finishing-a-development-branch` | Method guidance for an already authorized integration path |
 
-Do not copy a specialist's full process into lifecycle artifacts. Pass it canonical inputs and constraints, let it own its method, then bring its outputs back to the current gate.
+Use complexity only to scale rigor. In KIS-managed work, consume the current KIS classification rather than translating it into a local taxonomy. Complex or high-risk work generally benefits from more explicit brainstorming, planning, testing, review, and verification.
 
-## Harmonized upstream responsibilities
+## Boundaries
 
-All 14 Superpowers 6.2.0 methods remain available as canonical skills, but overlapping authority is narrowed rather than duplicated:
+- `using-superpowers` may help discover and compose available specialist skills; it does not replace repository or KIS workflow authority.
+- `using-git-worktrees` may contribute isolation guidance only when the governing workflow permits it. KIS or repository-native rules own actual workspace/Git decisions.
+- `writing-skills` applies to skill-authoring method; repository skill lifecycle and admission remain owned elsewhere.
+- Other focused skills such as `code-review`, `simpler-code`, or `smarter-code` may add specialist evidence when applicable.
 
-- `using-superpowers` supplies current-skill selection and composition only; `develop-code` remains the code lifecycle controller and repository instructions remain higher authority.
-- `using-git-worktrees` supplies isolation detection, workspace selection, and baseline discipline only; KIS and `github-delivery` own governed worktree, Git, and GitHub mutations.
-- `writing-skills` supplies behavioral RED-GREEN-REFACTOR and pressure-testing method only; `create-skill`, `evaluate-skill`, and `improve-skill` own skill package and lifecycle decisions.
+Do not copy a specialist's full process into this skill. Invoke the current specialist, pass it authoritative repository/KIS context, use its method, and return its result to the governing workflow.
 
-Remote publication, pull-request mutation, merge authority, deployment, credentials, runtime installation, and deletion never come from these specialist skills. Higher repository authority and live KIS/tool schemas remain controlling.
-
-## Other review specialists
-
-When installed and applicable, use `code-review`, `simpler-code`, `smarter-code`, and the repository's security review capability. If a named specialist is unavailable, record that fact and perform the base Review Contract; do not imitate an unavailable skill or claim its gate passed.
+If a specialist is unavailable, continue using the governing workflow and base engineering judgment unless that workflow explicitly requires the specialist. Record the gap rather than imitating an unavailable skill.

@@ -1,27 +1,13 @@
-# Artifact Contracts
+# Standalone Artifact Guidance
 
-Project-owned locations and templates take precedence. If none exist, use:
+Use this reference only when KIS is not the repository's workflow authority and the repository does not already define artifact locations.
 
-```text
-docs/development/<slug>/spec.md
-docs/development/<slug>/plan.md
-```
+Prefer the repository's existing issue, task, change, specification, planning, or `.work` conventions. Do not create a parallel hierarchy merely because this skill is active.
 
-For Small work, keep the compact specification and inline plan in the task record, issue, or response when that is durable enough. If a repository file is needed, use `docs/development/<slug>/spec.md` and include the plan section in it. Do not create an empty plan file.
+For bounded work, a durable issue/task record or compact specification may be enough. For non-trivial work, keep requirements, implementation tasks, test/evidence expectations, review findings, and recovery information together or in the repository's normal split artifacts.
 
-Use [small template](../assets/small.md), [medium template](../assets/medium.md), or [complex template](../assets/complex.md). Adapt headings to repository conventions without dropping required content.
+When no project convention exists, place temporary or working artifacts under the repository's existing temporary-work area (commonly `.work/`) rather than inventing a `superpowers` directory. Use neutral names based on the repository's work item, change, feature, or task identity.
 
-## Traceability
+Maintain enough traceability to connect requirements -> implementation tasks -> tests/evidence for non-trivial work. Code and tests implement requirements; they do not silently redefine them.
 
-- Give Medium and Complex requirements stable IDs such as `R1`, `R2`.
-- Each plan task lists the requirements it satisfies and the evidence it will produce.
-- Review reconciles requirement -> task/change -> test or other evidence.
-- Record deviations and exclusions in the specification, not only in chat.
-
-## Canonical Ownership
-
-- Specification owns outcome, behavior, boundaries, acceptance, exclusions, risk expectations, and open decisions.
-- Plan owns implementation approach, affected surfaces, ordered tasks, verification, review checkpoints, rollout, and recovery steps.
-- Code and tests implement the approved artifacts; they do not silently redefine them.
-- Verification output proves a particular current state; it does not replace requirements or review.
-
+In KIS-managed repositories, ignore this fallback and use the current KIS-defined change/workspace structure and artifact locations.

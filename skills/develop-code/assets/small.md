@@ -1,4 +1,6 @@
-# Small Development Brief
+# Bounded Development Brief (Standalone Fallback)
+
+Use only when KIS is not the repository authority and no repository template already applies.
 
 ## Compact Specification
 

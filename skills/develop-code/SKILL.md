@@ -1,93 +1,57 @@
 ---
 name: develop-code
-description: 'Use when creating, changing, fixing, refactoring, or completing production code where requirements, planning, implementation, review, verification, and closeout must stay aligned. Applies to bounded fixes through cross-component or high-risk delivery; not for read-only explanation, standalone review with no requested changes, or pure research.'
+description: 'Use when creating, changing, fixing, refactoring, or completing production code and specialist development methods such as brainstorming, planning, TDD, debugging, review, or completion verification may improve the work. In KIS-managed repositories, KIS remains the workflow and execution authority; this skill only selects and composes specialist methods. Not for read-only explanation, standalone review with no requested changes, or pure research.'
 ---
 
 # Develop Code
 
-Own the lifecycle and evidence chain:
+Use the repository's current development workflow. Add specialist methods where they improve reasoning, implementation quality, testing, review, or verification.
 
-`Understand -> classify -> specify -> plan -> implement -> review -> verify -> close`
+This skill is not a second workflow engine. It does not redefine KIS lifecycle state, classification, change structure, worktree policy, Git/GitHub operations, verification gates, or closeout rules.
 
-Project instructions and canonical repository documentation override this skill. This skill owns development lifecycle semantics, classification, artifact contracts, traceability, and quality gates; it does not override repository workflow authority.
+## Authority
 
-## Repository authority
+1. Follow explicit user instructions, repository instructions, and authoritative project documentation.
+2. If the repository is KIS-managed, load `kis-mcp` and use KIS discovery/current state before deciding how to proceed.
+3. Treat live KIS workflow, classification, change/workspace structure, and capability schemas as authoritative. Do not reproduce or freeze those details here.
+4. Use the current KIS terms and locations, including the active `.work` change/slice structure when KIS defines one. Do not invent a parallel `superpowers`, slug, spec, or plan tree.
+5. Specialist skills provide methods only. They do not grant mutation, lifecycle-transition, Git/GitHub, deployment, or completion authority.
 
-Before mutating a repository, determine its declared workflow authority.
+If KIS is unavailable or the repository does not use it, follow the repository's native workflow and use the standalone guidance in this skill.
+## Select Specialist Methods
 
-- For a KIS-managed repository, load `kis-mcp` first. Use KIS for Work Management state, governed repository/GitHub operations, bounded verification and review, integration, and worktree/repository hygiene.
-- Do not bypass KIS with direct Git, GitHub, or process actions when a governed route exists. Do not create a worktree when repository policy prohibits it.
-- Specialist skills may provide methods such as brainstorming, planning, TDD, debugging, or focused review, but they remain subordinate to repository instructions and KIS authority.
-- If a named specialist is unavailable, apply this skill's base contract directly and record the missing specialization; runtime-specific skill availability is not itself a blocker unless repository policy makes it one.
-- For repositories that do not declare KIS as authority, follow their native workflow and explicit user authorization.
+Load [Specialist integration](./references/superpowers-integration.md) and select only methods relevant to the current phase and risk.
 
-## Start
+- Requirements, architecture, or trade-offs need thinking before commitment: use `brainstorming`.
+- A non-trivial implementation needs an explicit executable plan: use `writing-plans`.
+- A behavior change needs implementation: use `test-driven-development` unless the governing workflow records an exception.
+- A defect has an unknown cause: use `systematic-debugging` before proposing fixes.
+- Independent investigation or implementation domains can be isolated safely: consider `dispatching-parallel-agents` or `subagent-driven-development`.
+- An approved plan needs execution support: consider `executing-plans`.
+- A review checkpoint is reached: use `requesting-code-review`; use `receiving-code-review` when acting on review feedback.
+- A completion claim is approaching: use `verification-before-completion` to strengthen evidence, without replacing the repository/KIS completion gate.
+- Branch closeout is already authorized by the governing workflow: `finishing-a-development-branch` may supply method guidance.
 
-1. Read applicable project instructions and authoritative docs. Inspect current state and preserve unrelated changes.
-2. Discover the repository's test, build, lint, security, release, documentation, and Git conventions. Never assume a language or package manager.
-3. Define the requested outcome, boundaries, exclusions, constraints, unknowns, recovery needs, and evidence expected.
-4. Load [classification](./references/classification.md), state `Development level: Small|Medium|Complex` with reasons, and create lifecycle tasks scaled to that level.
-5. Resolve artifact locations using [artifact contracts](./references/artifact-contracts.md). Existing repository locations win; otherwise use the defaults there.
+Complexity should increase specialist rigor, not create a competing classification model. In KIS-managed work, read the current KIS classification and scale specialist use accordingly. For complex, high-risk, uncertain, or cross-boundary work, default toward explicit brainstorming, planning, test strategy, review, and verification unless current KIS/repository guidance says otherwise.
 
-Classify before implementation. Reclassify when scope, uncertainty, reversibility, data impact, or risk changes. Escalate immediately when any higher-level trigger appears; never downgrade only because the diff is small.
+Do not reproduce a specialist skill from memory. Invoke the available skill, pass it the current authoritative constraints and artifacts, use its method, then return control to the governing repository/KIS workflow.
+## Standalone Mode
 
-## Run The Lifecycle
+When KIS is not the repository authority:
 
-Load [lifecycle](./references/lifecycle.md) and enforce every applicable gate.
+1. Read repository instructions and discover the existing test, build, lint, security, release, documentation, and Git conventions.
+2. Define the requested outcome, boundaries, exclusions, unknowns, acceptance evidence, and recovery needs.
+3. Use [Standalone scaling](./references/classification.md) only to decide how much specification, planning, review, and verification is warranted.
+4. Prefer existing project artifact locations. If none exist and durable artifacts are useful, use [Standalone artifact guidance](./references/artifact-contracts.md).
+5. Keep requirements, implementation tasks, tests/evidence, and review findings traceable for non-trivial work.
+6. Reassess scope and risk when discovery changes the problem.
 
-### Small
+The standalone fallback is intentionally lightweight. It must not claim to emulate KIS or copy KIS-specific classifications, transitions, capability schemas, or change-management rules.
 
-- Write a compact specification and inline plan.
-- Implement one bounded change.
-- For a behavior change, apply `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
-- Review the final diff against the brief, then verify with current evidence.
-- Apply `verification-before-completion` only as a specialist evidence method within the repository-authorized completion gate.
+## Review and Completion
 
-### Medium
+Specialist review supplements the governing workflow. Check requirements, correctness, edge cases, failure handling, security/privacy where applicable, test relevance, maintainability, unnecessary complexity, scope discipline, evidence freshness, and rollback/recovery.
 
-- Create an explicit specification and implementation plan with traceable reviewable tasks.
-- If requirements or design are unclear, use `brainstorming` only when repository/KIS authority permits or selects that specialist method.
-- Use `writing-plans` only when repository/KIS authority permits or selects it; this skill's artifact contract remains controlling.
-- For behavior changes, use `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
-- At review checkpoints, use `requesting-code-review` only when repository/KIS authority permits or selects it; otherwise perform the base review contract.
-- Use `verification-before-completion` only as a specialist evidence method inside the repository-authorized closeout gate.
+Fix blocking findings and rerun affected checks. Any implementation edit invalidates affected review or verification evidence.
 
-### Complex
-
-- Create the detailed specification and plan defined by the artifact contract. Preserve unresolved decisions; do not invent product or risk decisions.
-- If requirements, architecture, or trade-offs are not already approved, use `brainstorming` only when repository/KIS authority permits or selects that specialist method.
-- Require human review and approval of the written specification, then use `writing-plans` only when repository/KIS authority permits or selects it.
-- Require human review and approval of the written plan before implementation.
-- Select an executor only through repository/KIS authority; `subagent-driven-development` and `executing-plans` are optional specialist execution methods, not lifecycle authorities.
-- For behavior changes, use `test-driven-development` only when repository/KIS authority permits or selects that specialist method.
-- At task and whole-change gates, use `requesting-code-review` only when repository/KIS authority permits or selects it; otherwise perform the base review contract.
-- Use `verification-before-completion` only as a specialist evidence method inside the repository-authorized closeout gate.
-- For branch closeout, `finishing-a-development-branch` may supply method guidance only after KIS or other repository authority selects and authorizes that path.
-
-Do not reproduce or approximate an unavailable specialist from memory. When a specialist is selected and available, invoke it explicitly, follow it within project and KIS authority, record its result, then return to the current lifecycle gate. Otherwise execute this skill's base gate directly and disclose the missing specialization.
-
-## Review Contract
-
-Review the current specification, plan, documentation, implementation diff, tests, and fresh evidence together. Record findings by severity with paths and evidence. Cover:
-
-- specification and acceptance-criteria compliance;
-- plan/task compliance and traceability;
-- correctness, edge cases, error handling, and regressions;
-- security, privacy, secrets, authorization, and data handling;
-- test relevance, red/green evidence when TDD applies, and failure-path quality;
-- maintainability, readability, and repository conventions;
-- unnecessary complexity and opportunities for a smaller correct design;
-- scope discipline, exclusions, and unrelated changes;
-- freshness and sufficiency of verification evidence;
-- rollback, recovery, migration, and operational readiness when applicable.
-
-Use the mapping in [Specialist integration](./references/superpowers-integration.md) only to select specialist methods permitted by repository/KIS authority. `security-review`, `code-review`, `simpler-code`, or `smarter-code` may contribute evidence when selected; none of them independently creates a review gate or mutation authority. Their absence never converts an unperformed base Review Contract into a pass.
-
-Fix blocking findings, rerun affected checks, and re-review the changed scope. Do not let an earlier approval or test run cover later edits.
-
-## Close Gate
-
-Close only when applicable requirements are satisfied, spec and plan mappings reconcile, blocking findings are resolved, required checks pass on the current state, evidence is recorded, recovery is understood, and every remaining item is explicitly optional or out of scope. In a KIS-managed repository, KIS review/verification and Work Management projection must also reflect the current state before closeout.
-
-Report the development level, artifacts, implemented scope, review findings or clean result, exact verification commands and outcomes, recovery/rollback, skipped checks, residual risks, and optional follow-ups. Never describe unverified behavior as complete.
-
+Close only through the repository's governing workflow. Report implemented scope, specialist methods used, review findings, verification evidence, skipped checks, recovery/rollback, residual risks, and optional follow-ups. Never describe unverified behavior as complete.
