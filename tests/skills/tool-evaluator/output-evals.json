@@ -1,0 +1,72 @@
+{
+  "skill_name": "tool-evaluator",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Compare two data quality platforms for a governed pilot where security, integration effort, reliability, and exit risk matter.",
+      "expected_outcome": "Defines requirements and representative trials, separates verified evidence from assumptions, and includes exit risk.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Defines requirements and representative trials, separates verified evidence from assumptions, and includes exit risk.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "A vendor publishes a benchmark showing its warehouse is 40% faster. Decide whether we should adopt it.",
+      "expected_outcome": "Treats vendor benchmark as input to verify, defines representative testing, and avoids unsupported adoption.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Treats vendor benchmark as input to verify, defines representative testing, and avoids unsupported adoption.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Choose a testing tool, but procurement and installation are not authorized.",
+      "expected_outcome": "Produces a decision/pilot recommendation without procurement, installation, or rollout actions.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Produces a decision/pilot recommendation without procurement, installation, or rollout actions.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    }
+  ]
+}

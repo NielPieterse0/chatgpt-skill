@@ -1,0 +1,72 @@
+{
+  "skill_name": "evidence-collector",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "A transformation claims to preserve all 10,000 input records while changing a date field. Define the evidence needed to verify the claim.",
+      "expected_outcome": "Uses deterministic counts/schema/value checks, records uncertainty, and does not invent execution.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Uses deterministic counts/schema/value checks, records uncertainty, and does not invent execution.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "An A/B experiment claims a 12% latency improvement from one run. Assess the evidence.",
+      "expected_outcome": "Separates measured result from confidence, asks for repeatability/comparable conditions, and avoids declaring success from one run.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Separates measured result from confidence, asks for repeatability/comparable conditions, and avoids declaring success from one run.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "A screenshot shows a dashboard looks correct, but the acceptance criterion concerns persisted values. What evidence is appropriate?",
+      "expected_outcome": "Rejects screenshot-only proof for persisted data and chooses stronger state/test evidence.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Rejects screenshot-only proof for persisted data and chooses stronger state/test evidence.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    }
+  ]
+}
