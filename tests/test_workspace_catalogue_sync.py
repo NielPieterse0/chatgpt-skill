@@ -172,6 +172,47 @@ class WorkspaceCatalogueSyncTests(unittest.TestCase):
         self.assertNotIn("v2", (self.catalogue / "first-skill" / "SKILL.md").read_text(encoding="utf-8"))
         self.assertIn("catalogue drift", drifted.read_text(encoding="utf-8"))
 
+    def test_runtime_catalogue_excludes_repository_only_manifest(self) -> None:
+        self._write_skill("runtime-only-skill", "v1")
+        refs = self.repo / "skills" / "runtime-only-skill" / "references"
+        refs.mkdir()
+        (refs / "guide.md").write_text("runtime guide\n", encoding="utf-8")
+        self._commit("add runtime-only skill")
+        self._accept_main()
+
+        result = sync_catalogue(self.repo, self.catalogue)
+
+        self.assertTrue(result["ok"])
+        published = self.catalogue / "runtime-only-skill"
+        self.assertTrue((published / "SKILL.md").is_file())
+        self.assertTrue((published / "references" / "guide.md").is_file())
+        self.assertFalse((published / "adoption-manifest.json").exists())
+
+    def test_update_accepts_previous_runtime_projection_without_manifest(self) -> None:
+        self._write_skill("projected-skill", "v1")
+        first = self._commit("add projected skill")
+        self._accept_main()
+        skill_root = self.repo / "skills" / "projected-skill"
+        catalogue_root = self.catalogue / "projected-skill"
+        catalogue_root.mkdir()
+        (catalogue_root / "SKILL.md").write_bytes(
+            subprocess.run(
+                ["git", "-C", str(self.repo), "show", f"{first}:skills/projected-skill/SKILL.md"],
+                check=True,
+                capture_output=True,
+            ).stdout
+        )
+        self._write_skill("projected-skill", "v2")
+        self._commit("update projected skill")
+        self._accept_main()
+
+        result = sync_catalogue(self.repo, self.catalogue)
+
+        self.assertTrue(result["ok"])
+        self.assertEqual("update", result["skills"][0]["action"])
+        self.assertIn("v2", (catalogue_root / "SKILL.md").read_text(encoding="utf-8"))
+        self.assertFalse((catalogue_root / "adoption-manifest.json").exists())
+
     def test_post_merge_hook_surfaces_publication_failure(self) -> None:
         scripts = self.repo / "scripts"
         scripts.mkdir()
