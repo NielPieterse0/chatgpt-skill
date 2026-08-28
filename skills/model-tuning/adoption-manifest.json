@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "skill": "model-tuning",
+  "source": {
+    "repository": "https://github.com/NielPieterse0/chatgpt-skill.git",
+    "revision": "d04ebc3cab5c9e9682793c4a62d658b8495db51f",
+    "imported_at": "2026-08-28",
+    "provenance_type": "trusted-local",
+    "handoff": null,
+    "adopted_content_sha256": "69de3116465f4a130d10e6f7a7ae2da22e47e97ad7c278672a7c742dfbf33867"
+  },
+  "license": {
+    "identifier": "LicenseRef-Repository-Owned",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-08-28"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only skills/model-tuning from accepted repository state, restore intentionally retired predecessor catalogue entries if needed, then synchronize and refresh the controlled catalogue."
+  }
+}
