@@ -11,7 +11,7 @@
       "artifact": "tool-evaluator",
       "artifact_sha256": "27b0a9aafe213fd77936e00c3328a10375ff56f002c05689b30620293a6ebd85"
     },
-    "adopted_content_sha256": "5ec1df58190fb92a3f5c3ea8d1c83ebe3f651df990d5909483eaee041b2e61fb"
+    "adopted_content_sha256": "5173718b9cc060c7a322c2372e50efa80a504e73ffb668abe74b8098b8876c23"
   },
   "license": {
     "identifier": "MIT",

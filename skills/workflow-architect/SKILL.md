@@ -2,10 +2,6 @@
 name: workflow-architect
 description: Map data pipelines and other end-to-end workflows as explicit states, transformations, handoffs, branch conditions, failure modes, recovery paths, and observable evidence. Use when a data or software workflow must be specified, tested, or reconciled before implementation; do not use for ordinary implementation or project-status management.
 license: MIT
-metadata:
-  source: msitarzewski/agency-agents@3c9588880b7cafaec325a104899fd8bbe27e7d72
-  source-path: specialized/specialized-workflow-architect.md
-  adaptation: reconstructed-for-safe-adoption
 ---
 # Workflow Architect
 

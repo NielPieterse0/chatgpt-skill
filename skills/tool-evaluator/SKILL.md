@@ -2,10 +2,6 @@
 name: tool-evaluator
 description: Design evidence-based tool trials and compare software or data platforms using explicit requirements, representative experiments, benchmarks, security, integration, cost, operational risk, and exit strategy. Use when selecting, piloting, or reassessing technology; do not use for procurement, installation, or production rollout.
 license: MIT
-metadata:
-  source: msitarzewski/agency-agents@3c9588880b7cafaec325a104899fd8bbe27e7d72
-  source-path: testing/testing-tool-evaluator.md
-  adaptation: reconstructed-for-safe-adoption
 ---
 # Tool Evaluator
 
