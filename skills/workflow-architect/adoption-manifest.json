@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "skill": "workflow-architect",
+  "source": {
+    "repository": "https://github.com/msitarzewski/agency-agents",
+    "revision": "3c9588880b7cafaec325a104899fd8bbe27e7d72",
+    "imported_at": "2026-08-27",
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260827-193408_agency-agents-kis-safe-skills-final_b87fb68f",
+      "artifact": "workflow-architect",
+      "artifact_sha256": "6f8fad43b38f664fd0723113b4ce0582dd59955a2da16e790c429e82dd6916c4"
+    },
+    "adopted_content_sha256": "99bd4b56aa98460a6738d045de50e2c510cd662d566391b8dfda67a16cae9b40"
+  },
+  "license": {
+    "identifier": "MIT",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-08-28"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only the skills/workflow-architect package from the accepted catalogue source, then run the repository-owned workspace catalogue synchronization and regenerate discovery state."
+  }
+}

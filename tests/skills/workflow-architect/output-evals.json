@@ -1,0 +1,72 @@
+{
+  "skill_name": "workflow-architect",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Model a pipeline: ingest files, validate schema, transform rows, write warehouse, retry transient failures, quarantine permanent failures.",
+      "expected_outcome": "Makes states, transformations, branch conditions, failure classes, observability, and recovery explicit.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Makes states, transformations, branch conditions, failure classes, observability, and recovery explicit.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "The documented ETL workflow says retries are idempotent, but inspected implementation can duplicate writes. Reconcile the model.",
+      "expected_outcome": "Separates observed implementation from documented intent and flags drift rather than silently choosing one.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Separates observed implementation from documented intent and flags drift rather than silently choosing one.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Design acceptance cases for partial-write and timeout branches without implementing the pipeline.",
+      "expected_outcome": "Derives testable cases and recovery expectations while preserving the implementation boundary.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Derives testable cases and recovery expectations while preserving the implementation boundary.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, evidence-grounded, and materially better than generic advice."
+      ]
+    }
+  ]
+}
