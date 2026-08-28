@@ -112,6 +112,19 @@ def _directory_files(path: Path) -> list[TreeFile]:
     return files
 
 
+def _accepted_skill_runtime_digests(repo: Path, after: str, skill: str) -> dict[str, str]:
+    """Map runtime digests to accepted first-parent commits for one skill."""
+    output = str(
+        _git(repo, ["log", "--first-parent", "--format=%H", after, "--", f"skills/{skill}"])
+    ).splitlines()
+    accepted: dict[str, str] = {}
+    for commit in output:
+        files = _runtime_files(_tree_files(repo, commit.strip(), skill))
+        if files and any(item.path.as_posix() == "SKILL.md" for item in files):
+            accepted.setdefault(_digest_files(files), commit.strip())
+    return accepted
+
+
 def _changed_skills(repo: Path, before: str | None, after: str) -> list[str]:
     if before is None:
         paths = str(_git(repo, ["ls-tree", "-d", "--name-only", f"{after}:skills"])).splitlines()
@@ -177,16 +190,24 @@ def _preflight_skill(repo: Path, catalogue_root: Path, before: str | None, after
         return {"skill": skill, "action": "unchanged", "digest": current_digest}
 
     previous_digest = _digest_files(previous_files) if previous_files else None
-    if previous_digest is None or destination_digest != previous_digest:
+    accepted_digests = _accepted_skill_runtime_digests(repo, after, skill)
+    matched_commit = accepted_digests.get(destination_digest)
+    if matched_commit is None:
         return {
             "skill": skill,
             "action": "blocked",
-            "reason": "catalogue content diverged from both accepted current and previous repository state",
+            "reason": "catalogue content diverged from accepted runtime history for this skill",
             "catalogue_digest": destination_digest,
             "current_digest": current_digest,
             "previous_digest": previous_digest,
         }
-    return {"skill": skill, "action": "update", "digest": current_digest, "files": current_files}
+    return {
+        "skill": skill,
+        "action": "update",
+        "digest": current_digest,
+        "matched_accepted_commit": matched_commit,
+        "files": current_files,
+    }
 
 
 def sync_catalogue(
