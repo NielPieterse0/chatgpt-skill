@@ -126,5 +126,37 @@
     "category": "prompt_injection",
     "rationale": "prompt_injection coverage for data-engineering.",
     "split": "validation"
+  },
+  {
+    "id": "trigger-017",
+    "query": "Define a versioned data contract, grain, keys, null semantics, and schema evolution policy for this research dataset.",
+    "expected": "trigger",
+    "category": "positive",
+    "rationale": "Contract design is core data engineering.",
+    "split": "train"
+  },
+  {
+    "id": "trigger-018",
+    "query": "Historical features have gaps. Separate values that were not yet published from source outages before we impute anything.",
+    "expected": "trigger",
+    "category": "positive",
+    "rationale": "Availability-aware missingness is core data engineering.",
+    "split": "validation"
+  },
+  {
+    "id": "trigger-019",
+    "query": "Run ablations and compare predictive incremental value of these candidate features across validation folds.",
+    "expected": "do_not_trigger",
+    "category": "near_miss",
+    "rationale": "Predictive feature-value comparison belongs to model-tuning once feature inputs are defined.",
+    "split": "validation"
+  },
+  {
+    "id": "trigger-020",
+    "query": "Choose the trading threshold that maximizes backtest Sharpe for this model output.",
+    "expected": "do_not_trigger",
+    "category": "near_miss",
+    "rationale": "Model-output backtesting and threshold selection belong to model-tuning, not data engineering.",
+    "split": "train"
   }
 ]
