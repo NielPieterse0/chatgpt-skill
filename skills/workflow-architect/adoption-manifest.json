@@ -11,7 +11,7 @@
       "artifact": "workflow-architect",
       "artifact_sha256": "6f8fad43b38f664fd0723113b4ce0582dd59955a2da16e790c429e82dd6916c4"
     },
-    "adopted_content_sha256": "99bd4b56aa98460a6738d045de50e2c510cd662d566391b8dfda67a16cae9b40"
+    "adopted_content_sha256": "79b98cacab44fd8c9028211c95f5765d7456d2de0c94c3696f2b842ece0118fe"
   },
   "license": {
     "identifier": "MIT",

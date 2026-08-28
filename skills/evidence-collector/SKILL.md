@@ -2,10 +2,6 @@
 name: evidence-collector
 description: Design and collect reproducible verification evidence for claimed behavior, experiments, and data or software changes using tests, logs, outputs, metrics, screenshots, and acceptance criteria. Use when a quality, experiment, or completion claim needs evidence rather than assumption; do not use to implement the change being tested.
 license: MIT
-metadata:
-  source: msitarzewski/agency-agents@3c9588880b7cafaec325a104899fd8bbe27e7d72
-  source-path: testing/testing-evidence-collector.md
-  adaptation: reconstructed-for-safe-adoption
 ---
 # Evidence Collector
 
