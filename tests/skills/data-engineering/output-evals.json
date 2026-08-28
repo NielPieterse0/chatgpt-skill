@@ -1,72 +1,116 @@
 {
   "skill_name": "data-engineering",
-  "baseline": "no-skill",
+  "baseline": "previous-accepted-version",
   "evals": [
     {
       "id": "output-001",
-      "prompt": "Design a reproducible point-in-time commodity dataset from revised fundamentals and futures contracts.",
-      "expected_outcome": "Follows the progressive specialist workflow, preserves point-in-time/reproducibility boundaries, and produces concrete data-engineering evidence without taking model or lifecycle authority.",
+      "prompt": "Design a reproducible point-in-time commodity dataset from revised fundamentals, weather forecasts, and futures contracts for daily forecasting.",
+      "expected_outcome": "Produces an explicit use/data contract, separates observation/availability/ingestion/decision times, preserves vintages and contract-roll semantics, classifies missingness, and defines immutable dataset identity without taking model authority.",
       "assertions": [
         {
-          "id": "bounded-quality",
-          "text": "Follows the progressive specialist workflow, preserves point-in-time/reproducibility boundaries, and produces concrete data-engineering evidence without taking model or lifecycle authority.",
+          "id": "data-contract",
+          "text": "Defines a data contract covering grain, keys/cardinality, schema/semantics, units, temporal fields, nullability or missingness meaning, freshness/revision expectations, and consumers/use.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "point-in-time",
+          "text": "Separates observation, publication/availability, ingestion, revision/vintage, and decision-cutoff semantics and rejects future-known substitutions.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "missingness",
+          "text": "Preserves meaningful missingness causes, including not yet published versus source unavailable, rather than silently filling them.",
           "critical": true,
           "method": "human"
         },
         {
           "id": "authority",
-          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "text": "Does not fit/tune/evaluate a model or claim trading, deployment, Git publication, external mutation, or lifecycle authority.",
           "critical": true,
           "method": "human"
         }
       ],
-      "human_review": [
-        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
-      ]
+      "human_review": ["Result is specific enough to implement or audit without inventing source or time semantics."]
     },
     {
       "id": "output-002",
-      "prompt": "Build the ingestion, joins, partitions, and lineage for an experiment-ready research dataset.",
-      "expected_outcome": "Audits grain, joins, leakage, lineage, and dataset identity before declaring fitness.",
+      "prompt": "Audit this customer-event dataset before modeling. Joins are multiplying rows, some keys are null, and the source schema changed last month.",
+      "expected_outcome": "Diagnoses grain/key/cardinality and schema-contract failures before statistical complexity and gives a bounded fitness disposition.",
       "assertions": [
         {
-          "id": "bounded-quality",
-          "text": "Audits grain, joins, leakage, lineage, and dataset identity before declaring fitness.",
+          "id": "join-contract",
+          "text": "States expected join cardinality and verifies duplicate keys, row-count change, unmatched keys, many-to-many expansion, and post-join missingness.",
           "critical": true,
           "method": "human"
         },
         {
-          "id": "authority",
-          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "id": "schema-evolution",
+          "text": "Treats key/type/unit/semantic changes as data contract evolution and does not equate storage-level schema merge with semantic compatibility.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "fitness",
+          "text": "Ends with fit, fit-with-caveats, or not-fit for the stated use and links material findings to evidence and impact.",
           "critical": true,
           "method": "human"
         }
       ],
-      "human_review": [
-        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
-      ]
+      "human_review": ["The audit would catch silent row multiplication and semantic schema drift before model work starts."]
     },
     {
       "id": "output-003",
-      "prompt": "Audit this dataset for broken grain, leakage, temporal misalignment, and many-to-many joins.",
-      "expected_outcome": "Makes pipeline states, failure/recovery behavior, and experiment handoff identities explicit.",
+      "prompt": "Specify an incremental streaming pipeline that can replay late and corrected events without duplicating outputs, and keep operating cost bounded.",
+      "expected_outcome": "Defines realistic idempotency/atomicity, CDC/replay, late-data/finality, schema-change, observability, and cost guarantees without claiming unsupported exactly-once behavior.",
       "assertions": [
         {
-          "id": "bounded-quality",
-          "text": "Makes pipeline states, failure/recovery behavior, and experiment handoff identities explicit.",
+          "id": "pipeline-semantics",
+          "text": "Defines idempotency, partial-write/atomic publication behavior, retry boundaries, replay/backfill semantics, and the actual delivery guarantee instead of casually claiming exactly-once.",
           "critical": true,
           "method": "human"
         },
         {
-          "id": "authority",
-          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "id": "late-data",
+          "text": "Defines event time, allowed lateness or finality policy, correction handling, and how downstream consumers distinguish provisional from corrected results.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "cost",
+          "text": "Considers incremental/CDC and resource trade-offs without weakening replayability, validation, or point-in-time correctness.",
+          "critical": false,
+          "method": "human"
+        }
+      ],
+      "human_review": ["Pipeline guarantees are precise, testable, and technology-neutral."]
+    },
+    {
+      "id": "output-004",
+      "prompt": "Freeze this feature dataset for repeated experiments and prove another researcher can reconstruct the same dataset later.",
+      "expected_outcome": "Defines a dataset manifest, logical content identity, deterministic canonicalization scope, reconstruction protocol, and clean handoff to model-tuning.",
+      "assertions": [
+        {
+          "id": "content-identity",
+          "text": "Defines deterministic logical content identity with explicit canonicalization scope and distinguishes it from byte identity when serialization is not deterministic.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "reconstruct",
+          "text": "Requires an independent reconstruction to recompute and match the declared logical dataset identity or explain the mismatch before equivalence is claimed.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "handoff",
+          "text": "Freezes source, data contract, dataset, feature, split, and preprocessing identities and hands predictive comparison or feature-value testing to model-tuning.",
           "critical": true,
           "method": "human"
         }
       ],
-      "human_review": [
-        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
-      ]
+      "human_review": ["Reproducibility is demonstrated through identities and reconstruction, not asserted because a pipeline completed once."]
     }
   ]
 }
