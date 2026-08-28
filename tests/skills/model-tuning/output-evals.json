@@ -1,0 +1,72 @@
+{
+  "skill_name": "model-tuning",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Design a falsifiable forecasting experiment with baselines, temporal splits, metrics, and stopping criteria.",
+      "expected_outcome": "Defines the experiment before fitting, preserves isolated test evidence, and reports a bounded research conclusion.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Defines the experiment before fitting, preserves isolated test evidence, and reports a bounded research conclusion.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "Train and compare these models with controlled seeds, checkpoints, budgets, and reproducible run records.",
+      "expected_outcome": "Uses controlled training/tuning records, winner-stability evidence, and no final-test tuning.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Uses controlled training/tuning records, winner-stability evidence, and no final-test tuning.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Define and run a bounded hyperparameter search without tuning against the final test set.",
+      "expected_outcome": "Separates predictive evaluation, statistical uncertainty, downstream backtesting, and authorization boundaries.",
+      "assertions": [
+        {
+          "id": "bounded-quality",
+          "text": "Separates predictive evaluation, statistical uncertainty, downstream backtesting, and authorization boundaries.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Does not claim execution, external mutation, deployment, trading, Git publication, or lifecycle authority not granted by the governing workflow.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Result is actionable, progressively scoped, evidence-grounded, and materially better than fragmented specialist routing."
+      ]
+    }
+  ]
+}
