@@ -213,6 +213,25 @@ class WorkspaceCatalogueSyncTests(unittest.TestCase):
         self.assertIn("v2", (catalogue_root / "SKILL.md").read_text(encoding="utf-8"))
         self.assertFalse((catalogue_root / "adoption-manifest.json").exists())
 
+    def test_delayed_retry_uses_last_accepted_skill_version_as_baseline(self) -> None:
+        self._write_skill("delayed-skill", "v1")
+        self._commit("add delayed skill")
+        self._accept_main()
+        sync_catalogue(self.repo, self.catalogue)
+
+        self._write_skill("delayed-skill", "v2")
+        self._commit("update delayed skill")
+        self._accept_main()
+        (self.repo / "README.md").write_text("unrelated accepted change\n", encoding="utf-8")
+        self._commit("unrelated change")
+        self._accept_main()
+
+        result = sync_catalogue(self.repo, self.catalogue, skills=["delayed-skill"])
+
+        self.assertTrue(result["ok"])
+        self.assertEqual("update", result["skills"][0]["action"])
+        self.assertIn("v2", (self.catalogue / "delayed-skill" / "SKILL.md").read_text(encoding="utf-8"))
+
     def test_post_merge_hook_surfaces_publication_failure(self) -> None:
         scripts = self.repo / "scripts"
         scripts.mkdir()
