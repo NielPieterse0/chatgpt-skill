@@ -83,6 +83,11 @@ def _tree_files(repo: Path, commit: str | None, skill: str) -> list[TreeFile]:
     return sorted(files, key=lambda item: item.path.as_posix())
 
 
+def _runtime_files(files: Iterable[TreeFile]) -> list[TreeFile]:
+    """Project a repository skill package to its runtime Agent Skill contents."""
+    return [item for item in files if item.path.as_posix() != "adoption-manifest.json"]
+
+
 def _digest_files(files: Iterable[TreeFile]) -> str:
     digest = hashlib.sha256()
     for item in sorted(files, key=lambda value: value.path.as_posix()):
@@ -146,19 +151,21 @@ def _replace_directory(destination: Path, files: list[TreeFile], catalogue_root:
 
 
 def _preflight_skill(repo: Path, catalogue_root: Path, before: str | None, after: str, skill: str) -> dict[str, object]:
-    current_files = _tree_files(repo, after, skill)
-    previous_files = _tree_files(repo, before, skill)
+    current_package_files = _tree_files(repo, after, skill)
+    previous_package_files = _tree_files(repo, before, skill)
     destination = catalogue_root / skill
 
-    if not current_files:
-        if previous_files:
+    if not current_package_files:
+        if previous_package_files:
             return {"skill": skill, "action": "blocked", "reason": "repository deletion requires explicit manual catalogue retirement"}
         return {"skill": skill, "action": "blocked", "reason": "skill does not exist in the accepted source commit"}
 
-    current_names = {item.path.as_posix() for item in current_files}
+    current_names = {item.path.as_posix() for item in current_package_files}
     if "SKILL.md" not in current_names or "adoption-manifest.json" not in current_names:
         return {"skill": skill, "action": "blocked", "reason": "accepted skill tree lacks SKILL.md or adoption-manifest.json"}
 
+    current_files = _runtime_files(current_package_files)
+    previous_files = _runtime_files(previous_package_files)
     current_digest = _digest_files(current_files)
     if not destination.exists():
         return {"skill": skill, "action": "create", "digest": current_digest, "files": current_files}
