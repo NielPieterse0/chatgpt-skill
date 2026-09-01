@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "skill": "docs-researcher",
+  "source": {
+    "repository": "https://github.com/NielPieterse0/chatgpt-skill.git",
+    "revision": "d839d3fb4f7933f4dd5a4d9aa3c1c064be232534",
+    "imported_at": "2026-09-01",
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260901-180708_docs-researcher-tier0-v2_c017b579",
+      "artifact": "docs-researcher",
+      "artifact_sha256": "fa1191767fcce7bd5b741cc62baa4d833b511d82ac8200e105046e0e84cb3246"
+    },
+    "adopted_content_sha256": "5cd9c56d4bc67d0d0ddd5c3129b4ba07ca64ed4b55605144090207cbeda17ad8"
+  },
+  "license": {
+    "identifier": "LicenseRef-Repository-Owned",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-09-01"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only skills/docs-researcher from the accepted catalogue source, run the repository-owned workspace catalogue synchronization, and regenerate discovery state."
+  }
+}

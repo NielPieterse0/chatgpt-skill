@@ -20,9 +20,10 @@ This skill is not a second workflow engine. It does not redefine KIS lifecycle s
 If KIS is unavailable or the repository does not use it, follow the repository's native workflow and use the standalone guidance in this skill.
 ## Select Specialist Methods
 
-Load [Specialist integration](./references/superpowers-integration.md) and select only methods relevant to the current phase and risk.
+Load [Specialist integration](./references/superpowers-integration.md) and select only methods relevant to the current phase and risk. When the task needs deeper engineering-domain analysis, load [Engineering specialist routing](./references/engineering-specialists.md) and then only the relevant specialist skill.
 
 - Requirements, architecture, or trade-offs need thinking before commitment: use `brainstorming`.
+- Unfamiliar code, architecture, backend/API design, evidence engineering, test strategy, performance, deep review, or AppSec needs specialist depth: select the narrowest role from `engineering-specialists.md` rather than expanding this router.
 - A non-trivial implementation needs an explicit executable plan: use `writing-plans`.
 - A behavior change needs implementation: use `test-driven-development` unless the governing workflow records an exception.
 - A defect has an unknown cause: use `systematic-debugging` before proposing fixes.

@@ -1,0 +1,90 @@
+{
+  "skill_name": "security-architect",
+  "baseline": "no-skill",
+  "evals": [
+    {
+      "id": "output-001",
+      "prompt": "Apply security-architect to this complex engineering decision and identify the technical risks.",
+      "expected_outcome": "threats trace to concrete assets and boundaries",
+      "assertions": [
+        {
+          "id": "technical-depth",
+          "text": "Uses domain-specific mechanisms and failure modes rather than generic engineering advice.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Preserves Tier 0 advisory boundaries and does not claim lifecycle or execution authority.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "evidence",
+          "text": "Connects recommendations to observable verification evidence and states uncertainty.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Technical guidance is materially more specific and decision-useful than the no-skill baseline."
+      ]
+    },
+    {
+      "id": "output-002",
+      "prompt": "I need deep specialist analysis before changing this subsystem; use security-architect to map the important boundaries.",
+      "expected_outcome": "high-impact abuse paths have layered controls",
+      "assertions": [
+        {
+          "id": "technical-depth",
+          "text": "Uses domain-specific mechanisms and failure modes rather than generic engineering advice.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Preserves Tier 0 advisory boundaries and does not claim lifecycle or execution authority.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "evidence",
+          "text": "Connects recommendations to observable verification evidence and states uncertainty.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Technical guidance is materially more specific and decision-useful than the no-skill baseline."
+      ]
+    },
+    {
+      "id": "output-003",
+      "prompt": "Use the security-architect perspective to challenge our current design and define verification evidence.",
+      "expected_outcome": "authorization is enforced at resource boundary",
+      "assertions": [
+        {
+          "id": "technical-depth",
+          "text": "Uses domain-specific mechanisms and failure modes rather than generic engineering advice.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "authority",
+          "text": "Preserves Tier 0 advisory boundaries and does not claim lifecycle or execution authority.",
+          "critical": true,
+          "method": "human"
+        },
+        {
+          "id": "evidence",
+          "text": "Connects recommendations to observable verification evidence and states uncertainty.",
+          "critical": true,
+          "method": "human"
+        }
+      ],
+      "human_review": [
+        "Technical guidance is materially more specific and decision-useful than the no-skill baseline."
+      ]
+    }
+  ]
+}
