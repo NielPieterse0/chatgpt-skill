@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "skill": "testing-test-automation-engineer",
+  "source": {
+    "repository": "https://github.com/msitarzewski/agency-agents.git",
+    "revision": "3c9588880b7cafaec325a104899fd8bbe27e7d72",
+    "imported_at": "2026-08-27",
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260827-203823_agency-agents-remaining-safe-skills-v2_22858806",
+      "artifact": "testing-test-automation-engineer",
+      "artifact_sha256": "1983c71f615b3816fca75e691059c17dbdaeefdfbbd735bbc36a42ade5707ef3"
+    },
+    "adopted_content_sha256": "d3c0e92bf0dd7d59597bec23949c26cd8141e799121f2604b7ebdd26ce316e0d"
+  },
+  "license": {
+    "identifier": "MIT",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-09-01"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only skills/testing-test-automation-engineer from the accepted catalogue source, run the repository-owned workspace catalogue synchronization, and regenerate discovery state."
+  }
+}

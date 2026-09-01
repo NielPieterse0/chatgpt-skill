@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "skill": "security-appsec-engineer",
+  "source": {
+    "repository": "https://github.com/msitarzewski/agency-agents.git",
+    "revision": "3c9588880b7cafaec325a104899fd8bbe27e7d72",
+    "imported_at": "2026-08-27",
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260827-193408_agency-agents-kis-safe-skills-final_b87fb68f",
+      "artifact": "application-security-engineer",
+      "artifact_sha256": "caff331009dc07bd391728f1a4f9b13247787e9c39390e76a5a86edb5b925e3b"
+    },
+    "adopted_content_sha256": "6cec668a5c3c0d3dcbf59d017425a45e8d90d3afd41162d32856dceda67e7635"
+  },
+  "license": {
+    "identifier": "MIT",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-09-01"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only skills/security-appsec-engineer from the accepted catalogue source, run the repository-owned workspace catalogue synchronization, and regenerate discovery state."
+  }
+}

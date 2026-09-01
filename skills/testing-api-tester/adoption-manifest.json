@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "skill": "testing-api-tester",
+  "source": {
+    "repository": "https://github.com/msitarzewski/agency-agents.git",
+    "revision": "3c9588880b7cafaec325a104899fd8bbe27e7d72",
+    "imported_at": "2026-08-27",
+    "provenance_type": "import-isolate",
+    "handoff": {
+      "case_id": "20260827-203823_agency-agents-remaining-safe-skills-v2_22858806",
+      "artifact": "testing-api-tester",
+      "artifact_sha256": "bd1849ccfc08a49ce59abd7f51a0aeb43228321eedcba8f0f87d7c7af7bdf9da"
+    },
+    "adopted_content_sha256": "560a3d8c88c94bb854f20553aedc44bb8c3baeccc566ccf2003f0c147ee70caf"
+  },
+  "license": {
+    "identifier": "MIT",
+    "reviewed": true
+  },
+  "risk": {
+    "tier": 0,
+    "capabilities": {
+      "lifecycle_hooks": false,
+      "network": false,
+      "credentials": false,
+      "external_mutations": false,
+      "runtime_installation": false,
+      "remote_mcp": false,
+      "git_publication": false,
+      "deployment": false,
+      "deletion": false
+    }
+  },
+  "filesystem": {
+    "read": [],
+    "write": [],
+    "absolute_paths": false
+  },
+  "activation": {
+    "mode": "model",
+    "requires_trusted_project": true,
+    "requires_human_approval": false
+  },
+  "dependencies": {
+    "locked": true,
+    "runtime_installation": false
+  },
+  "approval": {
+    "status": "approved",
+    "reviewer": "repository-owner",
+    "reviewed_at": "2026-09-01"
+  },
+  "rollback": {
+    "verified": true,
+    "method": "Remove only skills/testing-api-tester from the accepted catalogue source, run the repository-owned workspace catalogue synchronization, and regenerate discovery state."
+  }
+}
