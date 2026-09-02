@@ -23,6 +23,26 @@ def build_parser() -> argparse.ArgumentParser:
     telemetry = parser.add_mutually_exclusive_group()
     telemetry.add_argument("--telemetry-db", type=Path)
     telemetry.add_argument("--telemetry-json", type=Path)
+    parser.add_argument(
+        "--work-management-json",
+        type=Path,
+        help="Optional exported KIS project_management_board_data JSON snapshot (export with include_history=true).",
+    )
+    parser.add_argument(
+        "--source-issues-json",
+        type=Path,
+        help="Optional complete source-issue export used to verify Project coverage.",
+    )
+    parser.add_argument(
+        "--work-schema-status-json",
+        type=Path,
+        help="Optional exported KIS project_management_schema_status used to verify Work field readiness.",
+    )
+    parser.add_argument(
+        "--work-contract-json",
+        type=Path,
+        help="Optional exported KIS project_management_contract used to verify canonical Work contract identity.",
+    )
     parser.add_argument("--output", type=Path, help="Optional JSON report path.")
     parser.add_argument("--serve", action="store_true", help="Serve the local read-only dashboard.")
     parser.add_argument("--host", default="127.0.0.1", choices=("127.0.0.1",))
@@ -40,6 +60,10 @@ def main(argv: list[str] | None = None) -> int:
         repo_root=args.repo_root,
         telemetry_db=args.telemetry_db,
         telemetry_json=args.telemetry_json,
+        work_management_json=args.work_management_json,
+        source_issues_json=args.source_issues_json,
+        work_schema_status_json=args.work_schema_status_json,
+        work_contract_json=args.work_contract_json,
     )
     rendered = report_to_json(report)
     if args.output is not None:

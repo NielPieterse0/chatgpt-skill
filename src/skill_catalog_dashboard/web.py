@@ -66,6 +66,36 @@ def render_html(report: DashboardReport) -> str:
             f"<td>{_text(warnings)}</td>"
             "</tr>"
         )
+    work_status = payload["sources"]["work_management"]["status"]
+    work_verified = work_status == "observed"
+    work_groups: dict[str, list[str]] = {}
+    for item in payload["work"]:
+        issue = item["source_issue"]
+        issue_link = (
+            f'<a href="{html.escape(str(issue["url"]), quote=True)}">'
+            f'#{_text(issue["number"])}</a>'
+        )
+        row = (
+            "<tr>"
+            f"<td>{issue_link}</td><td><strong>{_text(item['title'])}</strong></td>"
+            f"<td>{_text(item['work_state'])}</td><td>{_text(item['priority'])}</td>"
+            f"<td>{_text(item['effort'])}</td><td>{_text(item['execution_owner'])}</td>"
+            f"<td>{_text(item['blocked_by'])}</td>"
+            "</tr>"
+        )
+        if work_verified:
+            group_name = f"State: {item['work_state']}"
+        else:
+            group_name = f"Unverified state: {item['work_state']}"
+        work_groups.setdefault(group_name, []).append(row)
+    work_sections = "".join(
+        f"<h3>{_text(name)} ({len(group)})</h3><div class=\"scroll\"><table>"
+        "<thead><tr><th>Issue</th><th>Work</th><th>KIS state</th><th>Priority</th><th>Effort</th>"
+        "<th>Owner</th><th>Blocked by</th></tr></thead>"
+        f"<tbody>{''.join(group)}</tbody></table></div>"
+        for name, group in work_groups.items()
+        if group
+    )
     warning_items = "".join(f"<li>{_text(item)}</li>" for item in payload["warnings"])
     return f"""<!doctype html>
 <html lang="en">
@@ -93,8 +123,13 @@ code{{font-size:.8rem}} .warnings{{margin-top:1rem}} .scroll{{overflow:auto;max-
 <div class="card"><strong>Intake candidates</strong><div>{summary['intake_candidate_count']}</div></div>
 <div class="card"><strong>Intake actionable</strong><div>{summary['intake_actionable_count']}</div></div>
 <div class="card"><strong>Intake WM blocked</strong><div>{summary['intake_work_management_blocked_count']}</div></div>
+<div class="card"><strong>Open Work items</strong><div>{_text(summary['work_item_count'])}</div></div>
 </div>
 <div class="warnings"><ul>{warning_items}</ul></div>
+<h2>Lifecycle work queue</h2>
+<p>Work projection status: <strong>{_text(work_status)}</strong></p>
+{work_sections}
+<h2>Skill catalogue</h2>
 <div class="scroll"><table>
 <thead><tr><th>Name</th><th>Description</th><th>Source</th><th>Modified</th><th>Status</th><th>Adoption</th><th>Evaluation</th><th>Usage</th><th>Last used</th><th>Warnings</th></tr></thead>
 <tbody>{''.join(rows)}</tbody>
@@ -136,6 +171,14 @@ def _handler(report: DashboardReport):
                 self._send(404, b"not found\n", "text/plain; charset=utf-8")
 
         def _method_not_allowed(self) -> None:
+            content_length = self.headers.get("Content-Length")
+            if content_length is not None:
+                try:
+                    remaining = int(content_length)
+                except ValueError:
+                    remaining = 0
+                if remaining > 0:
+                    self.rfile.read(remaining)
             self._send(405, b"method not allowed\n", "text/plain; charset=utf-8")
 
         do_POST = _method_not_allowed
