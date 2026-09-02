@@ -11,7 +11,7 @@
       "artifact": "testing-performance-benchmarker",
       "artifact_sha256": "2663175f5379603ba0bc1a9230df1e491afbc66ff70a916984f0747c044a9130"
     },
-    "adopted_content_sha256": "e40f48952a3d886df4271499f64248785278d6d2543f3cc0bd0f00082e38e35a"
+    "adopted_content_sha256": "a6a24f73eee14c29e7b330a70b3db0967b0a5f229c739aaa7b2cafca7f486c5e"
   },
   "license": {
     "identifier": "MIT",
