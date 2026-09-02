@@ -1,0 +1,7 @@
+interface:
+  display_name: "Modularity Assessment"
+  short_description: "Assess modularity with evidence-backed boundaries"
+  default_prompt: "Use $modularity-assessment to assess these structural boundaries."
+
+policy:
+  allow_implicit_invocation: false
