@@ -11,7 +11,7 @@
       "artifact": "evidence-collector",
       "artifact_sha256": "7b130867cebbc6db57881798819a6762602fabaa5929a800a7ba635de138e1b3"
     },
-    "adopted_content_sha256": "489311e4c64c48dc4450ee03fcfd0850e6157ebc19eac1847d323b1e88f4c007"
+    "adopted_content_sha256": "5cf358b94788ed8e9aa83d839482677609303a25c46a3ce3ec3709c97558d1f5"
   },
   "license": {
     "identifier": "MIT",
