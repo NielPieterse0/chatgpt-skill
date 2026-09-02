@@ -11,7 +11,7 @@
       "artifact": "security-architect",
       "artifact_sha256": "9bed22f1563679d6fc567d903a2bf499f77b725a5827f03ef827103f0305979c"
     },
-    "adopted_content_sha256": "b1c1d7f1fd6c3c8bd0622f5e4026b8f251540f8b884241841b1aafea5967bce8"
+    "adopted_content_sha256": "2b5b3791af40568781e80bd5fb3e7eebad29bfba882344b5660f053c42e4d114"
   },
   "license": {
     "identifier": "MIT",
