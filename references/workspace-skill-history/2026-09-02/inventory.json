@@ -1,0 +1,140 @@
+[
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/concepts-and-errors.md",
+    "bytes": 5372,
+    "sha256": "9661cbb46ba10ada55b8bcec7111c166489bf4117a958ff29603c32622b4abbd"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/operator-support.md",
+    "bytes": 8159,
+    "sha256": "c0b1f4b44bb3fa56d0a552baab74f94f461ae96d3a50d7eda70bf92b17615905"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/projects-and-context.md",
+    "bytes": 4443,
+    "sha256": "933e4d46d555e318274f1b3d294732c820caf3cf99be55d3cf340e9e954f0a5e"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/providers-and-workflows.md",
+    "bytes": 11193,
+    "sha256": "3b2f7fc4cf3162e0bdf9015b71c788989152df594b0ea622604b0cdc3f6e5502"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/skills-module.md",
+    "bytes": 4383,
+    "sha256": "1cd9c84ba101553c6ffbb67c633270785590305eb22c14f11a5636ba5b020a03"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/tool-selection-and-schemas.md",
+    "bytes": 6394,
+    "sha256": "eb122602dc390a633782312d4c12e9a3d8939c633e295d506756f7088bfdaa6e"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/references/work-management.md",
+    "bytes": 12525,
+    "sha256": "8f2468cd9cada88d9e83ca59efd79346e78521da0487fb3ad98b9ff106ac2b36"
+  },
+  {
+    "root": "quarantine",
+    "path": "issue-80-kis-mcp-cf192a3df9caed8e99cc286b40ee80c13faa243efb233d9ca4250c964e30a582/SKILL.md",
+    "bytes": 20128,
+    "sha256": "349f903e38854330f8eb63d64a7faf60177270b4a1c8458b54fcbf4ad3d3107c"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/commodity-market-data/SKILL.md",
+    "bytes": 1964,
+    "sha256": "fa59f2952f2083a8a8a8b07fc7ac196cb59c92217893d73463b0cfc1633921b9"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/data-engineer/SKILL.md",
+    "bytes": 1733,
+    "sha256": "017faccdeb2068355cfb520bfb09ecf0200b3e9056975d8e41c7226f3a0ded68"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/dataset-auditor/SKILL.md",
+    "bytes": 1663,
+    "sha256": "eef31ed2fb71978dc9cf0ac5152f0c67cc8aa4b01157560ee879401d64e589de"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/experiment-designer/SKILL.md",
+    "bytes": 2088,
+    "sha256": "e8557565394c8fe93626625a1798addd842c9fffbab8bfe0b993220c6ba33ef3"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/experiment-tracker/SKILL.md",
+    "bytes": 1827,
+    "sha256": "5e05b46006042a8e4c35ab5e500291f3cd2644774f4f85d48aaa1be1a6b5dd56"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/feature-engineer/SKILL.md",
+    "bytes": 1613,
+    "sha256": "11a3aa10930b5f6bb18ee46faf995cbda3750212e80ac9bd5ea6dda7341af328"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/forecast-backtesting/SKILL.md",
+    "bytes": 1731,
+    "sha256": "4b987d79ce407cd34c99706284de66c841788eca66067ac4e1e3ec3f29b114ad"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/hyperparameter-optimizer/SKILL.md",
+    "bytes": 1598,
+    "sha256": "61f690f9055f3ec6d0a7976c8464d68ba8d3382be6c5e63c9b680c6f9bef8c9e"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/inventory.json",
+    "bytes": 5500,
+    "sha256": "9b44b0afa75c7d2265137254322cdac1ec66b96accee717062412b1ebfa81157"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/model-evaluator/SKILL.md",
+    "bytes": 1605,
+    "sha256": "d2839c648aea76f0874d11fce51237b8f075100e8a591b8e5a0f168552f51302"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/model-trainer/SKILL.md",
+    "bytes": 1629,
+    "sha256": "4ac5218ebc6a2682cb1af9a9d8fa2e40413a963e59bb63d55423d9a0dc67f360"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/neural-network-engineer/SKILL.md",
+    "bytes": 1688,
+    "sha256": "afe5e7cfc96945c59ce798f9111e32ff6cc3d2ba3186ef91b48de8c0e3a5043a"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/reproducibility-auditor/SKILL.md",
+    "bytes": 1783,
+    "sha256": "587f4c9eb1da43d788fbc3c56eeef19b318cbde4b490ea6c15caa63362a3e14b"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/statistical-analyst/SKILL.md",
+    "bytes": 1631,
+    "sha256": "82c3c94d58b2c2a58ca64ae47cb68ace2efb48e526a89f5404c09912f816f84b"
+  },
+  {
+    "root": "retired-skills",
+    "path": "issue-132-20260828/time-series-research/SKILL.md",
+    "bytes": 1982,
+    "sha256": "bac4b5288589e208a2a20938cecaf6b016ba09da1222059c34ed7df17b033c82"
+  }
+]
