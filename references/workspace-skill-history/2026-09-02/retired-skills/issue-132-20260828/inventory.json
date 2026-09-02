@@ -1,0 +1,170 @@
+[
+  {
+    "skill": "commodity-market-data",
+    "source": "C:\\Projects\\.agents\\skills\\commodity-market-data",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\commodity-market-data",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "fa59f2952f2083a8a8a8b07fc7ac196cb59c92217893d73463b0cfc1633921b9",
+        "bytes": 1964
+      }
+    ]
+  },
+  {
+    "skill": "data-engineer",
+    "source": "C:\\Projects\\.agents\\skills\\data-engineer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\data-engineer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "017faccdeb2068355cfb520bfb09ecf0200b3e9056975d8e41c7226f3a0ded68",
+        "bytes": 1733
+      }
+    ]
+  },
+  {
+    "skill": "dataset-auditor",
+    "source": "C:\\Projects\\.agents\\skills\\dataset-auditor",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\dataset-auditor",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "eef31ed2fb71978dc9cf0ac5152f0c67cc8aa4b01157560ee879401d64e589de",
+        "bytes": 1663
+      }
+    ]
+  },
+  {
+    "skill": "experiment-designer",
+    "source": "C:\\Projects\\.agents\\skills\\experiment-designer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\experiment-designer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "e8557565394c8fe93626625a1798addd842c9fffbab8bfe0b993220c6ba33ef3",
+        "bytes": 2088
+      }
+    ]
+  },
+  {
+    "skill": "experiment-tracker",
+    "source": "C:\\Projects\\.agents\\skills\\experiment-tracker",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\experiment-tracker",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "5e05b46006042a8e4c35ab5e500291f3cd2644774f4f85d48aaa1be1a6b5dd56",
+        "bytes": 1827
+      }
+    ]
+  },
+  {
+    "skill": "feature-engineer",
+    "source": "C:\\Projects\\.agents\\skills\\feature-engineer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\feature-engineer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "11a3aa10930b5f6bb18ee46faf995cbda3750212e80ac9bd5ea6dda7341af328",
+        "bytes": 1613
+      }
+    ]
+  },
+  {
+    "skill": "forecast-backtesting",
+    "source": "C:\\Projects\\.agents\\skills\\forecast-backtesting",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\forecast-backtesting",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "4b987d79ce407cd34c99706284de66c841788eca66067ac4e1e3ec3f29b114ad",
+        "bytes": 1731
+      }
+    ]
+  },
+  {
+    "skill": "hyperparameter-optimizer",
+    "source": "C:\\Projects\\.agents\\skills\\hyperparameter-optimizer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\hyperparameter-optimizer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "61f690f9055f3ec6d0a7976c8464d68ba8d3382be6c5e63c9b680c6f9bef8c9e",
+        "bytes": 1598
+      }
+    ]
+  },
+  {
+    "skill": "model-evaluator",
+    "source": "C:\\Projects\\.agents\\skills\\model-evaluator",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\model-evaluator",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "d2839c648aea76f0874d11fce51237b8f075100e8a591b8e5a0f168552f51302",
+        "bytes": 1605
+      }
+    ]
+  },
+  {
+    "skill": "model-trainer",
+    "source": "C:\\Projects\\.agents\\skills\\model-trainer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\model-trainer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "4ac5218ebc6a2682cb1af9a9d8fa2e40413a963e59bb63d55423d9a0dc67f360",
+        "bytes": 1629
+      }
+    ]
+  },
+  {
+    "skill": "neural-network-engineer",
+    "source": "C:\\Projects\\.agents\\skills\\neural-network-engineer",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\neural-network-engineer",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "afe5e7cfc96945c59ce798f9111e32ff6cc3d2ba3186ef91b48de8c0e3a5043a",
+        "bytes": 1688
+      }
+    ]
+  },
+  {
+    "skill": "reproducibility-auditor",
+    "source": "C:\\Projects\\.agents\\skills\\reproducibility-auditor",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\reproducibility-auditor",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "587f4c9eb1da43d788fbc3c56eeef19b318cbde4b490ea6c15caa63362a3e14b",
+        "bytes": 1783
+      }
+    ]
+  },
+  {
+    "skill": "statistical-analyst",
+    "source": "C:\\Projects\\.agents\\skills\\statistical-analyst",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\statistical-analyst",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "82c3c94d58b2c2a58ca64ae47cb68ace2efb48e526a89f5404c09912f816f84b",
+        "bytes": 1631
+      }
+    ]
+  },
+  {
+    "skill": "time-series-research",
+    "source": "C:\\Projects\\.agents\\skills\\time-series-research",
+    "backup": "C:\\Projects\\.agents\\retired-skills\\issue-132-20260828\\time-series-research",
+    "files": [
+      {
+        "path": "SKILL.md",
+        "sha256": "bac4b5288589e208a2a20938cecaf6b016ba09da1222059c34ed7df17b033c82",
+        "bytes": 1982
+      }
+    ]
+  }
+]
