@@ -41,3 +41,55 @@ Human review is not interchangeable with agent grading. Agent review can provide
 ## Re-evaluation triggers
 
 Re-run affected evaluation when a candidate `SKILL.md`, technical-depth reference, description, routing entry, adoption hash, source binding, runtime adapter, or governing evaluation/security standard changes. Post-verification edits stale affected evidence and require fresh verification.
+## Corrective full-depth redo — 2026-09-02
+
+This corrective iteration starts from accepted `origin/main` `f8c538ded741aa86f1a8a11c3a633e2f4c99cf39`. The prior implementation and #146 human KIS-harmony approval remain historical evidence for `6f2a5ac62dc4a758654ab35c011ade9c632d4fe3`; they are not silently rebound to changed bytes.
+
+Loaded skill-development methods: `create-skill`, `writing-skills`, `evaluate-skill`, and `improve-skill`. The optional `plugin-eval` CLI was not installed on this execution surface, so no plugin-eval report is claimed; repository-owned evaluation and security standards remain authoritative.
+
+### Corrective adopted-content identities
+
+| Package | Adopted-content SHA-256 |
+|---|---|
+| `explorer` | `37ef9ed68bbf76baa73cb013e82e24ce0b9572c11dc58e5694d79d2f461cf244` |
+| `engineering-codebase-onboarding-engineer` | `2001667e6d2dacbcd45738ea1d52c7fb915ea265bd3934bfebf66742f589cc2a` |
+| `engineering-software-architect` | `4390a76dc718904622b00879973f3007ab31f66408b468edc5af4863e3e277f8` |
+| `engineering-backend-architect` | `a1b8765a11de29b9a3b70155c4532cb88c8d60bbac60a10623462b88f6f3bf4a` |
+| `engineering-api-platform-engineer` | `495e279fd63178c1564bbdef8f747f1827d378e2d115db8127de0663bc7f7d29` |
+| `security-architect` | `2b5b3791af40568781e80bd5fb3e7eebad29bfba882344b5660f053c42e4d114` |
+| `evidence-engineering` | `5cf358b94788ed8e9aa83d839482677609303a25c46a3ce3ec3709c97558d1f5` |
+| `engineering-minimal-change-engineer` | `586d419647320fe9aad6533488212eae94f3159c58f3bfd40b431d3656fec847` |
+| `docs-researcher` | `f3482a6eae07b7a56835bcad329b5720292ef0972ace075aa4a6a88ca3a40017` |
+| `testing-api-tester` | `f6e3f8bd0689812efe91b40738e34d59779f5269add575dfe0f7650f776500b6` |
+| `testing-test-automation-engineer` | `1835f19024d67c2de1492b35c063efbdd873c1c7244b650ab98091ca6fc933e2` |
+| `testing-performance-benchmarker` | `a6a24f73eee14c29e7b330a70b3db0967b0a5f229c739aaa7b2cafca7f486c5e` |
+| `reviewer` | `f25911c59c4d264843459703ae16d8cf4f978d1e603a5bdc949c7295127fb9c0` |
+| `engineering-code-reviewer` | `eab8815c39aec8566fe47339301022df1479cc62ea2d10d8ac424b615e6969e4` |
+| `security-ai-generated-code-auditor` | `ce2ca6e46b616bd72b5dc80d6198c68e21e54e4ccd8c1f66f39814b753d60417` |
+| `security-appsec-engineer` | `858d752272e8181dd9205207549cc447bfc5d9fab808f738551805a9642c2891` |
+| `develop-code` routing package | `d40076f2789b32feb94be37874f6eee0aecb8f6e0da40f59b2aca3c1ad2f9539` |
+
+### Fresh evaluation and verification boundary
+
+The tracked definitions are unchanged from `f8c538ded741aa86f1a8a11c3a633e2f4c99cf39`. Each of the 16 specialists still has 16 trigger cases (6 positive, 6 near-miss, 2 conflict, 2 prompt-injection), 3 output cases against `no-skill`, and 8 abuse cases. This proves definition coverage only; it does not synthesize target-runtime behavioral results.
+
+Fresh deterministic checks on the corrective bytes passed: adopted-content hashing for all 16 specialists plus the changed `develop-code` router; `python scripts/skill_security.py validate --repo .`; `python scripts/project_contract.py validate --repo .`; `npm run verify-compliance`; `git diff --check`; and full `npm run verify` with 261 tests passing and 4 platform-permission skips. The full verify also passed project contract, compliance, catalogue-evaluation, plugin-portfolio, intake, security, and catalogue generation.
+
+Target-isolated automatic activation/output observability was not newly available in this run. No new trigger-rate, output-quality, efficiency, or runtime-compatibility pass is claimed. The corrective release decision therefore relies only on deterministic package/security/evaluation-definition evidence plus the explicit review evidence recorded for the corrective diff; any later target surface that exposes reliable isolated behavioral observability must rerun the unchanged tracked cases against these exact hashes.
+
+The omission/adaptation review for the redo is recorded in [`issue-139-engineering-specialist-omissions.md`](issue-139-engineering-specialist-omissions.md). An unlisted material source omission remains a defect rather than an implicit simplification.
+## Corrective review closure (#150)
+
+The #150 corrective tree was split into bounded review commits only because the KIS architecture projector could not safely review the original 53-file diff without truncation. The final tree remains byte-identical to the original corrective commit tree (`3032bb2f1f601bb5bd8edb4ded1ef6d32443d2f8`).
+
+Purpose-specific independent reviews completed across governance/routing, exploration/architecture, backend/API/security architecture, evidence/research, testing, code review, and AppSec slices. Clean reviews were obtained for governance/routing, evidence/research, code-quality review, and safety/security review.
+
+Reviewer findings that were not accepted were dispositioned against repository/package reality rather than implemented blindly:
+
+- Claims that Tier-0 advisory skills lacked an explicit authority boundary were rejected: each affected `SKILL.md` explicitly denies filesystem, mutation, Git/GitHub, deployment, lifecycle, and completion authority and includes an adjacent-skill boundary.
+- Claims that API-platform contract semantics such as retry, idempotency, pagination, authorization boundaries, and consumer-visible consistency belong exclusively to backend architecture were rejected. The API specialist owns externally observable contract semantics; backend implementation internals remain delegated to `engineering-backend-architect`.
+- The request to externally version-pin relative `technical-depth.md` references was rejected. Those references are in-package resources covered by the package's deterministic adopted-content hash; adding a second version indirection would contradict the repository package model.
+- Claims that ordinary `reviewer` and `engineering-code-reviewer` must not compose were rejected. Their distinction is intentional: precision-first bounded review versus deeper architecture/concurrency/migration/operability review, with explicit escalation guidance.
+- API-contract review requests to treat the changed skill-content hash itself as a breaking API contract were rejected. The manifest hash identifies adopted skill content; it is not a consumer API version. The rewritten API reference explicitly covers error stability, idempotency, pagination, compatibility, deprecation, rate limits, SDKs, and authority boundaries.
+
+No accepted reviewer finding requires a corrective content change. Review closure therefore preserves the already-verified skill tree and proceeds to final release verification.

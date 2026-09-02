@@ -11,7 +11,7 @@
       "artifact": "testing-api-tester",
       "artifact_sha256": "bd1849ccfc08a49ce59abd7f51a0aeb43228321eedcba8f0f87d7c7af7bdf9da"
     },
-    "adopted_content_sha256": "560a3d8c88c94bb854f20553aedc44bb8c3baeccc566ccf2003f0c147ee70caf"
+    "adopted_content_sha256": "f6e3f8bd0689812efe91b40738e34d59779f5269add575dfe0f7650f776500b6"
   },
   "license": {
     "identifier": "MIT",

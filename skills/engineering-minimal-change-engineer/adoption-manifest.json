@@ -11,7 +11,7 @@
       "artifact": "minimal-change-engineer",
       "artifact_sha256": "335dc2c882a4cbfe6940d2ffd856b1ac491c0df5fbc05f42e1264a7e6b0620b7"
     },
-    "adopted_content_sha256": "4fc0840a061203900e1fc976654e5ef6ac57a4b41be9e5825f64f783fbabd740"
+    "adopted_content_sha256": "586d419647320fe9aad6533488212eae94f3159c58f3bfd40b431d3656fec847"
   },
   "license": {
     "identifier": "MIT",

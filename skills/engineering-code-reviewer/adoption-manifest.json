@@ -11,7 +11,7 @@
       "artifact": "code-reviewer",
       "artifact_sha256": "f18d6b8cddbb5fd9de91ed4d5f1e270e0994852b5aa20fc537085d196ad93403"
     },
-    "adopted_content_sha256": "324de90e3f0e0ee7f1765141a9d72677f7d95584a3d0d4174dd35fe23abecf25"
+    "adopted_content_sha256": "eab8815c39aec8566fe47339301022df1479cc62ea2d10d8ac424b615e6969e4"
   },
   "license": {
     "identifier": "MIT",

@@ -11,7 +11,7 @@
       "artifact": "security-ai-generated-code-auditor",
       "artifact_sha256": "e1089d0a6b5000cfab8814bd22f18494681aa6cb77087c7f729c85056ca0dffd"
     },
-    "adopted_content_sha256": "2eedef326c95aa164e880e5efa6e12098871e27ce5e89878c4162abca099879f"
+    "adopted_content_sha256": "ce2ca6e46b616bd72b5dc80d6198c68e21e54e4ccd8c1f66f39814b753d60417"
   },
   "license": {
     "identifier": "MIT",
