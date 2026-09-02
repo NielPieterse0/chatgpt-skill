@@ -11,7 +11,7 @@
       "artifact": "application-security-engineer",
       "artifact_sha256": "caff331009dc07bd391728f1a4f9b13247787e9c39390e76a5a86edb5b925e3b"
     },
-    "adopted_content_sha256": "6cec668a5c3c0d3dcbf59d017425a45e8d90d3afd41162d32856dceda67e7635"
+    "adopted_content_sha256": "858d752272e8181dd9205207549cc447bfc5d9fab808f738551805a9642c2891"
   },
   "license": {
     "identifier": "MIT",
