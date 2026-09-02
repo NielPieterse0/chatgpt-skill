@@ -8,3 +8,4 @@ references/evaluating-skills.md text eol=lf
 references/using-scripts-skills.md text eol=lf
 references/skills-best-practice.md text eol=lf
 .githooks/* text eol=lf
+workspace-skills/** -text

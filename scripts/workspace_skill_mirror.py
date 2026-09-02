@@ -4,8 +4,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 DEFAULT_CATALOGUE = Path(os.environ.get("CHATGPT_SKILL_CATALOGUE_ROOT", r"C:\Projects\.agents\skills"))
 
@@ -31,7 +32,40 @@ def digest(payload: dict[str, bytes]) -> str:
     return h.hexdigest()
 
 def repo_runtime_packages(repo: Path) -> dict[str, dict[str, bytes]]:
-    packages: dict[str, dict[str, bytes]] = {}
+    """Return repo-owned runtime bytes as they will exist in the Git commit.
+
+    In a Git checkout the index is authoritative so line-ending clean filters cannot
+    make the tracked mirror platform-dependent. Tests/non-Git fixtures fall back to
+    filesystem bytes.
+    """
+    probe = subprocess.run(
+        ["git", "-C", str(repo), "rev-parse", "--is-inside-work-tree"],
+        check=False, capture_output=True, text=True,
+    )
+    if probe.returncode == 0 and probe.stdout.strip() == "true":
+        listed = subprocess.run(
+            ["git", "-C", str(repo), "ls-files", "-z", "--cached", "--", "skills"],
+            check=True, capture_output=True,
+        ).stdout
+        packages: dict[str, dict[str, bytes]] = {}
+        for raw in listed.split(b"\0"):
+            if not raw:
+                continue
+            path = PurePosixPath(raw.decode("utf-8"))
+            if len(path.parts) < 3 or path.parts[0] != "skills":
+                continue
+            name = path.parts[1]
+            relative = PurePosixPath(*path.parts[2:]).as_posix()
+            if relative == "adoption-manifest.json":
+                continue
+            content = subprocess.run(
+                ["git", "-C", str(repo), "show", f":{path.as_posix()}"],
+                check=True, capture_output=True,
+            ).stdout
+            packages.setdefault(name, {})[relative] = content
+        return {name: payload for name, payload in packages.items() if "SKILL.md" in payload}
+
+    packages = {}
     for skill in sorted((repo / "skills").iterdir()):
         if not skill.is_dir() or not (skill / "SKILL.md").is_file():
             continue
