@@ -1,0 +1,176 @@
+{
+  "capabilities": {
+    "credentials": true,
+    "external_mutation": true,
+    "filesystem_read": [
+      "."
+    ],
+    "filesystem_write": [
+      "."
+    ],
+    "network": true,
+    "process_execution": true
+  },
+  "contents": {
+    "app_templates": [],
+    "apps": [
+      "github",
+      "linear",
+      "atlassian"
+    ],
+    "mcp_or_tooling": [
+      ".mcp.json",
+      "mcp/server.mjs",
+      "scripts/"
+    ],
+    "resources": [
+      ".codex-plugin/plugin.json",
+      ".app.json",
+      "OWNERS",
+      "assets/logo.png",
+      "examples/",
+      "preflight/",
+      "references/",
+      "schemas/"
+    ],
+    "skills": [
+      "attack-path-analysis",
+      "deep-security-scan",
+      "define-security-policy",
+      "finding-discovery",
+      "fix-finding",
+      "propose-security-hardening",
+      "security-diff-scan",
+      "security-scan",
+      "threat-model",
+      "track-findings",
+      "triage-finding",
+      "validation",
+      "vulnerability-writeup"
+    ]
+  },
+  "dependencies": [
+    {
+      "id": "node",
+      "kind": "executable",
+      "required": true,
+      "version": null
+    },
+    {
+      "id": "python",
+      "kind": "executable",
+      "required": false,
+      "version": null
+    },
+    {
+      "id": "codex-cli",
+      "kind": "executable",
+      "required": false,
+      "version": null
+    },
+    {
+      "id": "github",
+      "kind": "app",
+      "required": false,
+      "version": null
+    },
+    {
+      "id": "linear",
+      "kind": "app",
+      "required": false,
+      "version": null
+    },
+    {
+      "id": "atlassian",
+      "kind": "app",
+      "required": false,
+      "version": null
+    }
+  ],
+  "display_name": "Codex Security",
+  "evaluation": {
+    "baseline": "static source assessment only; staged runtime execution prohibited by issue #87",
+    "evidence": [
+      "portfolio/plugins/codex-security/evidence/bundle-assessment.json",
+      "portfolio/plugins/codex-security/evidence/skills/attack-path-analysis.json",
+      "portfolio/plugins/codex-security/evidence/skills/deep-security-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/define-security-policy.json",
+      "portfolio/plugins/codex-security/evidence/skills/finding-discovery.json",
+      "portfolio/plugins/codex-security/evidence/skills/fix-finding.json",
+      "portfolio/plugins/codex-security/evidence/skills/propose-security-hardening.json",
+      "portfolio/plugins/codex-security/evidence/skills/security-diff-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/security-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/threat-model.json",
+      "portfolio/plugins/codex-security/evidence/skills/track-findings.json",
+      "portfolio/plugins/codex-security/evidence/skills/triage-finding.json",
+      "portfolio/plugins/codex-security/evidence/skills/validation.json",
+      "portfolio/plugins/codex-security/evidence/skills/vulnerability-writeup.json"
+    ],
+    "reviewed_at": null,
+    "reviewer": null,
+    "status": "deferred"
+  },
+  "plugin_id": "codex-security",
+  "plugin_kind": "codex-plugin",
+  "portfolio_status": "deferred",
+  "rollback": {
+    "disable_method": "No repository runtime integration was created; keep runtime enablement disabled and revert the portfolio/intake records if support is withdrawn.",
+    "retained_evidence": [
+      "portfolio/plugins/codex-security/evidence/bundle-assessment.json",
+      "portfolio/plugins/codex-security/evidence/skills/attack-path-analysis.json",
+      "portfolio/plugins/codex-security/evidence/skills/deep-security-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/define-security-policy.json",
+      "portfolio/plugins/codex-security/evidence/skills/finding-discovery.json",
+      "portfolio/plugins/codex-security/evidence/skills/fix-finding.json",
+      "portfolio/plugins/codex-security/evidence/skills/propose-security-hardening.json",
+      "portfolio/plugins/codex-security/evidence/skills/security-diff-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/security-scan.json",
+      "portfolio/plugins/codex-security/evidence/skills/threat-model.json",
+      "portfolio/plugins/codex-security/evidence/skills/track-findings.json",
+      "portfolio/plugins/codex-security/evidence/skills/triage-finding.json",
+      "portfolio/plugins/codex-security/evidence/skills/validation.json",
+      "portfolio/plugins/codex-security/evidence/skills/vulnerability-writeup.json",
+      "portfolio/plugins/codex-security/evidence/version-delta-0.1.14-to-0.1.15.json"
+    ],
+    "uninstall_method": null
+  },
+  "schema_version": 1,
+  "source": {
+    "artifact_sha256": "a3baba26f0009c0fa54db60f5cc52326857106c21882092210f6598e33d11394",
+    "canonical_uri": "https://github.com/openai/openai/tree/master/chatgpt/oai-maintained-plugins/plugins/codex-security",
+    "handoff": null,
+    "immutable_revision": "a3baba26f0009c0fa54db60f5cc52326857106c21882092210f6598e33d11394",
+    "license_or_terms": "Proprietary (manifest-declared; upstream authenticity not independently verified)",
+    "owner": "OpenAI",
+    "provenance_type": "trusted-local",
+    "retrieved_at": "2026-08-22",
+    "version": "0.1.15"
+  },
+  "source_status": "unverified",
+  "targets": [
+    {
+      "activation_status": "not_observed",
+      "app_access": [
+        {
+          "access_status": "not_observed",
+          "app_id": "github"
+        },
+        {
+          "access_status": "not_observed",
+          "app_id": "linear"
+        },
+        {
+          "access_status": "not_observed",
+          "app_id": "atlassian"
+        }
+      ],
+      "installation_status": "not_observed",
+      "target_id": "codex"
+    }
+  ],
+  "update": {
+    "delta_evidence": "portfolio/plugins/codex-security/evidence/version-delta-0.1.14-to-0.1.15.json",
+    "last_accepted_revision": null,
+    "last_checked_at": "2026-08-22"
+  }
+}

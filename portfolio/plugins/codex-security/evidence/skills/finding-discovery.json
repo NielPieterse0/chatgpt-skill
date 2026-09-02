@@ -1,0 +1,29 @@
+{
+  "canonical_workspace_adjacent": [
+    "security-guide"
+  ],
+  "canonical_workspace_exact_match": null,
+  "decision": "static_entry_recorded_runtime_not_executed",
+  "description_present": true,
+  "entry_id": "finding-discovery",
+  "frontmatter_name": "finding-discovery",
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "runtime_evaluation_status": "deferred",
+  "schema_version": 1,
+  "source_bytes": 24978,
+  "source_path": "skills/finding-discovery/SKILL.md",
+  "source_skill_sha256": "cc162371f52fb29639dca3c61109b9fe7f224bffded051462ecf2d0f00f6bf73",
+  "static_signals": {
+    "mentions_external_write": true,
+    "mentions_process": true
+  },
+  "structural_status": "passed"
+}

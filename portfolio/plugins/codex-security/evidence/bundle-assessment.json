@@ -1,0 +1,49 @@
+{
+  "apps": [
+    "github",
+    "linear",
+    "atlassian"
+  ],
+  "bundle_digest_algorithm": "sha256 over sorted UTF-8 relative path, NUL, and raw SHA-256 digest bytes for each file",
+  "bundle_sha256": "a3baba26f0009c0fa54db60f5cc52326857106c21882092210f6598e33d11394",
+  "disposition": "defer_runtime_evaluation",
+  "evaluation_scope": "static_only",
+  "file_count": 96,
+  "mcp_servers": [
+    "codex-security"
+  ],
+  "plugin_id": "codex-security",
+  "plugin_version": "0.1.15",
+  "reason": "Issue #87 forbids staged bundle execution; declared MCP, credential, network, app, and mutation surfaces require separately approved isolated runtime evaluation.",
+  "remote_plugin_id": "Plugin_1e648473be9c8191a91ac3947151af55",
+  "runtime_blockers": [
+    "mcp_server",
+    "process_execution",
+    "credentials",
+    "network",
+    "external_mutation"
+  ],
+  "schema_version": 1,
+  "security_gate": "blocked_for_runtime",
+  "skill_count": 13,
+  "skills": [
+    "attack-path-analysis",
+    "deep-security-scan",
+    "define-security-policy",
+    "finding-discovery",
+    "fix-finding",
+    "propose-security-hardening",
+    "security-diff-scan",
+    "security-scan",
+    "threat-model",
+    "track-findings",
+    "triage-finding",
+    "validation",
+    "vulnerability-writeup"
+  ],
+  "source_locator": "C:\\Projects\\ChatGPT-skill\\.work\\niel-work\\codex-security\\0.1.15",
+  "source_provenance": "trusted-local",
+  "upstream_authentication_status": "not_observed",
+  "upstream_identity_basis": "owner, version, canonical URI, and license are manifest-declared; the local bundle digest authenticates bytes only, not publisher origin",
+  "total_bytes": 1556639
+}
