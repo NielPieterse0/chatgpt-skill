@@ -78,3 +78,18 @@ Fresh deterministic checks on the corrective bytes passed: adopted-content hashi
 Target-isolated automatic activation/output observability was not newly available in this run. No new trigger-rate, output-quality, efficiency, or runtime-compatibility pass is claimed. The corrective release decision therefore relies only on deterministic package/security/evaluation-definition evidence plus the explicit review evidence recorded for the corrective diff; any later target surface that exposes reliable isolated behavioral observability must rerun the unchanged tracked cases against these exact hashes.
 
 The omission/adaptation review for the redo is recorded in [`issue-139-engineering-specialist-omissions.md`](issue-139-engineering-specialist-omissions.md). An unlisted material source omission remains a defect rather than an implicit simplification.
+## Corrective review closure (#150)
+
+The #150 corrective tree was split into bounded review commits only because the KIS architecture projector could not safely review the original 53-file diff without truncation. The final tree remains byte-identical to the original corrective commit tree (`3032bb2f1f601bb5bd8edb4ded1ef6d32443d2f8`).
+
+Purpose-specific independent reviews completed across governance/routing, exploration/architecture, backend/API/security architecture, evidence/research, testing, code review, and AppSec slices. Clean reviews were obtained for governance/routing, evidence/research, code-quality review, and safety/security review.
+
+Reviewer findings that were not accepted were dispositioned against repository/package reality rather than implemented blindly:
+
+- Claims that Tier-0 advisory skills lacked an explicit authority boundary were rejected: each affected `SKILL.md` explicitly denies filesystem, mutation, Git/GitHub, deployment, lifecycle, and completion authority and includes an adjacent-skill boundary.
+- Claims that API-platform contract semantics such as retry, idempotency, pagination, authorization boundaries, and consumer-visible consistency belong exclusively to backend architecture were rejected. The API specialist owns externally observable contract semantics; backend implementation internals remain delegated to `engineering-backend-architect`.
+- The request to externally version-pin relative `technical-depth.md` references was rejected. Those references are in-package resources covered by the package's deterministic adopted-content hash; adding a second version indirection would contradict the repository package model.
+- Claims that ordinary `reviewer` and `engineering-code-reviewer` must not compose were rejected. Their distinction is intentional: precision-first bounded review versus deeper architecture/concurrency/migration/operability review, with explicit escalation guidance.
+- API-contract review requests to treat the changed skill-content hash itself as a breaking API contract were rejected. The manifest hash identifies adopted skill content; it is not a consumer API version. The rewritten API reference explicitly covers error stability, idempotency, pagination, compatibility, deprecation, rate limits, SDKs, and authority boundaries.
+
+No accepted reviewer finding requires a corrective content change. Review closure therefore preserves the already-verified skill tree and proceeds to final release verification.
