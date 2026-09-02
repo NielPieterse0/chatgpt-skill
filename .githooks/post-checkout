@@ -1,0 +1,19 @@
+#!C:/Windows/py.exe -3
+"""Publish tracked main workspace skills after checkout/switch."""
+from __future__ import annotations
+import subprocess
+import sys
+from pathlib import Path
+
+branch = subprocess.run(
+    ["git", "symbolic-ref", "--quiet", "--short", "HEAD"],
+    capture_output=True, text=True, check=False,
+).stdout.strip()
+if branch != "main":
+    raise SystemExit(0)
+repo = Path(subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip())
+raise SystemExit(subprocess.run([
+    sys.executable,
+    str(repo / "scripts" / "workspace_skill_mirror.py"),
+    "publish", "--repo", str(repo),
+], check=False).returncode)

@@ -1,0 +1,22 @@
+#!C:/Windows/py.exe -3
+"""Refresh the tracked workspace mirror and block stale commits."""
+from __future__ import annotations
+import subprocess
+import sys
+from pathlib import Path
+
+repo = Path(subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip())
+result = subprocess.run([
+    sys.executable,
+    str(repo / "scripts" / "workspace_skill_mirror.py"),
+    "refresh", "--repo", str(repo),
+], check=False)
+if result.returncode:
+    raise SystemExit(result.returncode)
+changed = subprocess.run([
+    "git", "diff", "--quiet", "--", "workspace-skills"
+], cwd=repo, check=False).returncode
+if changed:
+    print("workspace-skills was refreshed; stage the mirror and commit again", file=sys.stderr)
+    raise SystemExit(1)
+raise SystemExit(0)

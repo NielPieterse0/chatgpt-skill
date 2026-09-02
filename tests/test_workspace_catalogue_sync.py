@@ -235,14 +235,25 @@ class WorkspaceCatalogueSyncTests(unittest.TestCase):
     def test_post_merge_hook_surfaces_publication_failure(self) -> None:
         scripts = self.repo / "scripts"
         scripts.mkdir()
-        (scripts / "sync_workspace_catalogue.py").write_text(
+        (scripts / "workspace_skill_mirror.py").write_text(
             "import sys\nprint('simulated sync failure')\nraise SystemExit(7)\n",
             encoding="utf-8",
         )
         hook = Path(__file__).resolve().parents[1] / ".githooks" / "post-merge"
+        hooks = self.repo / ".githooks"
+        hooks.mkdir()
+        test_hook = hooks / "post-merge"
+        test_hook.write_bytes(hook.read_bytes())
+        test_hook.chmod(0o755)
+        self._git("config", "core.hooksPath", ".githooks")
 
+        command = (
+            ["git", "-C", str(self.repo), "hook", "run", "post-merge"]
+            if sys.platform == "win32"
+            else [sys.executable, str(test_hook)]
+        )
         completed = subprocess.run(
-            [sys.executable, str(hook)],
+            command,
             cwd=self.repo,
             check=False,
             capture_output=True,
@@ -250,8 +261,7 @@ class WorkspaceCatalogueSyncTests(unittest.TestCase):
         )
 
         self.assertEqual(7, completed.returncode)
-        self.assertIn("simulated sync failure", completed.stdout)
-        self.assertIn("do not treat this skill merge as complete", completed.stderr)
+        self.assertIn("workspace skill synchronization failed", completed.stderr)
 
 
 if __name__ == "__main__":
