@@ -80,6 +80,14 @@ Apply `writing-style` to all LLM-written output in this project, including plans
 
 ## Required Workflow
 
+### Mandatory skill-development method
+
+For any work that creates or materially revises an Agent Skill, load and follow the active catalogue `create-skill` workflow before the first skill edit. Also load `writing-skills` when behavioral instructions are being authored or materially changed so the revision is pressure-tested with a RED → GREEN → REFACTOR discipline.
+
+For any work that evaluates an existing skill, load and follow `evaluate-skill`. When evaluation findings drive a revision, load and follow `improve-skill` before editing, while preserving the baseline and held-out evaluation set. Repository-owned package, security, evaluation, runtime, and lifecycle standards remain authoritative over these reusable methods.
+
+Record which skill-development workflows were loaded in the change or evaluation evidence. Do not mass-normalize multiple skills from a shared template without independent per-skill source review, activation-boundary review, and technical-depth review. Human-review gates remain human-only; agent grading or skill workflows cannot substitute for named human evidence.
+
 1. Read this file and any nested `AGENTS.md` files that govern the target path.
 2. Inspect the live repository state before editing.
 3. For work that creates, changes, evaluates, packages, enables, suspends, removes, or changes shared-catalogue status for a skill, read [`docs/research/skill-adoption-research-synthesis.md`](docs/research/skill-adoption-research-synthesis.md) and the linked authoritative owner documents before the first edit.
