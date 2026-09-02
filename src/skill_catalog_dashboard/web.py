@@ -39,6 +39,7 @@ def render_html(report: DashboardReport) -> str:
             f"<td>{_text(skill['status'])}</td>"
             f"<td>{_text(skill['adoption_status'])}</td>"
             f"<td>{_text(skill['evaluation_status'])}</td>"
+            f"<td>{_text(', '.join(skill['provided_by_plugins']))}</td>"
             f"<td>{_text(usage)}</td>"
             f"<td>{_text(last_used)}</td>"
             f"<td>{_text(warnings)}</td>"
@@ -63,6 +64,48 @@ def render_html(report: DashboardReport) -> str:
             f"<td>{_text(item['next_action'])}</td>"
             f"<td>{_text(issue['repository'])}#{_text(issue['number'])}</td>"
             f"<td>{_text(item['work_management_state'])}</td>"
+            f"<td>{_text(warnings)}</td>"
+            "</tr>"
+        )
+    plugin_rows: list[str] = []
+    for plugin in payload["plugins"]:
+        source = plugin["source"]
+        contents = plugin["contents"]
+        evaluation = plugin["evaluation"]
+        update = plugin["update"]
+        capabilities = plugin["capabilities"]
+        components = " | ".join(
+            f"{name}:{len(values)}"
+            for name, values in contents.items()
+            if isinstance(values, list)
+        )
+        enabled_capabilities = ", ".join(
+            name
+            for name, value in capabilities.items()
+            if value is True or (isinstance(value, list) and value)
+        )
+        dependencies = ", ".join(
+            f"{item.get('id')}:{item.get('kind')}"
+            for item in plugin["dependencies"]
+        )
+        evidence = ", ".join(evaluation.get("evidence", []))
+        targets = "; ".join(
+            f"{target.get('target_id')}: install={target.get('installation_status')}, "
+            f"activate={target.get('activation_status')}, gaps={','.join(target.get('required_app_access_gaps', [])) or '-'}"
+            for target in plugin["targets"]
+        )
+        warnings = "; ".join(plugin["warnings"]) if plugin["warnings"] else ""
+        plugin_rows.append(
+            "<tr>"
+            f"<td><strong>{_text(plugin['display_name'])}</strong><br><code>{_text(plugin['plugin_id'])}</code></td>"
+            f"<td>{_text(plugin['portfolio_status'])}</td>"
+            f"<td>{_text(source.get('provenance_type'))} / {_text(plugin['source_status'])}</td>"
+            f"<td>{_text(source.get('version'))}<br><code>{_text(source.get('immutable_revision'))}</code></td>"
+            f"<td>{_text(components)}</td>"
+            f"<td>{_text(enabled_capabilities)}<br>deps: {_text(dependencies)}</td>"
+            f"<td>{_text(evaluation.get('status'))}<br>{_text(evidence)}</td>"
+            f"<td>{_text(update.get('check_age_days'))} days | delta={_text(update.get('pending_delta'))}</td>"
+            f"<td>{_text(targets)}</td>"
             f"<td>{_text(warnings)}</td>"
             "</tr>"
         )
@@ -93,16 +136,25 @@ code{{font-size:.8rem}} .warnings{{margin-top:1rem}} .scroll{{overflow:auto;max-
 <div class="card"><strong>Intake candidates</strong><div>{summary['intake_candidate_count']}</div></div>
 <div class="card"><strong>Intake actionable</strong><div>{summary['intake_actionable_count']}</div></div>
 <div class="card"><strong>Intake WM blocked</strong><div>{summary['intake_work_management_blocked_count']}</div></div>
+<div class="card"><strong>Plugins</strong><div>{summary['plugin_total_count']}</div></div>
+<div class="card"><strong>Plugins accepted</strong><div>{summary['plugin_accepted_count']}</div></div>
+<div class="card"><strong>Plugins deferred</strong><div>{summary['plugin_deferred_count']}</div></div>
+<div class="card"><strong>Plugin deltas</strong><div>{summary['plugin_pending_delta_count']}</div></div>
 </div>
 <div class="warnings"><ul>{warning_items}</ul></div>
 <div class="scroll"><table>
-<thead><tr><th>Name</th><th>Description</th><th>Source</th><th>Modified</th><th>Status</th><th>Adoption</th><th>Evaluation</th><th>Usage</th><th>Last used</th><th>Warnings</th></tr></thead>
+<thead><tr><th>Name</th><th>Description</th><th>Source</th><th>Modified</th><th>Status</th><th>Adoption</th><th>Evaluation</th><th>Provided by plugins</th><th>Usage</th><th>Last used</th><th>Warnings</th></tr></thead>
 <tbody>{''.join(rows)}</tbody>
 </table></div>
 <h2>Intake queue</h2>
 <div class="scroll"><table>
 <thead><tr><th>Candidate</th><th>Type</th><th>Provenance</th><th>License</th><th>Assessments</th><th>Evaluation</th><th>Disposition</th><th>Next action</th><th>Source issue</th><th>Work Management</th><th>Warnings</th></tr></thead>
 <tbody>{''.join(intake_rows)}</tbody>
+</table></div>
+<h2>Plugin portfolio</h2>
+<div class="scroll"><table>
+<thead><tr><th>Plugin</th><th>Portfolio</th><th>Provenance</th><th>Version / revision</th><th>Components</th><th>Capabilities</th><th>Evaluation</th><th>Update check</th><th>Targets</th><th>Warnings</th></tr></thead>
+<tbody>{''.join(plugin_rows)}</tbody>
 </table></div>
 </body></html>"""
 

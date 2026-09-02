@@ -78,6 +78,9 @@ class ValidationReport:
     repo_root: Path
     errors: list[Issue] = field(default_factory=list)
     records: list[str] = field(default_factory=list)
+    validated_records: list[tuple[str, dict[str, Any]]] = field(
+        default_factory=list, repr=False
+    )
 
     @property
     def ok(self) -> bool:
@@ -647,7 +650,10 @@ def validate_repository(repo_root: Path) -> ValidationReport:
         except (OSError, UnicodeError, json.JSONDecodeError) as exc:
             report.add("RECORD_INVALID_JSON", str(exc), record_path)
             continue
+        error_count = len(report.errors)
         validate_record(value, record_path, report)
+        if len(report.errors) == error_count:
+            report.validated_records.append((record_path.as_posix(), value))
     return report
 
 
